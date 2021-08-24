@@ -1,0 +1,12 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@500&display=swap");
+
+.editor-textarea {
+  width: 50%;
+  height: 100%;
+  border-radius: 0;
+  border: none;
+  background-color: #262626;
+  color: white;
+  padding: 5px;
+  font-family: "Roboto Mono", monospace;
+}

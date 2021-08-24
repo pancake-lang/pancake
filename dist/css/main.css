@@ -1,12 +1,13 @@
-@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap");
+@import "editor.css";
 
 * {
   padding: 0;
   margin: 0;
   outline: none;
-  font-family: "Open Sans", Helvetica, Tahoma, Geneva, Verdana, sans-serif;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 body {
-  min-height: 100vh;
+  height: 100vh;
+  display: flex;
 }
