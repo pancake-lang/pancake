@@ -2,11 +2,11 @@
 
 .editor-textarea {
   width: 50%;
-  height: 100%;
+  height: calc(100% - 20px);
   border-radius: 0;
   border: none;
-  background-color: #262626;
+  background-color: var(--code-background);
   color: white;
-  padding: 5px;
+  padding: 10px;
   font-family: "Roboto Mono", monospace;
 }

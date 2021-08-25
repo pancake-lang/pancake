@@ -2,6 +2,8 @@ module Main exposing (..)
 
 import Browser exposing (Document, document)
 import Editor.Class
+import Help.Class
+import Help.Info
 import Html exposing (..)
 import Html.Attributes exposing (..)
 import Html.Events exposing (..)
@@ -20,7 +22,9 @@ type alias Flags =
 
 
 type alias Model =
-    { source : String }
+    { source : String
+    , help : Bool
+    }
 
 
 
@@ -29,6 +33,7 @@ type alias Model =
 
 type Msg
     = EditorChange String
+    | ToggleHelp
 
 
 
@@ -51,7 +56,9 @@ main =
 
 init : Flags -> ( Model, Cmd Msg )
 init _ =
-    ( { source = startingProgramSource }
+    ( { source = startingProgramSource
+      , help = False
+      }
     , Cmd.none
     )
 
@@ -63,7 +70,7 @@ startingProgramSource =
 2
 3
 <
-flip_if
+flip if
 4
 5
 # 2
@@ -82,6 +89,9 @@ update msg model =
         EditorChange source ->
             ( { model | source = source }, Cmd.none )
 
+        ToggleHelp ->
+            ( { model | help = not model.help }, Cmd.none )
+
 
 
 -- VIEW
@@ -90,18 +100,35 @@ update msg model =
 view : Model -> Document Msg
 view model =
     let
-        titled =
-            Document "Pancake Playground"
-    in
-    titled
-        [ textarea
-            [ Editor.Class.textarea
-            , onInput EditorChange
-            , autofocus True
+        titled elems =
+            Document "Pancake Playground" <| showHelpButton :: elems
+
+        showHelpButton =
+            button
+                [ Help.Class.showButton
+                , onClick ToggleHelp
+                ]
+                [ text "👽" ]
+
+        editor =
+            [ textarea
+                [ Editor.Class.textarea
+                , onInput EditorChange
+                , autofocus True
+                ]
+                [ text model.source ]
+            , section [] []
             ]
-            [ text model.source ]
-        , section [] []
-        ]
+
+        readme =
+            [ div [ Help.Class.container ] Help.Info.info ]
+    in
+    titled <|
+        if model.help then
+            readme
+
+        else
+            editor
 
 
 

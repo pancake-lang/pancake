@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 
-OUTPUT_PATH = 'src/Help.elm'
+OUTPUT_PATH = 'src/Help/Info.elm'
 
-TEMPLATE = '''module Help exposing (info)
+TEMPLATE = '''module Help.Info exposing (info)
 
 import Markdown
 
