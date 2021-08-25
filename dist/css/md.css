@@ -65,6 +65,7 @@ p {
   font-weight: normal;
   font-size: 18px;
   line-height: 24px;
+  margin: 5px 0;
 }
 
 a {
@@ -75,6 +76,7 @@ a {
   background-color: var(--inline-code-background);
   padding: 1px 3px;
   border-radius: 5px;
+  font-family: "Roboto Mono", "Courier New", Courier, monospace;
 }
 
 pre {
@@ -100,4 +102,10 @@ img {
 ol {
   margin: 20px 0;
   font-size: 18px;
+}
+
+blockquote {
+  border-left: 5px solid var(--code-highlight);
+  padding-left: 10px;
+  margin: 15px 0;
 }
