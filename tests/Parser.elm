@@ -1,4 +1,4 @@
-module Example exposing (..)
+module Parser exposing (..)
 
 import Expect
 import Language.Parser as Parser
