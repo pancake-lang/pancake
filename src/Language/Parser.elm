@@ -58,24 +58,13 @@ parse source =
         results : List (Result ErrorLine AstLine)
         results =
             source |> lines |> List.map parseLine
-
-        isOk =
-            List.all ResultX.isOk results
-
-        dummyAstLine =
-            AstLine 0 <| Int 0
-
-        dummyErrorLine =
-            ErrorLine 0 "dummy error"
     in
-    if isOk then
-        Ok <| List.map (Result.withDefault dummyAstLine) results
+    case ResultX.combine results of
+        Ok ast ->
+            Ok ast
 
-    else
-        Err <|
-            List.map
-                (ResultX.error >> Maybe.withDefault dummyErrorLine)
-                results
+        Err _ ->
+            Err <| List.filterMap ResultX.error results
 
 
 lines : String -> List Line
