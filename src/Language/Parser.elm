@@ -8,6 +8,22 @@ module Language.Parser exposing
     , parse
     )
 
+import Parser
+    exposing
+        ( (|.)
+        , (|=)
+        , Parser
+        , backtrackable
+        , chompUntil
+        , chompWhile
+        , end
+        , getChompedString
+        , int
+        , oneOf
+        , spaces
+        , succeed
+        , symbol
+        )
 import Result.Extra as ResultX
 
 
@@ -41,6 +57,7 @@ type alias AstLine =
 
 type Item
     = Int Int
+    | Str String
     | Id String
 
 
@@ -84,9 +101,52 @@ lines =
 
 parseLine : Line -> Result ErrorLine AstLine
 parseLine { number, value } =
-    case String.toInt value of
-        Just int ->
-            Ok <| AstLine number <| Int int
+    Parser.run item value
+        |> ResultX.mapBoth
+            (always <| ErrorLine number "failed to parse line")
+            (AstLine number)
 
-        Nothing ->
-            Ok <| AstLine number <| Id value
+
+
+-- COMBINATORS
+
+
+item : Parser Item
+item =
+    succeed identity
+        |. spaces
+        |= oneOf
+            [ string
+            , integerOrIdentifier
+            ]
+        |. spaces
+        |. end
+
+
+integerOrIdentifier : Parser Item
+integerOrIdentifier =
+    oneOf
+        [ backtrackable <|
+            succeed (negate >> Int)
+                |. symbol "-"
+                |= int
+        , backtrackable <| Parser.map Int int
+        , identifier
+        ]
+
+
+string : Parser Item
+string =
+    succeed Str
+        |. symbol "\""
+        |= getChompedString (chompUntil "\"")
+        |. symbol "\""
+
+
+identifier : Parser Item
+identifier =
+    let
+        isIdentifier c =
+            Char.isAlpha c || String.any ((==) c) "<=>!$%&^?+-*/_"
+    in
+    Parser.map Id <| getChompedString (chompWhile isIdentifier)

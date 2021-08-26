@@ -9,9 +9,10 @@
             "elm/browser": "1.0.2",
             "elm/core": "1.0.5",
             "elm/html": "1.0.0",
+            "elm/parser": "1.1.0",
+            "elm-community/basics-extra": "4.1.0",
             "elm-community/result-extra": "2.4.0",
-            "pablohirafuji/elm-markdown": "2.0.5",
-            "pilatch/flip": "1.0.0"
+            "pablohirafuji/elm-markdown": "2.0.5"
         },
         "indirect": {
             "elm/json": "1.1.3",
