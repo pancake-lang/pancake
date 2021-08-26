@@ -99,9 +99,14 @@ img {
   margin: auto;
 }
 
-ol {
+ol,
+ul {
   margin: 20px 0;
   font-size: 18px;
+}
+
+li {
+  margin: 10px 0;
 }
 
 blockquote {

@@ -1,12 +1,16 @@
 module Main exposing (..)
 
 import Browser exposing (Document, document)
-import Editor.Class
+import Browser.Events as Events
+import Editor.Main as Editor
 import Help.Class
 import Help.Info
 import Html exposing (..)
 import Html.Attributes exposing (..)
 import Html.Events exposing (..)
+import Json.Decode
+import Keyboard.Event as Keyboard exposing (KeyboardEvent, decodeKeyboardEvent)
+import Maybe.Extra as MaybeX
 
 
 
@@ -22,7 +26,7 @@ type alias Flags =
 
 
 type alias Model =
-    { source : String
+    { editor : Editor.Model
     , help : Bool
     }
 
@@ -32,8 +36,9 @@ type alias Model =
 
 
 type Msg
-    = EditorChange String
+    = EditorMsg Editor.Msg
     | ToggleHelp
+    | KeyboardEvent KeyboardEvent
 
 
 
@@ -56,27 +61,11 @@ main =
 
 init : Flags -> ( Model, Cmd Msg )
 init _ =
-    ( { source = startingProgramSource
+    ( { editor = Editor.init
       , help = False
       }
     , Cmd.none
     )
-
-
-startingProgramSource : String
-startingProgramSource =
-    """1
-# 3
-2
-3
-<
-flip if
-4
-5
-# 2
-# flip
-+
-halt"""
 
 
 
@@ -86,11 +75,52 @@ halt"""
 update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
     case msg of
-        EditorChange source ->
-            ( { model | source = source }, Cmd.none )
+        EditorMsg editorMsg ->
+            ( { model | editor = Editor.update editorMsg model.editor }
+            , Cmd.none
+            )
 
         ToggleHelp ->
             ( { model | help = not model.help }, Cmd.none )
+
+        KeyboardEvent event ->
+            ( updateOnKeyBinding event model, Cmd.none )
+
+
+type KeyBinding
+    = ShowHelp
+    | CheckSource
+
+
+key : String -> KeyboardEvent -> Bool
+key k event =
+    case event.key of
+        Just pressed ->
+            pressed == k
+
+        _ ->
+            False
+
+
+isCheckSource : KeyboardEvent -> Bool
+isCheckSource e =
+    e.ctrlKey && key "Enter" e
+
+
+isToggleHelp : KeyboardEvent -> Bool
+isToggleHelp e =
+    e.ctrlKey && key ";" e
+
+
+{-| TODO: check source key binding
+-}
+updateOnKeyBinding : KeyboardEvent -> Model -> Model
+updateOnKeyBinding event model =
+    if isToggleHelp event then
+        { model | help = not model.help }
+
+    else
+        model
 
 
 
@@ -110,13 +140,8 @@ view model =
                 ]
                 [ text "👽" ]
 
-        editor =
-            [ textarea
-                [ Editor.Class.textarea
-                , onInput EditorChange
-                , autofocus True
-                ]
-                [ text model.source ]
+        ide =
+            [ Editor.view model.editor |> Html.map EditorMsg
             , section [] []
             ]
 
@@ -128,7 +153,7 @@ view model =
             readme
 
         else
-            editor
+            ide
 
 
 
@@ -137,4 +162,5 @@ view model =
 
 subscriptions : Model -> Sub Msg
 subscriptions _ =
-    Sub.none
+    Events.onKeyDown <|
+        Json.Decode.map KeyboardEvent decodeKeyboardEvent
