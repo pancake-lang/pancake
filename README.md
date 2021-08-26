@@ -46,7 +46,7 @@ loop start
 ```
 
 This program will print `hello world` three times before halting forever. Here's
-what we can learn from looping at it:
+what we can learn from looking at it:
 
 1. Each line is an instruction.
 2. Lines prefixed with `@` are lables to which we can jump by writing their name
