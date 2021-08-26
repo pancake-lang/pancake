@@ -2,6 +2,7 @@ module Main exposing (..)
 
 import Browser exposing (Document, document)
 import Browser.Events as Events
+import Editor.Class
 import Editor.Main as Editor
 import Help.Class
 import Help.Info
@@ -10,7 +11,6 @@ import Html.Attributes exposing (..)
 import Html.Events exposing (..)
 import Json.Decode
 import Keyboard.Event as Keyboard exposing (KeyboardEvent, decodeKeyboardEvent)
-import Maybe.Extra as MaybeX
 
 
 
@@ -141,7 +141,9 @@ view model =
                 [ text "👽" ]
 
         ide =
-            [ Editor.view model.editor |> Html.map EditorMsg
+            [ section [ Editor.Class.half ] <|
+                List.map (Html.map EditorMsg) <|
+                    Editor.view model.editor
             , section [] []
             ]
 

@@ -1,3 +1,3 @@
 const app = Elm.Main.init({
-  node: document.getElementById("app"),
-});
+  node: document.getElementById("app")
+})

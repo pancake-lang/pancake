@@ -1,12 +1,43 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@500&display=swap");
 
-.editor-textarea {
+:root {
+  --editor-line-numbers-color: #464646;
+}
+.editor-half {
   width: 50%;
-  height: calc(100% - 20px);
+  height: 100%;
+  display: flex;
+}
+
+.editor-line-numbers {
+  width: min-content;
+  padding: 0 10px;
+  min-height: 100%;
+  background-color: var(--code-background);
+  overflow-y: scroll;
+  scrollbar-width: none;
+  scroll-behavior: auto;
+}
+.editor-line-numbers::-webkit-scrollbar {
+  display: none;
+}
+
+.editor-number {
+  line-height: 24px;
+  margin: 0;
+  font-size: 18px;
+  color: var(--editor-line-numbers-color);
+  text-align: right;
+}
+
+.editor-textarea {
+  flex-grow: 2;
+  height: 100%;
   border-radius: 0;
   border: none;
   background-color: var(--code-background);
-  color: white;
-  padding: 10px;
+  color: var(--code-color);
   font-family: "Roboto Mono", monospace;
+  line-height: 24px;
+  font-size: 18px;
 }

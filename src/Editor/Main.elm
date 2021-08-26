@@ -63,11 +63,23 @@ update msg model =
 -- VIEW
 
 
-view : Model -> Html Msg
+view : Model -> List (Html Msg)
 view model =
-    textarea
+    let
+        lineNumber n =
+            p [ Editor.Class.number ] [ text <| String.fromInt n ]
+
+        numberOfLines =
+            model.source |> String.lines |> List.length
+
+        lineNumbers =
+            List.range 1 numberOfLines |> List.map lineNumber
+    in
+    [ nav [ Editor.Class.lineNumbers ] lineNumbers
+    , textarea
         [ Editor.Class.textarea
         , onInput SourceChange
         , autofocus True
         ]
         [ text <| model.source ]
+    ]

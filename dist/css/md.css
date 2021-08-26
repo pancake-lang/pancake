@@ -4,7 +4,8 @@
 
 :root {
   --link-color: #01579b;
-  --code-background: #263238;
+  --code-background: #262626;
+  --code-color: #dfbd9b;
   --code-highlight: #03a9f4;
   --inline-code-background: #efefef;
 }
@@ -89,7 +90,7 @@ pre {
 }
 pre code {
   background-color: transparent;
-  color: white;
+  color: var(--code-color);
   font-family: "Roboto Mono", "Courier New", Courier, monospace;
   font-size: 16px;
 }
