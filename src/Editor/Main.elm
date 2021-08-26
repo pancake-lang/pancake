@@ -4,6 +4,9 @@ import Editor.Class
 import Html exposing (..)
 import Html.Attributes exposing (..)
 import Html.Events exposing (..)
+import Language.Parser as Parser exposing (ParseResult)
+import Maybe.Extra as MaybeX
+import Set
 
 
 
@@ -12,6 +15,7 @@ import Html.Events exposing (..)
 
 type alias Model =
     { source : String
+    , result : Maybe ParseResult
     }
 
 
@@ -21,6 +25,7 @@ type alias Model =
 
 type Msg
     = SourceChange String
+    | SourceCheck
 
 
 
@@ -29,7 +34,7 @@ type Msg
 
 init : Model
 init =
-    Model demo
+    Model demo Nothing
 
 
 demo : String
@@ -58,6 +63,9 @@ update msg model =
         SourceChange change ->
             { model | source = change }
 
+        SourceCheck ->
+            { model | result = Just <| Parser.parse model.source }
+
 
 
 -- VIEW
@@ -66,8 +74,28 @@ update msg model =
 view : Model -> List (Html Msg)
 view model =
     let
+        errorLines =
+            case model.result of
+                Nothing ->
+                    Set.empty
+
+                Just (Ok _) ->
+                    Set.empty
+
+                Just (Err errors) ->
+                    Parser.toErrorLineNumbers errors
+
         lineNumber n =
-            p [ Editor.Class.number ] [ text <| String.fromInt n ]
+            let
+                error =
+                    if Set.member n errorLines then
+                        Just Editor.Class.numberError
+
+                    else
+                        Nothing
+            in
+            p (Editor.Class.number :: MaybeX.toList error)
+                [ text <| String.fromInt n ]
 
         numberOfLines =
             model.source |> String.lines |> List.length

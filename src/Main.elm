@@ -112,12 +112,13 @@ isToggleHelp e =
     e.ctrlKey && key ";" e
 
 
-{-| TODO: check source key binding
--}
 updateOnKeyBinding : KeyboardEvent -> Model -> Model
 updateOnKeyBinding event model =
     if isToggleHelp event then
         { model | help = not model.help }
+
+    else if isCheckSource event then
+        { model | editor = Editor.update Editor.SourceCheck model.editor }
 
     else
         model

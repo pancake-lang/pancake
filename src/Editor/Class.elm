@@ -24,6 +24,11 @@ number =
     editor "number"
 
 
+numberError : Attribute msg
+numberError =
+    editor "number-error"
+
+
 textarea : Attribute msg
 textarea =
     editor "textarea"

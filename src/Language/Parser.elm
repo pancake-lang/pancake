@@ -6,6 +6,7 @@ module Language.Parser exposing
     , ParseError
     , ParseResult
     , parse
+    , toErrorLineNumbers
     )
 
 import Parser
@@ -25,6 +26,7 @@ import Parser
         , symbol
         )
 import Result.Extra as ResultX
+import Set exposing (Set)
 
 
 
@@ -37,6 +39,11 @@ type alias ParseResult =
 
 type alias ParseError =
     List ErrorLine
+
+
+toErrorLineNumbers : ParseError -> Set Int
+toErrorLineNumbers =
+    List.map (\{ number } -> number) >> Set.fromList
 
 
 type alias ErrorLine =
