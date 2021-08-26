@@ -1,4 +1,4 @@
-#!/usr/bin/bash
+#!/usr/bin/env bash
 
 # Use this `release` script to `elm-test` and `elm make` this project.
 
