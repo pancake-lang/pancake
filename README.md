@@ -7,10 +7,10 @@ pancake 😉.
 This project was concieved during the first [Lang Jam][langjam] with an amazing
 team of creative coders:
 
+- [Viktor the `sharpvik`](https://github.com/sharpvik)
+- [Kyle the `Kylebrown9`](https://github.com/Kylebrown9)
 - [Aleksi the `aleksimart`](https://github.com/aleksimart)
 - [Holly the `dejawuuu`](https://github.com/dejawuuu)
-- [Kyle the `Kylebrown9`](https://github.com/Kylebrown9)
-- [Viktor the `sharpvik`](https://github.com/sharpvik)
 
 **NOTE:** [this site][playground] is an IDE for our language. Take a look at
 the **Editor** section to learn more!
