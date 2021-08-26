@@ -1,0 +1,50 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@500&display=swap");
+
+:root {
+  --editor-line-numbers-color: #464646;
+  --editor-font-size: 18px;
+  --editor-line-height: 24px;
+}
+.editor-half {
+  width: 50%;
+  height: 100%;
+  display: flex;
+}
+
+.editor-line-numbers {
+  background-color: var(--code-background);
+  width: min-content;
+  min-height: 100%;
+  overflow-y: scroll;
+  scrollbar-width: none;
+  scroll-behavior: auto;
+  padding-right: 5px;
+}
+.editor-line-numbers::-webkit-scrollbar {
+  display: none;
+}
+
+.editor-number {
+  line-height: var(--editor-line-height);
+  font-size: var(--editor-font-size);
+  color: var(--editor-line-numbers-color);
+  padding: 0 10px;
+  margin: 0;
+  text-align: right;
+}
+.editor-number-error {
+  color: #ffa8a8;
+  background-color: #b65555;
+}
+
+.editor-textarea {
+  background-color: var(--code-background);
+  line-height: var(--editor-line-height);
+  font-size: var(--editor-font-size);
+  color: var(--code-color);
+  flex-grow: 2;
+  height: 100%;
+  border-radius: 0;
+  border: none;
+  font-family: "Roboto Mono", monospace;
+}

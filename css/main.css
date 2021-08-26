@@ -1,0 +1,14 @@
+@import "editor.css";
+@import "help.css";
+
+* {
+  padding: 0;
+  margin: 0;
+  outline: none;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+  height: 100vh;
+  display: flex;
+}
