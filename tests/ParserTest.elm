@@ -12,7 +12,7 @@ suite =
             """1
 2
 <
-flip_if
+flip if
 +
 
 halt
@@ -24,7 +24,7 @@ print"""
                 [ Parser.AstLine 1 <| Parser.Int 1
                 , Parser.AstLine 2 <| Parser.Int 2
                 , Parser.AstLine 3 <| Parser.Id "<"
-                , Parser.AstLine 4 <| Parser.Id "flip_if"
+                , Parser.AstLine 4 <| Parser.Id "flip if"
                 , Parser.AstLine 5 <| Parser.Id "+"
                 , Parser.AstLine 7 <| Parser.Id "halt"
                 , Parser.AstLine 8 <| Parser.Str "hello world"

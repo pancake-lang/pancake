@@ -147,6 +147,6 @@ identifier : Parser Item
 identifier =
     let
         isIdentifier c =
-            Char.isAlpha c || String.any ((==) c) "<=>!$%&^?+-*/_"
+            Char.isAlpha c || String.any ((==) c) "<=>!$%&^?+-*/_ "
     in
     Parser.map Id <| getChompedString (chompWhile isIdentifier)
