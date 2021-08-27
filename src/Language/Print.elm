@@ -10,6 +10,7 @@ import Language.Parser
         )
 import Language.World exposing (World(..))
 import List.Extra as ListX
+import String.Extra as StringX
 
 
 pretty : Ast -> String
@@ -62,7 +63,7 @@ item this =
             String.fromInt int
 
         Str str ->
-            str
+            StringX.quote str
 
         Id id ->
             id
