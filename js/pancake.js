@@ -6267,6 +6267,12 @@ var $elm$core$Basics$always = F2(
 	function (a, _v0) {
 		return a;
 	});
+var $author$project$Language$World$Alpha = 0;
+var $author$project$Language$Parser$Citizen = F2(
+	function (a, b) {
+		return {$: 0, a: a, b: b};
+	});
+var $author$project$Language$World$Omega = 1;
 var $elm$parser$Parser$ExpectingEnd = {$: 10};
 var $elm$parser$Parser$Advanced$Bad = F2(
 	function (a, b) {
@@ -6798,13 +6804,53 @@ var $author$project$Language$Parser$item = A2(
 		$elm$parser$Parser$ignorer,
 		$elm$parser$Parser$succeed($elm$core$Basics$identity),
 		$elm$parser$Parser$spaces),
+	$elm$parser$Parser$oneOf(
+		_List_fromArray(
+			[$author$project$Language$Parser$string, $author$project$Language$Parser$integerOrIdentifier])));
+var $author$project$Language$Parser$Label = function (a) {
+	return {$: 1, a: a};
+};
+var $author$project$Language$Parser$label = A2(
+	$elm$parser$Parser$map,
+	$author$project$Language$Parser$Label,
+	$elm$parser$Parser$getChompedString(
+		$elm$parser$Parser$chompWhile($elm$core$Char$isAlpha)));
+var $author$project$Language$Parser$citizen = A2(
+	$elm$parser$Parser$keeper,
+	A2(
+		$elm$parser$Parser$ignorer,
+		$elm$parser$Parser$succeed($elm$core$Basics$identity),
+		$elm$parser$Parser$spaces),
 	A2(
 		$elm$parser$Parser$ignorer,
 		A2(
 			$elm$parser$Parser$ignorer,
 			$elm$parser$Parser$oneOf(
 				_List_fromArray(
-					[$author$project$Language$Parser$string, $author$project$Language$Parser$integerOrIdentifier])),
+					[
+						A2(
+						$elm$parser$Parser$keeper,
+						A2(
+							$elm$parser$Parser$ignorer,
+							A2(
+								$elm$parser$Parser$ignorer,
+								$elm$parser$Parser$succeed($elm$core$Basics$identity),
+								$elm$parser$Parser$symbol('@')),
+							$elm$parser$Parser$spaces),
+						$author$project$Language$Parser$label),
+						A2(
+						$elm$parser$Parser$keeper,
+						A2(
+							$elm$parser$Parser$ignorer,
+							$elm$parser$Parser$succeed(
+								$author$project$Language$Parser$Citizen(1)),
+							$elm$parser$Parser$symbol('#')),
+						$author$project$Language$Parser$item),
+						A2(
+						$elm$parser$Parser$map,
+						$author$project$Language$Parser$Citizen(0),
+						$author$project$Language$Parser$item)
+					])),
 			$elm$parser$Parser$spaces),
 		$elm$parser$Parser$end));
 var $elm_community$result_extra$Result$Extra$mapBoth = F3(
@@ -6886,7 +6932,7 @@ var $author$project$Language$Parser$parseLine = function (_v0) {
 		$elm$core$Basics$always(
 			A2($author$project$Language$Parser$ErrorLine, number, 'failed to parse line')),
 		$author$project$Language$Parser$AstLine(number),
-		A2($elm$parser$Parser$run, $author$project$Language$Parser$item, value));
+		A2($elm$parser$Parser$run, $author$project$Language$Parser$citizen, value));
 };
 var $author$project$Language$Parser$parse = function (source) {
 	var results = A2(
