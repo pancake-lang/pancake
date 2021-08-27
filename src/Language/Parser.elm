@@ -1,6 +1,7 @@
 module Language.Parser exposing
     ( Ast
     , AstLine
+    , Citizen(..)
     , ErrorLine
     , Item(..)
     , ParseError
@@ -9,6 +10,7 @@ module Language.Parser exposing
     , toErrorLineNumbers
     )
 
+import Language.World exposing (World(..))
 import Parser
     exposing
         ( (|.)
@@ -58,8 +60,13 @@ type alias Ast =
 
 type alias AstLine =
     { number : Int
-    , item : Item
+    , item : Citizen
     }
+
+
+type Citizen
+    = Citizen World Item
+    | Label String
 
 
 type Item
@@ -108,7 +115,7 @@ lines =
 
 parseLine : Line -> Result ErrorLine AstLine
 parseLine { number, value } =
-    Parser.run item value
+    Parser.run citizen value
         |> ResultX.mapBoth
             (always <| ErrorLine number "failed to parse line")
             (AstLine number)
@@ -116,6 +123,29 @@ parseLine { number, value } =
 
 
 -- COMBINATORS
+
+
+citizen : Parser Citizen
+citizen =
+    succeed identity
+        |. spaces
+        |= oneOf
+            [ succeed identity
+                |. symbol "@"
+                |. spaces
+                |= label
+            , succeed (Citizen Omega)
+                |. symbol "#"
+                |= item
+            , Parser.map (Citizen Alpha) item
+            ]
+        |. spaces
+        |. end
+
+
+label : Parser Citizen
+label =
+    Parser.map Label <| getChompedString (chompWhile Char.isAlpha)
 
 
 item : Parser Item
@@ -126,8 +156,6 @@ item =
             [ string
             , integerOrIdentifier
             ]
-        |. spaces
-        |. end
 
 
 integerOrIdentifier : Parser Item
