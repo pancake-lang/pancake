@@ -31,10 +31,12 @@
   padding: 0 10px;
   margin: 0;
   text-align: right;
+  transition: all 0.5s;
 }
 .editor-number-error {
   color: #ffa8a8;
   background-color: #b65555;
+  transition: all 0.5s;
 }
 
 .editor-textarea {
