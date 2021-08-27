@@ -6953,6 +6953,15 @@ var $author$project$Language$Parser$parse = function (source) {
 			A2($elm$core$List$filterMap, $elm_community$result_extra$Result$Extra$error, results));
 	}
 };
+var $elm_community$string_extra$String$Extra$surround = F2(
+	function (wrapper, string) {
+		return _Utils_ap(
+			wrapper,
+			_Utils_ap(string, wrapper));
+	});
+var $elm_community$string_extra$String$Extra$quote = function (string) {
+	return A2($elm_community$string_extra$String$Extra$surround, '\"', string);
+};
 var $author$project$Language$Print$item = function (_this) {
 	switch (_this.$) {
 		case 0:
@@ -6960,7 +6969,7 @@ var $author$project$Language$Print$item = function (_this) {
 			return $elm$core$String$fromInt(_int);
 		case 1:
 			var str = _this.a;
-			return str;
+			return $elm_community$string_extra$String$Extra$quote(str);
 		default:
 			var id = _this.a;
 			return id;
