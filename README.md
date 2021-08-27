@@ -77,4 +77,4 @@ what we can learn from looking at it:
 ### Key Bindings
 
 - `CTRL + ;` = toggle help
-- `CTRL + ENTER` = run source code checks
+- `CTRL + ENTER` = run source code checks and formatting
