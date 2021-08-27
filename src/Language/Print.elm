@@ -19,7 +19,7 @@ pretty ast =
         allLines =
             List.repeat
                 (ListX.last ast
-                    |> Maybe.withDefault (AstLine 1 <| Label "empty")
+                    |> Maybe.withDefault (AstLine 1 <| Label "" "")
                 ).number
                 ""
 
@@ -43,17 +43,21 @@ astLine line =
         withNumber =
             Tuple.pair line.number
     in
-    case line.item of
-        Label label ->
-            withNumber <| "@ " ++ label
+    withNumber <|
+        case line.item of
+            Label label comment ->
+                "@ " ++ label ++ comment
 
-        Citizen world citizen ->
-            case world of
-                Alpha ->
-                    withNumber <| "    " ++ item citizen
+            Citizen world citizen comment ->
+                case world of
+                    Alpha ->
+                        "    " ++ item citizen ++ comment
 
-                Omega ->
-                    withNumber <| "#   " ++ item citizen
+                    Omega ->
+                        "#   " ++ item citizen ++ comment
+
+            Note comment ->
+                comment
 
 
 item : Item -> String

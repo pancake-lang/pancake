@@ -68,8 +68,13 @@ type alias AstLine =
 
 
 type Citizen
-    = Citizen World Item
-    | Label String
+    = Citizen World Item Comment
+    | Label String Comment
+    | Note Comment
+
+
+type alias Comment =
+    String
 
 
 type Item
@@ -130,29 +135,47 @@ parseLine { number, value } =
 
 citizen : Parser Citizen
 citizen =
+    oneOf
+        [ backtrackable <|
+            succeed Note
+                |. spaces
+                |= comment
+        , succeed identity
+            |. spaces
+            |= oneOf
+                [ succeed Label
+                    |. symbol "@"
+                    |. spaces
+                    |= label
+                    |= comment
+                , succeed (Citizen Omega)
+                    |. symbol "#"
+                    |= item
+                    |= comment
+                , succeed (Citizen Alpha)
+                    |= item
+                    |= comment
+                ]
+        ]
+
+
+comment : Parser String
+comment =
     succeed identity
         |. spaces
         |= oneOf
-            [ succeed identity
-                |. symbol "@"
-                |. spaces
-                |= label
-            , succeed (Citizen Omega)
-                |. symbol "#"
-                |= item
-            , Parser.map (Citizen Alpha) item
+            [ lineComment ";" |> getChompedString
+            , Parser.map (always "") end
             ]
-        |. spaces
-        |. oneOf [ lineComment ";", end ]
 
 
-label : Parser Citizen
+label : Parser String
 label =
     let
         isLabel c =
             Char.isAlpha c || c == ' '
     in
-    Parser.map Label <| getChompedString (chompWhile isLabel)
+    getChompedString <| chompWhile isLabel
 
 
 item : Parser Item

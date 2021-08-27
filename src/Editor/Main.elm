@@ -45,7 +45,7 @@ demo =
 2
 3
 <
-flip if
+flip if  ; flip the world if 2 < 3
 4
 5
 # 2

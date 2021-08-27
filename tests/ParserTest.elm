@@ -28,19 +28,22 @@ print
 
         goodProgramParse =
             Ok <|
-                [ Parser.AstLine 1 <| Citizen Alpha <| Parser.Int 1
-                , Parser.AstLine 2 <| Citizen Alpha <| Parser.Int 2
-                , Parser.AstLine 3 <| Citizen Alpha <| Parser.Id "<"
-                , Parser.AstLine 4 <| Citizen Alpha <| Parser.Id "flip if"
-                , Parser.AstLine 5 <| Citizen Alpha <| Parser.Id "+"
-                , Parser.AstLine 7 <| Citizen Alpha <| Parser.Id "halt"
-                , Parser.AstLine 8 <| Citizen Alpha <| Parser.Str "hello world"
-                , Parser.AstLine 9 <| Citizen Alpha <| Parser.Id "print"
-                , Parser.AstLine 10 <| Label "label"
-                , Parser.AstLine 11 <| Citizen Omega <| Parser.Id "omega world"
-                , Parser.AstLine 12 <| Citizen Omega <| Parser.Int 42
-                , Parser.AstLine 13 <| Citizen Omega <| Parser.Str "hello there"
-                , Parser.AstLine 14 <| Label "end of the world"
+                [ Parser.AstLine 1 <| Citizen Alpha (Parser.Int 1) ""
+                , Parser.AstLine 2 <| Citizen Alpha (Parser.Int 2) ""
+                , Parser.AstLine 3 <| Citizen Alpha (Parser.Id "<") ""
+                , Parser.AstLine 4 <| Citizen Alpha (Parser.Id "flip if") ""
+                , Parser.AstLine 5 <| Citizen Alpha (Parser.Id "+") ""
+                , Parser.AstLine 7 <| Citizen Alpha (Parser.Id "halt") ""
+                , Parser.AstLine 8 <|
+                    Citizen Alpha
+                        (Parser.Str "hello world")
+                        "; will be printed later"
+                , Parser.AstLine 9 <| Citizen Alpha (Parser.Id "print") ""
+                , Parser.AstLine 10 <| Label "label" ""
+                , Parser.AstLine 11 <| Citizen Omega (Parser.Id "omega world") ""
+                , Parser.AstLine 12 <| Citizen Omega (Parser.Int 42) ""
+                , Parser.AstLine 13 <| Citizen Omega (Parser.Str "hello there") ""
+                , Parser.AstLine 14 <| Label "end of the world" ""
                 ]
 
         badProgram =
@@ -61,7 +64,6 @@ hello 42
                 , Parser.ErrorLine 5 "failed to parse line"
                 , Parser.ErrorLine 6 "failed to parse line"
                 , Parser.ErrorLine 7 "failed to parse line"
-                , Parser.ErrorLine 8 "failed to parse line"
                 ]
     in
     describe "parse"
