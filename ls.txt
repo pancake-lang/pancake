@@ -1,4 +1,3 @@
-css
-index.html
-js
-ls.txt
+editor.js
+pancake-init.js
+pancake.js
