@@ -1,10 +1,4 @@
-LICENSE
-README.md
-build
-dist
-doc.py
-elm-stuff
-elm.json
-release
-src
-tests
+css
+index.html
+js
+ls.txt
