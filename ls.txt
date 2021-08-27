@@ -1,3 +1,4 @@
 editor.js
 pancake-init.js
 pancake.js
+pancakes.js
