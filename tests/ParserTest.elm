@@ -17,7 +17,7 @@ flip if
 +
 
 halt
-"hello world"
+"hello world"       ; will be printed later
 print
 @label
 # omega world   
@@ -50,6 +50,8 @@ print
 hello 42
 # "asdf
 @ 42
+# ; incomplete line
+  ; alpha incomplete line
 """
 
         badProgramParse =
@@ -58,6 +60,8 @@ hello 42
                 , Parser.ErrorLine 4 "failed to parse line"
                 , Parser.ErrorLine 5 "failed to parse line"
                 , Parser.ErrorLine 6 "failed to parse line"
+                , Parser.ErrorLine 7 "failed to parse line"
+                , Parser.ErrorLine 8 "failed to parse line"
                 ]
     in
     describe "parse"

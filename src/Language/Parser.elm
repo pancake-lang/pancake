@@ -6,6 +6,7 @@ module Language.Parser exposing
     , Item(..)
     , ParseError
     , ParseResult
+    , citizen
     , parse
     , toErrorLineNumbers
     )
@@ -22,6 +23,7 @@ import Parser
         , end
         , getChompedString
         , int
+        , lineComment
         , oneOf
         , spaces
         , succeed
@@ -29,6 +31,7 @@ import Parser
         )
 import Result.Extra as ResultX
 import Set exposing (Set)
+import String.Extra exposing (nonEmpty)
 
 
 
@@ -140,7 +143,7 @@ citizen =
             , Parser.map (Citizen Alpha) item
             ]
         |. spaces
-        |. end
+        |. oneOf [ lineComment ";", end ]
 
 
 label : Parser Citizen
@@ -187,5 +190,14 @@ identifier =
     let
         isIdentifier c =
             Char.isAlpha c || String.any ((==) c) "<=>!$%&^?+-*/_ "
+
+        nonEmpty id =
+            if String.isEmpty id then
+                Parser.problem "empty identifier"
+
+            else
+                succeed id
     in
-    Parser.map Id <| getChompedString (chompWhile isIdentifier)
+    getChompedString (chompWhile isIdentifier)
+        |> Parser.andThen nonEmpty
+        |> Parser.map Id
