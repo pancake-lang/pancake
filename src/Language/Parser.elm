@@ -145,7 +145,11 @@ citizen =
 
 label : Parser Citizen
 label =
-    Parser.map Label <| getChompedString (chompWhile Char.isAlpha)
+    let
+        isLabel c =
+            Char.isAlpha c || c == ' '
+    in
+    Parser.map Label <| getChompedString (chompWhile isLabel)
 
 
 item : Parser Item

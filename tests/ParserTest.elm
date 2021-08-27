@@ -20,9 +20,11 @@ halt
 "hello world"
 print
 @label
-# omega world
+# omega world   
 # 42
-# "hello there" """
+# "hello there"  
+@ end of the world
+"""
 
         goodProgramParse =
             Ok <|
@@ -38,6 +40,7 @@ print
                 , Parser.AstLine 11 <| Citizen Omega <| Parser.Id "omega world"
                 , Parser.AstLine 12 <| Citizen Omega <| Parser.Int 42
                 , Parser.AstLine 13 <| Citizen Omega <| Parser.Str "hello there"
+                , Parser.AstLine 14 <| Label "end of the world"
                 ]
 
         badProgram =
