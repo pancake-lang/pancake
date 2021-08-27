@@ -5,6 +5,7 @@ import Html exposing (..)
 import Html.Attributes exposing (..)
 import Html.Events exposing (..)
 import Language.Parser as Parser exposing (ParseResult)
+import Language.Print as Print
 import Maybe.Extra as MaybeX
 import Set
 
@@ -50,7 +51,8 @@ flip if
 # 2
 # flip
 +
-halt"""
+@end
+exit"""
 
 
 
@@ -64,7 +66,19 @@ update msg model =
             { model | source = change }
 
         SourceCheck ->
-            { model | result = Just <| Parser.parse model.source }
+            let
+                result =
+                    Parser.parse model.source
+
+                source =
+                    case result of
+                        Err _ ->
+                            model.source
+
+                        Ok ast ->
+                            Print.pretty ast
+            in
+            Model source <| Just result
 
 
 
@@ -108,6 +122,7 @@ view model =
         [ Editor.Class.textarea
         , onInput SourceChange
         , autofocus True
+        , value model.source
         ]
-        [ text <| model.source ]
+        []
     ]
