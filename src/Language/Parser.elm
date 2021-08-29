@@ -6,7 +6,9 @@ module Language.Parser exposing
     , Item(..)
     , ParseError
     , ParseResult
-    , citizen
+    , getLabel
+    , isLabel
+    , isNote
     , parse
     , toErrorLineNumbers
     )
@@ -71,6 +73,36 @@ type Citizen
     = Citizen World Item Comment
     | Label String Comment
     | Note Comment
+
+
+isLabel : Citizen -> Bool
+isLabel citizen_ =
+    case citizen_ of
+        Label _ _ ->
+            True
+
+        _ ->
+            False
+
+
+getLabel : Citizen -> Maybe String
+getLabel citizen_ =
+    case citizen_ of
+        Label l _ ->
+            Just l
+
+        _ ->
+            Nothing
+
+
+isNote : Citizen -> Bool
+isNote citizen_ =
+    case citizen_ of
+        Note _ ->
+            True
+
+        _ ->
+            False
 
 
 type alias Comment =
@@ -172,10 +204,10 @@ comment =
 label : Parser String
 label =
     let
-        isLabel c =
+        isaLabel c =
             Char.isAlpha c || c == ' '
     in
-    getChompedString <| chompWhile isLabel
+    getChompedString <| chompWhile isaLabel
 
 
 item : Parser Item

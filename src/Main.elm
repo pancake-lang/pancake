@@ -11,6 +11,10 @@ import Html.Attributes exposing (..)
 import Html.Events exposing (..)
 import Json.Decode
 import Keyboard.Event as Keyboard exposing (KeyboardEvent, decodeKeyboardEvent)
+import Language.Compiler as Compiler
+import Language.Machine exposing (Machine)
+import Language.World exposing (World(..))
+import Terminal.Class
 
 
 
@@ -28,6 +32,7 @@ type alias Flags =
 type alias Model =
     { editor : Editor.Model
     , help : Bool
+    , runtime : Maybe Machine
     }
 
 
@@ -63,6 +68,7 @@ init : Flags -> ( Model, Cmd Msg )
 init _ =
     ( { editor = Editor.init
       , help = False
+      , runtime = Nothing
       }
     , Cmd.none
     )
@@ -118,7 +124,20 @@ updateOnKeyBinding event model =
         { model | help = not model.help }
 
     else if isCheckSource event then
-        { model | editor = Editor.update Editor.SourceCheck model.editor }
+        let
+            editor =
+                Editor.update Editor.SourceCheck model.editor
+        in
+        { model
+            | editor = editor
+            , runtime =
+                case editor.result of
+                    Just (Ok ast) ->
+                        Just <| Compiler.compile ast
+
+                    _ ->
+                        Nothing
+        }
 
     else
         model
@@ -142,10 +161,35 @@ view model =
                 [ text "👽" ]
 
         ide =
+            let
+                world_ =
+                    case model.runtime of
+                        Just { world } ->
+                            section [ Terminal.Class.world ]
+                                [ h6 []
+                                    [ text <|
+                                        case world of
+                                            Alpha ->
+                                                "alpha"
+
+                                            Omega ->
+                                                "omega"
+                                    ]
+                                ]
+
+                        Nothing ->
+                            section
+                                [ Terminal.Class.worldUnknown
+                                , Terminal.Class.world
+                                ]
+                                [ h6 [] [ text "{ world }" ] ]
+            in
             [ section [ Editor.Class.half ] <|
                 List.map (Html.map EditorMsg) <|
                     Editor.view model.editor
-            , section [] []
+            , section [ Terminal.Class.half ]
+                [ world_
+                ]
             ]
 
         readme =

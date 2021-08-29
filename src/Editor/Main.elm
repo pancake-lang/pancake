@@ -5,7 +5,7 @@ import Html exposing (..)
 import Html.Attributes exposing (..)
 import Html.Events exposing (..)
 import Language.Parser as Parser exposing (ParseResult)
-import Language.Print as Print
+import Language.Pretty as Print
 import Maybe.Extra as MaybeX
 import Set
 
@@ -76,7 +76,7 @@ update msg model =
                             model.source
 
                         Ok ast ->
-                            Print.pretty ast
+                            Print.print ast
             in
             Model source <| Just result
 

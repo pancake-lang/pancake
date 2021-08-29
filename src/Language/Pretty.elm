@@ -1,4 +1,4 @@
-module Language.Print exposing (pretty)
+module Language.Pretty exposing (print)
 
 import Dict
 import Language.Parser
@@ -13,8 +13,8 @@ import List.Extra as ListX
 import String.Extra as StringX
 
 
-pretty : Ast -> String
-pretty ast =
+print : Ast -> String
+print ast =
     let
         allLines =
             List.repeat
