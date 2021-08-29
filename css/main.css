@@ -1,5 +1,6 @@
-@import "editor.css";
 @import "help.css";
+@import "editor.css";
+@import "terminal.css";
 
 * {
   padding: 0;
