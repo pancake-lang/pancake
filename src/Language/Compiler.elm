@@ -1,6 +1,6 @@
 module Language.Compiler exposing (..)
 
-import Array exposing (Array)
+import Array
 import Dict exposing (Dict)
 import Language.Machine as Machine exposing (Instruction, Machine, Value(..))
 import Language.Parser as Parser
@@ -72,4 +72,5 @@ toInstruction { number, item } =
             Instruction number Alpha <| Id "pass"
 
         _ ->
-            Debug.todo "Language.Compiler.toInstruction: fix if this blows up"
+            Instruction number Alpha <|
+                Id "Language.Compiler.toInstruction: fix if this blows up"
