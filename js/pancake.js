@@ -4059,9 +4059,9 @@ function _Browser_application(impl)
 					var next = $elm$url$Url$fromString(href).a;
 					sendToApp(onUrlRequest(
 						(next
-							&& curr.bk === next.bk
+							&& curr.bl === next.bl
 							&& curr.a2 === next.a2
-							&& curr.bg.a === next.bg.a
+							&& curr.bh.a === next.bh.a
 						)
 							? $elm$browser$Browser$Internal(next)
 							: $elm$browser$Browser$External(href)
@@ -5144,7 +5144,7 @@ var $elm$url$Url$Http = 0;
 var $elm$url$Url$Https = 1;
 var $elm$url$Url$Url = F6(
 	function (protocol, host, port_, path, query, fragment) {
-		return {a_: fragment, a2: host, be: path, bg: port_, bk: protocol, bl: query};
+		return {a_: fragment, a2: host, bf: path, bh: port_, bl: protocol, bm: query};
 	});
 var $elm$core$String$contains = _String_contains;
 var $elm$core$String$length = _String_length;
@@ -5424,8 +5424,8 @@ var $elm$core$Task$perform = F2(
 	});
 var $elm$browser$Browser$document = _Browser_document;
 var $author$project$Editor$Main$Model = F2(
-	function (source, result) {
-		return {bq: result, S: source};
+	function (source, parsed) {
+		return {be: parsed, _: source};
 	});
 var $author$project$Editor$Main$demo = '1\n# 3\n2\n3\n<\nflip if  ; flip the world if 2 < 3\n4\n5\n# 2\n# flip\n+\n@end\nexit';
 var $author$project$Editor$Main$init = A2($author$project$Editor$Main$Model, $author$project$Editor$Main$demo, $elm$core$Maybe$Nothing);
@@ -5433,7 +5433,7 @@ var $elm$core$Platform$Cmd$batch = _Platform_batch;
 var $elm$core$Platform$Cmd$none = $elm$core$Platform$Cmd$batch(_List_Nil);
 var $author$project$Main$init = function (_v0) {
 	return _Utils_Tuple2(
-		{F: $author$project$Editor$Main$init, X: false, al: $elm$core$Maybe$Nothing},
+		{F: $author$project$Editor$Main$init, W: false, be: $elm$core$Maybe$Nothing, al: $elm$core$Maybe$Nothing},
 		$elm$core$Platform$Cmd$none);
 };
 var $author$project$Main$KeyboardEvent = function (a) {
@@ -5778,7 +5778,7 @@ var $elm$browser$Browser$Events$MySub = F3(
 	});
 var $elm$browser$Browser$Events$State = F2(
 	function (subs, pids) {
-		return {bf: pids, bC: subs};
+		return {bg: pids, bC: subs};
 	});
 var $elm$core$Dict$RBEmpty_elm_builtin = {$: -2};
 var $elm$core$Dict$empty = $elm$core$Dict$RBEmpty_elm_builtin;
@@ -6085,7 +6085,7 @@ var $elm$browser$Browser$Events$onEffects = F3(
 			stepLeft,
 			stepBoth,
 			stepRight,
-			state.bf,
+			state.bg,
 			$elm$core$Dict$fromList(newSubs),
 			_Utils_Tuple3(_List_Nil, $elm$core$Dict$empty, _List_Nil));
 		var deadPids = _v0.a;
@@ -6178,7 +6178,9 @@ var $author$project$Main$subscriptions = function (_v0) {
 };
 var $author$project$Main$CheckSource = {$: 2};
 var $author$project$Main$ToggleHelp = {$: 1};
-var $author$project$Editor$Main$SourceCheck = {$: 1};
+var $author$project$Editor$Main$CheckResult = function (a) {
+	return {$: 1, a: a};
+};
 var $elm$core$List$filter = F2(
 	function (isGood, list) {
 		return A3(
@@ -6566,7 +6568,7 @@ var $elm$parser$Parser$Advanced$AddRight = F2(
 	});
 var $elm$parser$Parser$Advanced$DeadEnd = F4(
 	function (row, col, problem, contextStack) {
-		return {aS: col, bS: contextStack, bh: problem, br: row};
+		return {aS: col, bS: contextStack, bi: problem, br: row};
 	});
 var $elm$parser$Parser$Advanced$Empty = {$: 0};
 var $elm$parser$Parser$Advanced$fromState = F2(
@@ -7235,10 +7237,10 @@ var $elm_community$result_extra$Result$Extra$mapBoth = F3(
 	});
 var $elm$parser$Parser$DeadEnd = F3(
 	function (row, col, problem) {
-		return {aS: col, bh: problem, br: row};
+		return {aS: col, bi: problem, br: row};
 	});
 var $elm$parser$Parser$problemToDeadEnd = function (p) {
-	return A3($elm$parser$Parser$DeadEnd, p.br, p.aS, p.bh);
+	return A3($elm$parser$Parser$DeadEnd, p.br, p.aS, p.bi);
 };
 var $elm$parser$Parser$Advanced$bagToList = F2(
 	function (bag, list) {
@@ -7471,12 +7473,12 @@ var $author$project$Editor$Main$update = F2(
 			var change = msg.a;
 			return _Utils_update(
 				model,
-				{S: change});
+				{_: change});
 		} else {
-			var result = $author$project$Language$Parser$parse(model.S);
+			var result = msg.a;
 			var source = function () {
 				if (result.$ === 1) {
-					return model.S;
+					return model._;
 				} else {
 					var ast = result.a;
 					return $author$project$Language$Pretty$print(ast);
@@ -7489,15 +7491,19 @@ var $author$project$Editor$Main$update = F2(
 		}
 	});
 var $author$project$Main$checkSourceAndUpdate = function (model) {
-	var editor = A2($author$project$Editor$Main$update, $author$project$Editor$Main$SourceCheck, model.F);
+	var parsed = $author$project$Language$Parser$parse(model.F._);
+	var editor = A2(
+		$author$project$Editor$Main$update,
+		$author$project$Editor$Main$CheckResult(parsed),
+		model.F);
 	return _Utils_update(
 		model,
 		{
 			F: editor,
+			be: $elm$core$Maybe$Just(parsed),
 			al: function () {
-				var _v0 = editor.bq;
-				if ((!_v0.$) && (!_v0.a.$)) {
-					var ast = _v0.a.a;
+				if (!parsed.$) {
+					var ast = parsed.a;
 					return $elm$core$Maybe$Just(
 						$author$project$Language$Compiler$compile(ast));
 				} else {
@@ -7519,6 +7525,13 @@ var $author$project$Main$key = F2(
 var $author$project$Main$isCheckSource = function (e) {
 	return e.aT && A2($author$project$Main$key, 'Enter', e);
 };
+var $author$project$Editor$Main$isSourceChange = function (msg) {
+	if (!msg.$) {
+		return true;
+	} else {
+		return false;
+	}
+};
 var $author$project$Main$isToggleHelp = function (e) {
 	return e.aT && A2($author$project$Main$key, ';', e);
 };
@@ -7531,14 +7544,15 @@ var $author$project$Main$update = F2(
 					_Utils_update(
 						model,
 						{
-							F: A2($author$project$Editor$Main$update, editorMsg, model.F)
+							F: A2($author$project$Editor$Main$update, editorMsg, model.F),
+							be: $author$project$Editor$Main$isSourceChange(editorMsg) ? $elm$core$Maybe$Nothing : model.be
 						}),
 					$elm$core$Platform$Cmd$none);
 			case 1:
 				return _Utils_Tuple2(
 					_Utils_update(
 						model,
-						{X: !model.X}),
+						{W: !model.W}),
 					$elm$core$Platform$Cmd$none);
 			case 2:
 				return _Utils_Tuple2(
@@ -8750,7 +8764,7 @@ var $pablohirafuji$elm_markdown$Markdown$Block$extractOrderedListRM = function (
 		return $elm$core$Maybe$Just(
 			_Utils_Tuple3(
 				{
-					W: delimiter,
+					V: delimiter,
 					o: $elm$core$String$length(indentString) + 1,
 					G: false,
 					ac: A2(
@@ -8860,7 +8874,7 @@ var $pablohirafuji$elm_markdown$Markdown$Block$extractUnorderedListRM = function
 		return $elm$core$Maybe$Just(
 			_Utils_Tuple3(
 				{
-					W: delimiter,
+					V: delimiter,
 					o: $elm$core$String$length(indentString) + 1,
 					G: false,
 					ac: $pablohirafuji$elm_markdown$Markdown$Block$Unordered
@@ -9265,7 +9279,7 @@ var $pablohirafuji$elm_markdown$Markdown$Block$parseListLine = F3(
 						var model = _v2.a;
 						var items = _v2.b;
 						var astTail = ast.b;
-						return _Utils_eq(listBlock.W, model.W) ? function (a) {
+						return _Utils_eq(listBlock.V, model.V) ? function (a) {
 							return A2($elm$core$List$cons, a, astTail);
 						}(
 							A2(
@@ -9370,7 +9384,7 @@ var $pablohirafuji$elm_markdown$Markdown$Config$defaultAllowedHtmlElements = _Li
 	['address', 'article', 'aside', 'b', 'blockquote', 'br', 'caption', 'center', 'cite', 'code', 'col', 'colgroup', 'dd', 'details', 'div', 'dl', 'dt', 'figcaption', 'figure', 'footer', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'hr', 'i', 'legend', 'li', 'menu', 'menuitem', 'nav', 'ol', 'optgroup', 'option', 'p', 'pre', 'section', 'strike', 'summary', 'small', 'table', 'tbody', 'td', 'tfoot', 'th', 'thead', 'tr', 'ul']);
 var $pablohirafuji$elm_markdown$Markdown$Config$defaultSanitizeOptions = {aK: $pablohirafuji$elm_markdown$Markdown$Config$defaultAllowedHtmlAttributes, aL: $pablohirafuji$elm_markdown$Markdown$Config$defaultAllowedHtmlElements};
 var $pablohirafuji$elm_markdown$Markdown$Config$defaultOptions = {
-	bm: $pablohirafuji$elm_markdown$Markdown$Config$Sanitize($pablohirafuji$elm_markdown$Markdown$Config$defaultSanitizeOptions),
+	bn: $pablohirafuji$elm_markdown$Markdown$Config$Sanitize($pablohirafuji$elm_markdown$Markdown$Config$defaultSanitizeOptions),
 	by: false
 };
 var $pablohirafuji$elm_markdown$Markdown$InlineParser$initParser = F3(
@@ -9463,7 +9477,7 @@ var $pablohirafuji$elm_markdown$Markdown$InlineParser$prepareChildMatch = F2(
 	function (parentMatch, childMatch) {
 		return _Utils_update(
 			childMatch,
-			{aW: childMatch.aW - parentMatch.C, aD: childMatch.aD - parentMatch.C, T: childMatch.T - parentMatch.C, C: childMatch.C - parentMatch.C});
+			{aW: childMatch.aW - parentMatch.C, aD: childMatch.aD - parentMatch.C, S: childMatch.S - parentMatch.C, C: childMatch.C - parentMatch.C});
 	});
 var $pablohirafuji$elm_markdown$Markdown$InlineParser$addChild = F2(
 	function (parentMatch, childMatch) {
@@ -9531,7 +9545,7 @@ var $pablohirafuji$elm_markdown$Markdown$InlineParser$normalMatch = function (te
 		c: _List_Nil,
 		aD: 0,
 		aH: $pablohirafuji$elm_markdown$Markdown$Helpers$formatStr(text),
-		T: 0,
+		S: 0,
 		C: 0,
 		ac: $pablohirafuji$elm_markdown$Markdown$InlineParser$NormalType
 	};
@@ -10444,7 +10458,7 @@ var $pablohirafuji$elm_markdown$Markdown$InlineParser$htmlFromRegex = F3(
 				_List_Nil,
 				A2($elm$core$Maybe$map, $pablohirafuji$elm_markdown$Markdown$InlineParser$applyAttributesRegex, maybeAttributes));
 			var noAttributesInCloseTag = _Utils_eq(maybeClose, $elm$core$Maybe$Nothing) || ((!_Utils_eq(maybeClose, $elm$core$Maybe$Nothing)) && _Utils_eq(attributes, _List_Nil));
-			var _v4 = model.cq.bm;
+			var _v4 = model.cq.bn;
 			switch (_v4.$) {
 				case 0:
 					return noAttributesInCloseTag ? $elm$core$Maybe$Just(
@@ -10469,7 +10483,7 @@ var $pablohirafuji$elm_markdown$Markdown$InlineParser$htmlRegex = A2(
 var $pablohirafuji$elm_markdown$Markdown$InlineParser$htmlToToken = F2(
 	function (model, _v0) {
 		var match = _v0;
-		var _v1 = model.cq.bm;
+		var _v1 = model.cq.bn;
 		if (_v1.$ === 2) {
 			return $elm$core$Maybe$Nothing;
 		} else {
@@ -10549,7 +10563,7 @@ var $pablohirafuji$elm_markdown$Markdown$InlineParser$reverseTokens = function (
 };
 var $pablohirafuji$elm_markdown$Markdown$InlineParser$tokenToMatch = F2(
 	function (token, type_) {
-		return {aW: token.b3 + token.d, c: _List_Nil, aD: token.b3, aH: '', T: 0, C: 0, ac: type_};
+		return {aW: token.b3 + token.d, c: _List_Nil, aD: token.b3, aH: '', S: 0, C: 0, ac: type_};
 	});
 var $pablohirafuji$elm_markdown$Markdown$InlineParser$lineBreakTTM = function (_v0) {
 	lineBreakTTM:
@@ -10812,9 +10826,9 @@ var $pablohirafuji$elm_markdown$Markdown$InlineParser$emphasisToMatch = F4(
 		var innerTokens = _v15.b;
 		var remainTokens = _v15.c;
 		var remainLength = openToken.d - closeToken.d;
-		var updt = (!remainLength) ? {af: closeToken, Y: openToken, aj: remainTokens, an: tokensTail} : ((remainLength > 0) ? {
+		var updt = (!remainLength) ? {af: closeToken, X: openToken, aj: remainTokens, an: tokensTail} : ((remainLength > 0) ? {
 			af: closeToken,
-			Y: _Utils_update(
+			X: _Utils_update(
 				openToken,
 				{b3: openToken.b3 + remainLength, d: closeToken.d}),
 			aj: A2(
@@ -10828,7 +10842,7 @@ var $pablohirafuji$elm_markdown$Markdown$InlineParser$emphasisToMatch = F4(
 			af: _Utils_update(
 				closeToken,
 				{d: openToken.d}),
-			Y: openToken,
+			X: openToken,
 			aj: remainTokens,
 			an: A2(
 				$elm$core$List$cons,
@@ -10843,8 +10857,8 @@ var $pablohirafuji$elm_markdown$Markdown$InlineParser$emphasisToMatch = F4(
 			function (s) {
 				return s;
 			},
-			$pablohirafuji$elm_markdown$Markdown$InlineParser$EmphasisType(updt.Y.d),
-			updt.Y,
+			$pablohirafuji$elm_markdown$Markdown$InlineParser$EmphasisType(updt.X.d),
+			updt.X,
 			updt.af,
 			$elm$core$List$reverse(innerTokens));
 		return _Utils_Tuple2(
@@ -11090,7 +11104,7 @@ var $pablohirafuji$elm_markdown$Markdown$InlineParser$tokenPairToMatch = F6(
 			aD: start,
 			aH: processText(
 				A3($elm$core$String$slice, textStart, textEnd, model.s)),
-			T: textEnd,
+			S: textEnd,
 			C: textStart,
 			ac: type_
 		};
@@ -11949,9 +11963,9 @@ var $elm_community$maybe_extra$Maybe$Extra$toList = function (m) {
 var $elm$html$Html$Attributes$value = $elm$html$Html$Attributes$stringProperty('value');
 var $author$project$Editor$Main$view = function (model) {
 	var numberOfLines = $elm$core$List$length(
-		$elm$core$String$lines(model.S));
+		$elm$core$String$lines(model._));
 	var errorLines = function () {
-		var _v0 = model.bq;
+		var _v0 = model.be;
 		if (_v0.$ === 1) {
 			return $elm$core$Set$empty;
 		} else {
@@ -11995,7 +12009,7 @@ var $author$project$Editor$Main$view = function (model) {
 					$author$project$Editor$Class$textarea,
 					$elm$html$Html$Events$onInput($author$project$Editor$Main$SourceChange),
 					$elm$html$Html$Attributes$autofocus(true),
-					$elm$html$Html$Attributes$value(model.S)
+					$elm$html$Html$Attributes$value(model._)
 				]),
 			_List_Nil)
 		]);
@@ -12080,7 +12094,7 @@ var $author$project$Main$view = function (model) {
 			]);
 	}();
 	var checkResult = function () {
-		var _v0 = model.F.bq;
+		var _v0 = model.be;
 		if (_v0.$ === 1) {
 			return $author$project$Icon$check;
 		} else {
@@ -12144,7 +12158,7 @@ var $author$project$Main$view = function (model) {
 				]));
 	};
 	return titled(
-		model.X ? readme : ide);
+		model.W ? readme : ide);
 };
 var $author$project$Main$main = $elm$browser$Browser$document(
 	{b4: $author$project$Main$init, cw: $author$project$Main$subscriptions, cA: $author$project$Main$update, cC: $author$project$Main$view});
