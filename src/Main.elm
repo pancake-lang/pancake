@@ -197,7 +197,9 @@ view model =
             ]
 
         readme =
-            [ div [ Help.Class.container ] Help.Info.info ]
+            [ div [ Help.Class.container ]
+                [ div [ Help.Class.body ] Help.Info.info ]
+            ]
     in
     titled <|
         if model.help then

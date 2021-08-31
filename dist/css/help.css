@@ -3,8 +3,12 @@
 .help-container {
   height: 100%;
   width: 100%;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+.help-body {
   max-width: 750px;
-  padding: 0px 25px var(--navigation-bar-height);
   margin: auto;
-  overflow: scroll;
+  padding: 15px 30px;
 }
