@@ -13,8 +13,9 @@ import Icon
 import Json.Decode
 import Keyboard.Event as Keyboard exposing (KeyboardEvent, decodeKeyboardEvent)
 import Language.Compiler as Compiler
-import Language.Machine exposing (Machine)
+import Language.Machine as Machine exposing (Machine)
 import Language.Parser as Parser exposing (ParseResult)
+import Language.Runtime as Runtime
 import Language.World exposing (World(..))
 import Navigation.Class
 import Terminal.Class
@@ -48,6 +49,7 @@ type Msg
     = EditorMsg Editor.Msg
     | ToggleHelp
     | CheckSource
+    | Step
     | KeyboardEvent KeyboardEvent
 
 
@@ -105,6 +107,11 @@ update msg model =
 
         CheckSource ->
             ( checkSourceAndUpdate model, Cmd.none )
+
+        Step ->
+            ( { model | runtime = Maybe.map Runtime.step model.runtime }
+            , Cmd.none
+            )
 
         KeyboardEvent event ->
             updateOnKeyBinding event model
@@ -192,16 +199,33 @@ view model =
             nav [ Navigation.Class.bar ] <|
                 if model.helpIsShown then
                     [ div [ Navigation.Class.pad ] []
-                    , Icon.map [ Navigation.Class.icon, onClick ToggleHelp ]
+                    , Icon.map
+                        [ Navigation.Class.icon
+                        , onClick ToggleHelp
+                        , title "Hide help"
+                        ]
                         Icon.exit
                     ]
 
                 else
-                    [ p [ Navigation.Class.check ] [ text "Check:" ]
-                    , Icon.map [ Navigation.Class.icon, onClick CheckSource ]
+                    [ Icon.map
+                        [ Navigation.Class.icon
+                        , onClick CheckSource
+                        , title "Check code"
+                        ]
                         checkResult
+                    , Icon.map
+                        [ Navigation.Class.icon
+                        , onClick Step
+                        , title "Step"
+                        ]
+                        Icon.step
                     , div [ Navigation.Class.pad ] []
-                    , Icon.map [ Navigation.Class.icon, onClick ToggleHelp ]
+                    , Icon.map
+                        [ Navigation.Class.icon
+                        , onClick ToggleHelp
+                        , title "Show help"
+                        ]
                         Icon.help
                     ]
 
@@ -228,12 +252,26 @@ view model =
                                 , Terminal.Class.world
                                 ]
                                 [ h6 [] [ text "{ world }" ] ]
+
+                stack_ =
+                    case model.runtime of
+                        Just { stack } ->
+                            List.map
+                                (Machine.toHtml
+                                    >> List.singleton
+                                    >> div [ Terminal.Class.stackFrame ]
+                                )
+                                stack
+
+                        Nothing ->
+                            []
             in
             [ section [ Editor.Class.half ] <|
                 List.map (Html.map EditorMsg) <|
                     Editor.view model.editor
             , section [ Terminal.Class.half ]
                 [ world_
+                , section [ Terminal.Class.stack ] stack_
                 ]
             ]
 

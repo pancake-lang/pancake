@@ -5,11 +5,12 @@ module Icon exposing
     , help
     , map
     , ok
+    , step
     )
 
 import Color
 import Html exposing (Attribute, Html, span)
-import Material.Icons exposing (close, done)
+import Material.Icons exposing (close, done, skip_next)
 import Material.Icons.Outlined exposing (flaky, help_outline)
 import Material.Icons.Types exposing (Coloring(..))
 
@@ -47,3 +48,8 @@ fail =
 exit : Html msg
 exit =
     close iconSize Inherit
+
+
+step : Html msg
+step =
+    skip_next iconSize Inherit

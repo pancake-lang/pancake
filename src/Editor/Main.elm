@@ -51,18 +51,8 @@ init =
 demo : String
 demo =
     """1
-# 3
 2
-3
-<
-flip if  ; flip the world if 2 < 3
-4
-5
-# 2
-# flip
-+
-@end
-exit"""
++"""
 
 
 

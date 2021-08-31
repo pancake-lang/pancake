@@ -1,4 +1,10 @@
-module Terminal.Class exposing (half, world, worldUnknown)
+module Terminal.Class exposing
+    ( half
+    , stack
+    , stackFrame
+    , world
+    , worldUnknown
+    )
 
 import Html exposing (Attribute)
 import Html.Attributes exposing (class)
@@ -22,3 +28,13 @@ world =
 worldUnknown : Attribute msg
 worldUnknown =
     terminal "world-unknown"
+
+
+stack : Attribute msg
+stack =
+    terminal "stack"
+
+
+stackFrame : Attribute msg
+stackFrame =
+    terminal "stack-frame"

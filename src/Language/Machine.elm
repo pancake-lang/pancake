@@ -2,6 +2,7 @@ module Language.Machine exposing (..)
 
 import Array exposing (Array)
 import Dict exposing (Dict)
+import Html exposing (..)
 import Language.Stack as Stack exposing (Stack)
 import Language.World exposing (World(..))
 
@@ -57,6 +58,11 @@ push value machine =
     { machine | stack = Stack.push value machine.stack }
 
 
+skip : Command
+skip machine =
+    { machine | ip = machine.ip + 1 }
+
+
 
 -- ERROR
 
@@ -90,6 +96,25 @@ toInt value =
 
         _ ->
             Nothing
+
+
+toHtml : Value -> Html msg
+toHtml value =
+    case value of
+        Char char ->
+            "'" ++ String.fromChar char ++ "'" |> text
+
+        Int int ->
+            String.fromInt int |> text
+
+        List _ ->
+            text "< list >"
+
+        Id id ->
+            "{ " ++ id ++ " }" |> text
+
+        Command _ ->
+            "< command >" |> text
 
 
 

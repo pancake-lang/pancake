@@ -1,6 +1,7 @@
-module Language.Core exposing (add, lib)
+module Language.Core exposing (add, lib, lookup)
 
 import Array exposing (Array)
+import Basics.Extra exposing (flip)
 import Dict exposing (Dict)
 import Language.Machine as Machine
     exposing
@@ -22,6 +23,11 @@ lib =
         [ ( "pass", identity )
         , ( "+", add )
         ]
+
+
+lookup : String -> Maybe Command
+lookup =
+    flip Dict.get lib
 
 
 
