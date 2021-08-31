@@ -4,7 +4,7 @@ import Color
 import Html exposing (Attribute, Html, span)
 import Material.Icons exposing (close, done)
 import Material.Icons.Outlined exposing (flaky, help_outline)
-import Material.Icons.Types exposing (Coloring(..), Icon)
+import Material.Icons.Types exposing (Coloring(..))
 
 
 iconSize : Int
