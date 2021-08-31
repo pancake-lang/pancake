@@ -86,5 +86,5 @@ what we can learn from looking at it:
 - **Editor color theme:** [Gruvbox Material][gruvbox-theme]
 - **Navigation bar:** inspired by [Elm online editor][elm-editor]
 
-[gruvbox-theme]: https://github.com/sainnhe/gruvbox-materia)
+[gruvbox-theme]: https://github.com/sainnhe/gruvbox-material
 [elm-editor]: https://elm-lang.org/examples/clock
