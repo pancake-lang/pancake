@@ -20,3 +20,25 @@
   margin: 0;
   color: white;
 }
+
+.terminal-stack {
+  flex-grow: 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 15px 0;
+}
+
+.terminal-stack-frame {
+  text-align: center;
+  font-size: 24px;
+  background-color: var(--code-highlight);
+  border-radius: 5px;
+  width: max-content;
+  min-width: 100px;
+  max-width: 90%;
+  color: white;
+  overflow: hidden;
+  padding: 15px 20px;
+  margin: 10px auto;
+}

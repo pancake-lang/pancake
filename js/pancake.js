@@ -784,11 +784,11 @@ function _Debug_crash_UNUSED(identifier, fact1, fact2, fact3, fact4)
 
 function _Debug_regionToString(region)
 {
-	if (region.aD.b8 === region.aW.b8)
+	if (region.aE.b8 === region.aX.b8)
 	{
-		return 'on line ' + region.aD.b8;
+		return 'on line ' + region.aE.b8;
 	}
-	return 'on lines ' + region.aD.b8 + ' through ' + region.aW.b8;
+	return 'on lines ' + region.aE.b8 + ' through ' + region.aX.b8;
 }
 
 
@@ -2705,7 +2705,7 @@ var _VirtualDom_mapEventRecord = F2(function(func, record)
 {
 	return {
 		H: func(record.H),
-		aF: record.aF,
+		aG: record.aG,
 		aA: record.aA
 	}
 });
@@ -2975,7 +2975,7 @@ function _VirtualDom_makeCallback(eventNode, initialHandler)
 
 		var value = result.a;
 		var message = !tag ? value : tag < 3 ? value.a : value.H;
-		var stopPropagation = tag == 1 ? value.b : tag == 3 && value.aF;
+		var stopPropagation = tag == 1 ? value.b : tag == 3 && value.aG;
 		var currentEventNode = (
 			stopPropagation && event.stopPropagation(),
 			(tag == 2 ? value.b : tag == 3 && value.aA) && event.preventDefault(),
@@ -4060,7 +4060,7 @@ function _Browser_application(impl)
 					sendToApp(onUrlRequest(
 						(next
 							&& curr.bl === next.bl
-							&& curr.a2 === next.a2
+							&& curr.a3 === next.a3
 							&& curr.bh.a === next.bh.a
 						)
 							? $elm$browser$Browser$Internal(next)
@@ -4237,7 +4237,7 @@ function _Browser_getViewport()
 			bH: _Browser_window.pageXOffset,
 			bI: _Browser_window.pageYOffset,
 			bG: _Browser_doc.documentElement.clientWidth,
-			a1: _Browser_doc.documentElement.clientHeight
+			a2: _Browser_doc.documentElement.clientHeight
 		}
 	};
 }
@@ -4248,7 +4248,7 @@ function _Browser_getScene()
 	var elem = _Browser_doc.documentElement;
 	return {
 		bG: Math.max(body.scrollWidth, body.offsetWidth, elem.scrollWidth, elem.offsetWidth, elem.clientWidth),
-		a1: Math.max(body.scrollHeight, body.offsetHeight, elem.scrollHeight, elem.offsetHeight, elem.clientHeight)
+		a2: Math.max(body.scrollHeight, body.offsetHeight, elem.scrollHeight, elem.offsetHeight, elem.clientHeight)
 	};
 }
 
@@ -4273,13 +4273,13 @@ function _Browser_getViewportOf(id)
 		return {
 			bv: {
 				bG: node.scrollWidth,
-				a1: node.scrollHeight
+				a2: node.scrollHeight
 			},
 			bF: {
 				bH: node.scrollLeft,
 				bI: node.scrollTop,
 				bG: node.clientWidth,
-				a1: node.clientHeight
+				a2: node.clientHeight
 			}
 		};
 	});
@@ -4314,13 +4314,13 @@ function _Browser_getElement(id)
 				bH: x,
 				bI: y,
 				bG: _Browser_doc.documentElement.clientWidth,
-				a1: _Browser_doc.documentElement.clientHeight
+				a2: _Browser_doc.documentElement.clientHeight
 			},
 			bV: {
 				bH: x + rect.left,
 				bI: y + rect.top,
 				bG: rect.width,
-				a1: rect.height
+				a2: rect.height
 			}
 		};
 	});
@@ -5144,7 +5144,7 @@ var $elm$url$Url$Http = 0;
 var $elm$url$Url$Https = 1;
 var $elm$url$Url$Url = F6(
 	function (protocol, host, port_, path, query, fragment) {
-		return {a_: fragment, a2: host, bf: path, bh: port_, bl: protocol, bm: query};
+		return {a$: fragment, a3: host, bf: path, bh: port_, bl: protocol, bm: query};
 	});
 var $elm$core$String$contains = _String_contains;
 var $elm$core$String$length = _String_length;
@@ -5425,23 +5425,23 @@ var $elm$core$Task$perform = F2(
 var $elm$browser$Browser$document = _Browser_document;
 var $author$project$Editor$Main$Model = F2(
 	function (source, parsed) {
-		return {be: parsed, _: source};
+		return {be: parsed, aa: source};
 	});
-var $author$project$Editor$Main$demo = '1\n# 3\n2\n3\n<\nflip if  ; flip the world if 2 < 3\n4\n5\n# 2\n# flip\n+\n@end\nexit';
+var $author$project$Editor$Main$demo = '1\n2\n+';
 var $author$project$Editor$Main$init = A2($author$project$Editor$Main$Model, $author$project$Editor$Main$demo, $elm$core$Maybe$Nothing);
 var $elm$core$Platform$Cmd$batch = _Platform_batch;
 var $elm$core$Platform$Cmd$none = $elm$core$Platform$Cmd$batch(_List_Nil);
 var $author$project$Main$init = function (_v0) {
 	return _Utils_Tuple2(
-		{F: $author$project$Editor$Main$init, R: false, be: $elm$core$Maybe$Nothing, al: $elm$core$Maybe$Nothing},
+		{F: $author$project$Editor$Main$init, S: false, be: $elm$core$Maybe$Nothing, O: $elm$core$Maybe$Nothing},
 		$elm$core$Platform$Cmd$none);
 };
 var $author$project$Main$KeyboardEvent = function (a) {
-	return {$: 3, a: a};
+	return {$: 4, a: a};
 };
 var $Gizra$elm_keyboard_event$Keyboard$Event$KeyboardEvent = F7(
 	function (altKey, ctrlKey, key, keyCode, metaKey, repeat, shiftKey) {
-		return {bL: altKey, aT: ctrlKey, b6: key, b7: keyCode, ca: metaKey, cs: repeat, cu: shiftKey};
+		return {bL: altKey, aU: ctrlKey, b6: key, b7: keyCode, ca: metaKey, cs: repeat, cu: shiftKey};
 	});
 var $elm$json$Json$Decode$bool = _Json_decodeBool;
 var $elm$json$Json$Decode$andThen = _Json_andThen;
@@ -6010,7 +6010,7 @@ var $elm$core$Dict$merge = F6(
 	});
 var $elm$browser$Browser$Events$Event = F2(
 	function (key, event) {
-		return {aX: event, b6: key};
+		return {aY: event, b6: key};
 	});
 var $elm$core$Platform$sendToSelf = _Platform_sendToSelf;
 var $elm$browser$Browser$Events$spawn = F3(
@@ -6132,7 +6132,7 @@ var $elm$core$List$filterMap = F2(
 var $elm$browser$Browser$Events$onSelfMsg = F3(
 	function (router, _v0, state) {
 		var key = _v0.b6;
-		var event = _v0.aX;
+		var event = _v0.aY;
 		var toMessage = function (_v2) {
 			var subKey = _v2.a;
 			var _v3 = _v2.b;
@@ -6283,13 +6283,13 @@ var $author$project$Language$Stack$empty = _List_Nil;
 var $author$project$Language$Machine$init = F2(
 	function (code, labels) {
 		return {
-			aR: code,
-			a6: 0,
+			aS: code,
+			ah: 0,
 			a8: labels,
 			bb: $elm$core$Dict$empty,
-			am: $author$project$Language$Stack$empty,
-			aE: $elm$core$Result$Ok(0),
-			aI: 0
+			aD: $author$project$Language$Stack$empty,
+			aF: $elm$core$Result$Ok(0),
+			aJ: 0
 		};
 	});
 var $author$project$Language$Parser$isLabel = function (citizen_) {
@@ -6340,7 +6340,7 @@ var $author$project$Language$Machine$Id = function (a) {
 };
 var $author$project$Language$Machine$Instruction = F3(
 	function (line, world, value) {
-		return {b8: line, cB: value, aI: world};
+		return {b8: line, cB: value, aJ: world};
 	});
 var $author$project$Language$Machine$Int = function (a) {
 	return {$: 1, a: a};
@@ -6354,7 +6354,7 @@ var $elm$core$String$toList = function (string) {
 };
 var $author$project$Language$Compiler$toInstruction = function (_v0) {
 	var number = _v0.cm;
-	var item = _v0.ag;
+	var item = _v0.ai;
 	switch (item.$) {
 		case 0:
 			var world = item.a;
@@ -6424,7 +6424,7 @@ var $author$project$Language$Compiler$compile = function (ast) {
 		A2(
 			$elm$core$List$filter,
 			function (astLine) {
-				return !$author$project$Language$Parser$isNote(astLine.ag);
+				return !$author$project$Language$Parser$isNote(astLine.ai);
 			},
 			ast));
 	var labels = $elm$core$Dict$fromList(
@@ -6434,12 +6434,12 @@ var $author$project$Language$Compiler$compile = function (ast) {
 					$elm$core$Array$indexedMap,
 					F2(
 						function (id, astLine) {
-							return $author$project$Language$Parser$isLabel(astLine.ag) ? $elm$core$Maybe$Just(
+							return $author$project$Language$Parser$isLabel(astLine.ai) ? $elm$core$Maybe$Just(
 								_Utils_Tuple2(
 									A2(
 										$elm$core$Maybe$withDefault,
 										'',
-										$author$project$Language$Parser$getLabel(astLine.ag)),
+										$author$project$Language$Parser$getLabel(astLine.ai)),
 									id)) : $elm$core$Maybe$Nothing;
 						}),
 					noNotes))));
@@ -6515,7 +6515,7 @@ var $author$project$Language$Parser$lines = function () {
 }();
 var $author$project$Language$Parser$AstLine = F2(
 	function (number, item) {
-		return {ag: item, cm: number};
+		return {ai: item, cm: number};
 	});
 var $author$project$Language$Parser$ErrorLine = F2(
 	function (number, error) {
@@ -6568,7 +6568,7 @@ var $elm$parser$Parser$Advanced$AddRight = F2(
 	});
 var $elm$parser$Parser$Advanced$DeadEnd = F4(
 	function (row, col, problem, contextStack) {
-		return {aS: col, bS: contextStack, bi: problem, br: row};
+		return {aT: col, bS: contextStack, bi: problem, br: row};
 	});
 var $elm$parser$Parser$Advanced$Empty = {$: 0};
 var $elm$parser$Parser$Advanced$fromState = F2(
@@ -6576,7 +6576,7 @@ var $elm$parser$Parser$Advanced$fromState = F2(
 		return A2(
 			$elm$parser$Parser$Advanced$AddRight,
 			$elm$parser$Parser$Advanced$Empty,
-			A4($elm$parser$Parser$Advanced$DeadEnd, s.br, s.aS, x, s.e));
+			A4($elm$parser$Parser$Advanced$DeadEnd, s.br, s.aT, x, s.e));
 	});
 var $elm$parser$Parser$Advanced$end = function (x) {
 	return function (s) {
@@ -6661,7 +6661,7 @@ var $elm$parser$Parser$Advanced$keeper = F2(
 var $elm$parser$Parser$keeper = $elm$parser$Parser$Advanced$keeper;
 var $elm$parser$Parser$Advanced$chompUntilEndOr = function (str) {
 	return function (s) {
-		var _v0 = A5(_Parser_findSubString, str, s.b, s.br, s.aS, s.a);
+		var _v0 = A5(_Parser_findSubString, str, s.b, s.br, s.aT, s.a);
 		var newOffset = _v0.a;
 		var newRow = _v0.b;
 		var newCol = _v0.c;
@@ -6670,7 +6670,7 @@ var $elm$parser$Parser$Advanced$chompUntilEndOr = function (str) {
 			$elm$parser$Parser$Advanced$Good,
 			_Utils_cmp(s.b, adjustedOffset) < 0,
 			0,
-			{aS: newCol, e: s.e, g: s.g, b: adjustedOffset, br: newRow, a: s.a});
+			{aT: newCol, e: s.e, g: s.g, b: adjustedOffset, br: newRow, a: s.a});
 	};
 };
 var $elm$parser$Parser$Advanced$isSubString = _Parser_isSubString;
@@ -6682,7 +6682,7 @@ var $elm$parser$Parser$Advanced$token = function (_v0) {
 	var expecting = _v0.b;
 	var progress = !$elm$core$String$isEmpty(str);
 	return function (s) {
-		var _v1 = A5($elm$parser$Parser$Advanced$isSubString, str, s.b, s.br, s.aS, s.a);
+		var _v1 = A5($elm$parser$Parser$Advanced$isSubString, str, s.b, s.br, s.aT, s.a);
 		var newOffset = _v1.a;
 		var newRow = _v1.b;
 		var newCol = _v1.c;
@@ -6693,7 +6693,7 @@ var $elm$parser$Parser$Advanced$token = function (_v0) {
 			$elm$parser$Parser$Advanced$Good,
 			progress,
 			0,
-			{aS: newCol, e: s.e, g: s.g, b: newOffset, br: newRow, a: s.a});
+			{aT: newCol, e: s.e, g: s.g, b: newOffset, br: newRow, a: s.a});
 	};
 };
 var $elm$parser$Parser$Advanced$lineComment = function (start) {
@@ -6794,7 +6794,7 @@ var $elm$parser$Parser$Advanced$chompWhileHelp = F5(
 					$elm$parser$Parser$Advanced$Good,
 					_Utils_cmp(s0.b, offset) < 0,
 					0,
-					{aS: col, e: s0.e, g: s0.g, b: offset, br: row, a: s0.a});
+					{aT: col, e: s0.e, g: s0.g, b: offset, br: row, a: s0.a});
 			} else {
 				if (_Utils_eq(newOffset, -2)) {
 					var $temp$isGood = isGood,
@@ -6826,7 +6826,7 @@ var $elm$parser$Parser$Advanced$chompWhileHelp = F5(
 	});
 var $elm$parser$Parser$Advanced$chompWhile = function (isGood) {
 	return function (s) {
-		return A5($elm$parser$Parser$Advanced$chompWhileHelp, isGood, s.b, s.br, s.aS, s);
+		return A5($elm$parser$Parser$Advanced$chompWhileHelp, isGood, s.b, s.br, s.aT, s);
 	};
 };
 var $elm$parser$Parser$Advanced$spaces = $elm$parser$Parser$Advanced$chompWhile(
@@ -6933,7 +6933,7 @@ var $elm$parser$Parser$Advanced$consumeBase = _Parser_consumeBase;
 var $elm$parser$Parser$Advanced$consumeBase16 = _Parser_consumeBase16;
 var $elm$parser$Parser$Advanced$bumpOffset = F2(
 	function (newOffset, s) {
-		return {aS: s.aS + (newOffset - s.b), e: s.e, g: s.g, b: newOffset, br: s.br, a: s.a};
+		return {aT: s.aT + (newOffset - s.b), e: s.e, g: s.g, b: newOffset, br: s.br, a: s.a};
 	});
 var $elm$parser$Parser$Advanced$chompBase10 = _Parser_chompBase10;
 var $elm$parser$Parser$Advanced$isAsciiCode = _Parser_isAsciiCode;
@@ -6993,7 +6993,7 @@ var $elm$parser$Parser$Advanced$finalizeFloat = F6(
 			return A2(
 				$elm$parser$Parser$Advanced$Bad,
 				true,
-				A4($elm$parser$Parser$Advanced$fromInfo, s.br, s.aS - (floatOffset + s.b), invalid, s.e));
+				A4($elm$parser$Parser$Advanced$fromInfo, s.br, s.aT - (floatOffset + s.b), invalid, s.e));
 		} else {
 			if (_Utils_eq(s.b, floatOffset)) {
 				return A2(
@@ -7052,24 +7052,24 @@ var $elm$parser$Parser$Advanced$number = function (c) {
 				s) : (A3($elm$parser$Parser$Advanced$isAsciiCode, 98, zeroOffset, s.a) ? A5(
 				$elm$parser$Parser$Advanced$finalizeInt,
 				c.b5,
-				c.aO,
+				c.aP,
 				baseOffset,
 				A3($elm$parser$Parser$Advanced$consumeBase, 2, baseOffset, s.a),
 				s) : A6(
 				$elm$parser$Parser$Advanced$finalizeFloat,
 				c.b5,
-				c.aY,
-				c.a5,
 				c.aZ,
+				c.a6,
+				c.a_,
 				_Utils_Tuple2(zeroOffset, 0),
 				s)));
 		} else {
 			return A6(
 				$elm$parser$Parser$Advanced$finalizeFloat,
 				c.b5,
-				c.aY,
-				c.a5,
 				c.aZ,
+				c.a6,
+				c.a_,
 				A3($elm$parser$Parser$Advanced$consumeBase, 10, s.b, s.a),
 				s);
 		}
@@ -7079,11 +7079,11 @@ var $elm$parser$Parser$Advanced$int = F2(
 	function (expecting, invalid) {
 		return $elm$parser$Parser$Advanced$number(
 			{
-				aO: $elm$core$Result$Err(invalid),
-				aY: expecting,
-				aZ: $elm$core$Result$Err(invalid),
+				aP: $elm$core$Result$Err(invalid),
+				aZ: expecting,
+				a_: $elm$core$Result$Err(invalid),
 				b0: $elm$core$Result$Err(invalid),
-				a5: $elm$core$Result$Ok($elm$core$Basics$identity),
+				a6: $elm$core$Result$Ok($elm$core$Basics$identity),
 				b5: invalid,
 				bd: $elm$core$Result$Err(invalid)
 			});
@@ -7124,7 +7124,7 @@ var $elm$parser$Parser$Advanced$chompUntil = function (_v0) {
 	var str = _v0.a;
 	var expecting = _v0.b;
 	return function (s) {
-		var _v1 = A5($elm$parser$Parser$Advanced$findSubString, str, s.b, s.br, s.aS, s.a);
+		var _v1 = A5($elm$parser$Parser$Advanced$findSubString, str, s.b, s.br, s.aT, s.a);
 		var newOffset = _v1.a;
 		var newRow = _v1.b;
 		var newCol = _v1.c;
@@ -7135,7 +7135,7 @@ var $elm$parser$Parser$Advanced$chompUntil = function (_v0) {
 			$elm$parser$Parser$Advanced$Good,
 			_Utils_cmp(s.b, newOffset) < 0,
 			0,
-			{aS: newCol, e: s.e, g: s.g, b: newOffset, br: newRow, a: s.a});
+			{aT: newCol, e: s.e, g: s.g, b: newOffset, br: newRow, a: s.a});
 	};
 };
 var $elm$parser$Parser$chompUntil = function (str) {
@@ -7237,10 +7237,10 @@ var $elm_community$result_extra$Result$Extra$mapBoth = F3(
 	});
 var $elm$parser$Parser$DeadEnd = F3(
 	function (row, col, problem) {
-		return {aS: col, bi: problem, br: row};
+		return {aT: col, bi: problem, br: row};
 	});
 var $elm$parser$Parser$problemToDeadEnd = function (p) {
-	return A3($elm$parser$Parser$DeadEnd, p.br, p.aS, p.bi);
+	return A3($elm$parser$Parser$DeadEnd, p.br, p.aT, p.bi);
 };
 var $elm$parser$Parser$Advanced$bagToList = F2(
 	function (bag, list) {
@@ -7272,7 +7272,7 @@ var $elm$parser$Parser$Advanced$run = F2(
 	function (_v0, src) {
 		var parse = _v0;
 		var _v1 = parse(
-			{aS: 1, e: _List_Nil, g: 1, b: 0, br: 1, a: src});
+			{aT: 1, e: _List_Nil, g: 1, b: 0, br: 1, a: src});
 		if (!_v1.$) {
 			var value = _v1.b;
 			return $elm$core$Result$Ok(value);
@@ -7348,7 +7348,7 @@ var $author$project$Language$Pretty$astLine = function (line) {
 	var withNumber = $elm$core$Tuple$pair(line.cm);
 	return withNumber(
 		function () {
-			var _v0 = line.ag;
+			var _v0 = line.ai;
 			switch (_v0.$) {
 				case 1:
 					var label = _v0.a;
@@ -7473,12 +7473,12 @@ var $author$project$Editor$Main$update = F2(
 			var change = msg.a;
 			return _Utils_update(
 				model,
-				{_: change});
+				{aa: change});
 		} else {
 			var result = msg.a;
 			var source = function () {
 				if (result.$ === 1) {
-					return model._;
+					return model.aa;
 				} else {
 					var ast = result.a;
 					return $author$project$Language$Pretty$print(ast);
@@ -7491,7 +7491,7 @@ var $author$project$Editor$Main$update = F2(
 		}
 	});
 var $author$project$Main$checkSourceAndUpdate = function (model) {
-	var parsed = $author$project$Language$Parser$parse(model.F._);
+	var parsed = $author$project$Language$Parser$parse(model.F.aa);
 	var editor = A2(
 		$author$project$Editor$Main$update,
 		$author$project$Editor$Main$CheckResult(parsed),
@@ -7501,7 +7501,7 @@ var $author$project$Main$checkSourceAndUpdate = function (model) {
 		{
 			F: editor,
 			be: $elm$core$Maybe$Just(parsed),
-			al: function () {
+			O: function () {
 				if (!parsed.$) {
 					var ast = parsed.a;
 					return $elm$core$Maybe$Just(
@@ -7523,7 +7523,7 @@ var $author$project$Main$key = F2(
 		}
 	});
 var $author$project$Main$isCheckSource = function (e) {
-	return e.aT && A2($author$project$Main$key, 'Enter', e);
+	return e.aU && A2($author$project$Main$key, 'Enter', e);
 };
 var $author$project$Editor$Main$isSourceChange = function (msg) {
 	if (!msg.$) {
@@ -7533,7 +7533,336 @@ var $author$project$Editor$Main$isSourceChange = function (msg) {
 	}
 };
 var $author$project$Main$isToggleHelp = function (e) {
-	return e.aT && A2($author$project$Main$key, ';', e);
+	return e.aU && A2($author$project$Main$key, ';', e);
+};
+var $elm$core$Maybe$map = F2(
+	function (f, maybe) {
+		if (!maybe.$) {
+			var value = maybe.a;
+			return $elm$core$Maybe$Just(
+				f(value));
+		} else {
+			return $elm$core$Maybe$Nothing;
+		}
+	});
+var $elm$core$Bitwise$and = _Bitwise_and;
+var $elm$core$Array$bitMask = 4294967295 >>> (32 - $elm$core$Array$shiftStep);
+var $elm$core$Basics$ge = _Utils_ge;
+var $elm$core$Elm$JsArray$unsafeGet = _JsArray_unsafeGet;
+var $elm$core$Array$getHelp = F3(
+	function (shift, index, tree) {
+		getHelp:
+		while (true) {
+			var pos = $elm$core$Array$bitMask & (index >>> shift);
+			var _v0 = A2($elm$core$Elm$JsArray$unsafeGet, pos, tree);
+			if (!_v0.$) {
+				var subTree = _v0.a;
+				var $temp$shift = shift - $elm$core$Array$shiftStep,
+					$temp$index = index,
+					$temp$tree = subTree;
+				shift = $temp$shift;
+				index = $temp$index;
+				tree = $temp$tree;
+				continue getHelp;
+			} else {
+				var values = _v0.a;
+				return A2($elm$core$Elm$JsArray$unsafeGet, $elm$core$Array$bitMask & index, values);
+			}
+		}
+	});
+var $elm$core$Array$get = F2(
+	function (index, _v0) {
+		var len = _v0.a;
+		var startShift = _v0.b;
+		var tree = _v0.c;
+		var tail = _v0.d;
+		return ((index < 0) || (_Utils_cmp(index, len) > -1)) ? $elm$core$Maybe$Nothing : ((_Utils_cmp(
+			index,
+			$elm$core$Array$tailIndex(len)) > -1) ? $elm$core$Maybe$Just(
+			A2($elm$core$Elm$JsArray$unsafeGet, $elm$core$Array$bitMask & index, tail)) : $elm$core$Maybe$Just(
+			A3($elm$core$Array$getHelp, startShift, index, tree)));
+	});
+var $author$project$Language$Machine$panic = F2(
+	function (error, machine) {
+		return _Utils_update(
+			machine,
+			{
+				aF: $elm$core$Result$Err(error)
+			});
+	});
+var $elm_community$basics_extra$Basics$Extra$flip = F3(
+	function (f, b, a) {
+		return A2(f, a, b);
+	});
+var $elm$core$Array$length = function (_v0) {
+	var len = _v0.a;
+	return len;
+};
+var $elm$core$Basics$neq = _Utils_notEqual;
+var $author$project$Language$Core$call = F3(
+	function (argc, args, func) {
+		return (!_Utils_eq(
+			argc,
+			$elm$core$Array$length(args))) ? $elm$core$Result$Err('wrong number of arguments in function') : $elm$core$Result$Ok(
+			func(args));
+	});
+var $author$project$Language$Machine$combine = F2(
+	function (e1, e2) {
+		return e1 + ('\n|> ' + e2);
+	});
+var $elm$core$List$drop = F2(
+	function (n, list) {
+		drop:
+		while (true) {
+			if (n <= 0) {
+				return list;
+			} else {
+				if (!list.b) {
+					return list;
+				} else {
+					var x = list.a;
+					var xs = list.b;
+					var $temp$n = n - 1,
+						$temp$list = xs;
+					n = $temp$n;
+					list = $temp$list;
+					continue drop;
+				}
+			}
+		}
+	});
+var $author$project$Language$Stack$push = F2(
+	function (item, stack) {
+		return A2($elm$core$List$cons, item, stack);
+	});
+var $author$project$Language$Machine$push = F2(
+	function (value, machine) {
+		return _Utils_update(
+			machine,
+			{
+				aD: A2($author$project$Language$Stack$push, value, machine.aD)
+			});
+	});
+var $elm$core$List$sum = function (numbers) {
+	return A3($elm$core$List$foldl, $elm$core$Basics$add, 0, numbers);
+};
+var $elm$core$List$takeReverse = F3(
+	function (n, list, kept) {
+		takeReverse:
+		while (true) {
+			if (n <= 0) {
+				return kept;
+			} else {
+				if (!list.b) {
+					return kept;
+				} else {
+					var x = list.a;
+					var xs = list.b;
+					var $temp$n = n - 1,
+						$temp$list = xs,
+						$temp$kept = A2($elm$core$List$cons, x, kept);
+					n = $temp$n;
+					list = $temp$list;
+					kept = $temp$kept;
+					continue takeReverse;
+				}
+			}
+		}
+	});
+var $elm$core$List$takeTailRec = F2(
+	function (n, list) {
+		return $elm$core$List$reverse(
+			A3($elm$core$List$takeReverse, n, list, _List_Nil));
+	});
+var $elm$core$List$takeFast = F3(
+	function (ctr, n, list) {
+		if (n <= 0) {
+			return _List_Nil;
+		} else {
+			var _v0 = _Utils_Tuple2(n, list);
+			_v0$1:
+			while (true) {
+				_v0$5:
+				while (true) {
+					if (!_v0.b.b) {
+						return list;
+					} else {
+						if (_v0.b.b.b) {
+							switch (_v0.a) {
+								case 1:
+									break _v0$1;
+								case 2:
+									var _v2 = _v0.b;
+									var x = _v2.a;
+									var _v3 = _v2.b;
+									var y = _v3.a;
+									return _List_fromArray(
+										[x, y]);
+								case 3:
+									if (_v0.b.b.b.b) {
+										var _v4 = _v0.b;
+										var x = _v4.a;
+										var _v5 = _v4.b;
+										var y = _v5.a;
+										var _v6 = _v5.b;
+										var z = _v6.a;
+										return _List_fromArray(
+											[x, y, z]);
+									} else {
+										break _v0$5;
+									}
+								default:
+									if (_v0.b.b.b.b && _v0.b.b.b.b.b) {
+										var _v7 = _v0.b;
+										var x = _v7.a;
+										var _v8 = _v7.b;
+										var y = _v8.a;
+										var _v9 = _v8.b;
+										var z = _v9.a;
+										var _v10 = _v9.b;
+										var w = _v10.a;
+										var tl = _v10.b;
+										return (ctr > 1000) ? A2(
+											$elm$core$List$cons,
+											x,
+											A2(
+												$elm$core$List$cons,
+												y,
+												A2(
+													$elm$core$List$cons,
+													z,
+													A2(
+														$elm$core$List$cons,
+														w,
+														A2($elm$core$List$takeTailRec, n - 4, tl))))) : A2(
+											$elm$core$List$cons,
+											x,
+											A2(
+												$elm$core$List$cons,
+												y,
+												A2(
+													$elm$core$List$cons,
+													z,
+													A2(
+														$elm$core$List$cons,
+														w,
+														A3($elm$core$List$takeFast, ctr + 1, n - 4, tl)))));
+									} else {
+										break _v0$5;
+									}
+							}
+						} else {
+							if (_v0.a === 1) {
+								break _v0$1;
+							} else {
+								break _v0$5;
+							}
+						}
+					}
+				}
+				return list;
+			}
+			var _v1 = _v0.b;
+			var x = _v1.a;
+			return _List_fromArray(
+				[x]);
+		}
+	});
+var $elm$core$List$take = F2(
+	function (n, list) {
+		return A3($elm$core$List$takeFast, 0, n, list);
+	});
+var $author$project$Language$Machine$toInt = function (value) {
+	if (value.$ === 1) {
+		var _int = value.a;
+		return $elm$core$Maybe$Just(_int);
+	} else {
+		return $elm$core$Maybe$Nothing;
+	}
+};
+var $author$project$Language$Core$add = function (machine) {
+	var argc = 2;
+	var args = $elm$core$Array$fromList(
+		$elm_community$maybe_extra$Maybe$Extra$values(
+			A2(
+				$elm$core$List$map,
+				$author$project$Language$Machine$toInt,
+				A2($elm$core$List$take, argc, machine.aD))));
+	var _return = A3(
+		$author$project$Language$Core$call,
+		argc,
+		args,
+		A2(
+			$elm$core$Basics$composeR,
+			$elm$core$Array$toList,
+			A2($elm$core$Basics$composeR, $elm$core$List$sum, $author$project$Language$Machine$Int)));
+	if (_return.$ === 1) {
+		var error = _return.a;
+		return A2(
+			$author$project$Language$Machine$panic,
+			A2($author$project$Language$Machine$combine, error, 'failed to add'),
+			machine);
+	} else {
+		var value = _return.a;
+		return A2(
+			$author$project$Language$Machine$push,
+			value,
+			_Utils_update(
+				machine,
+				{
+					aD: A2($elm$core$List$drop, argc, machine.aD)
+				}));
+	}
+};
+var $author$project$Language$Core$lib = $elm$core$Dict$fromList(
+	_List_fromArray(
+		[
+			_Utils_Tuple2('pass', $elm$core$Basics$identity),
+			_Utils_Tuple2('+', $author$project$Language$Core$add)
+		]));
+var $author$project$Language$Core$lookup = A2($elm_community$basics_extra$Basics$Extra$flip, $elm$core$Dict$get, $author$project$Language$Core$lib);
+var $author$project$Language$Runtime$name = function (id) {
+	var _v0 = $author$project$Language$Core$lookup(id);
+	if (!_v0.$) {
+		var command = _v0.a;
+		return command;
+	} else {
+		return $author$project$Language$Machine$push(
+			$author$project$Language$Machine$Id(id));
+	}
+};
+var $author$project$Language$Runtime$exec = function (_v0) {
+	var value = _v0.cB;
+	switch (value.$) {
+		case 4:
+			var command = value.a;
+			return command;
+		case 3:
+			var id = value.a;
+			return $author$project$Language$Runtime$name(id);
+		default:
+			var atom = value;
+			return $author$project$Language$Machine$push(atom);
+	}
+};
+var $author$project$Language$Machine$skip = function (machine) {
+	return _Utils_update(
+		machine,
+		{ah: machine.ah + 1});
+};
+var $author$project$Language$Runtime$skipOnWorldMismatch = F2(
+	function (instruction, machine) {
+		return (!_Utils_eq(instruction.aJ, machine.aJ)) ? $author$project$Language$Machine$skip(machine) : $author$project$Language$Machine$skip(
+			A2($author$project$Language$Runtime$exec, instruction, machine));
+	});
+var $author$project$Language$Runtime$step = function (machine) {
+	var currentInstruction = A2($elm$core$Array$get, machine.ah, machine.aS);
+	if (currentInstruction.$ === 1) {
+		return A2($author$project$Language$Machine$panic, 'failed to fetch instruction', machine);
+	} else {
+		var instruction = currentInstruction.a;
+		return A2($author$project$Language$Runtime$skipOnWorldMismatch, instruction, machine);
+	}
 };
 var $author$project$Main$update = F2(
 	function (msg, model) {
@@ -7552,11 +7881,19 @@ var $author$project$Main$update = F2(
 				return _Utils_Tuple2(
 					_Utils_update(
 						model,
-						{R: !model.R}),
+						{S: !model.S}),
 					$elm$core$Platform$Cmd$none);
 			case 2:
 				return _Utils_Tuple2(
 					$author$project$Main$checkSourceAndUpdate(model),
+					$elm$core$Platform$Cmd$none);
+			case 3:
+				return _Utils_Tuple2(
+					_Utils_update(
+						model,
+						{
+							O: A2($elm$core$Maybe$map, $author$project$Language$Runtime$step, model.O)
+						}),
 					$elm$core$Platform$Cmd$none);
 			default:
 				var event = msg.a;
@@ -7574,6 +7911,7 @@ var $elm$browser$Browser$Document = F2(
 var $author$project$Main$EditorMsg = function (a) {
 	return {$: 0, a: a};
 };
+var $author$project$Main$Step = {$: 3};
 var $elm$json$Json$Encode$string = _Json_wrap;
 var $elm$html$Html$Attributes$stringProperty = F2(
 	function (key, string) {
@@ -7722,7 +8060,6 @@ var $author$project$Icon$check = A2(
 	$icidasset$elm_material_icons$Material$Icons$Outlined$flaky,
 	$author$project$Icon$iconSize,
 	$icidasset$elm_material_icons$Material$Icons$Types$Color($avh4$elm_color$Color$darkGray));
-var $author$project$Navigation$Class$check = $author$project$Navigation$Class$navigtaion('check');
 var $author$project$Help$Class$container = $author$project$Help$Class$help('container');
 var $elm$html$Html$div = _VirtualDom_node('div');
 var $icidasset$elm_material_icons$Material$Icons$Types$Inherit = {$: 1};
@@ -7885,7 +8222,6 @@ var $pablohirafuji$elm_markdown$Markdown$Block$blankLineRegex = A2(
 	$elm$regex$Regex$never,
 	$elm$regex$Regex$fromString('^\\s*$'));
 var $elm$regex$Regex$contains = _Regex_contains;
-var $elm$core$Basics$ge = _Utils_ge;
 var $pablohirafuji$elm_markdown$Markdown$Block$calcListIndentLength = function (_v0) {
 	var listBlock = _v0.a;
 	var indentSpace = _v0.b;
@@ -7952,16 +8288,6 @@ var $elm$core$List$head = function (list) {
 		return $elm$core$Maybe$Nothing;
 	}
 };
-var $elm$core$Maybe$map = F2(
-	function (f, maybe) {
-		if (!maybe.$) {
-			var value = maybe.a;
-			return $elm$core$Maybe$Just(
-				f(value));
-		} else {
-			return $elm$core$Maybe$Nothing;
-		}
-	});
 var $pablohirafuji$elm_markdown$Markdown$Block$checkATXHeadingLine = function (_v0) {
 	var rawLine = _v0.a;
 	var ast = _v0.b;
@@ -8609,7 +8935,6 @@ var $pablohirafuji$elm_markdown$Markdown$Helpers$escapableRegex = A2(
 	$elm$core$Maybe$withDefault,
 	$elm$regex$Regex$never,
 	$elm$regex$Regex$fromString('(\\\\+)([!\"#$%&\\\'()*+,./:;<=>?@[\\\\\\]^_`{|}~-])'));
-var $elm$core$Bitwise$and = _Bitwise_and;
 var $elm$core$Bitwise$shiftRightBy = _Bitwise_shiftRightBy;
 var $elm$core$String$repeatHelp = F3(
 	function (n, chunk, result) {
@@ -8765,10 +9090,10 @@ var $pablohirafuji$elm_markdown$Markdown$Block$extractOrderedListRM = function (
 		return $elm$core$Maybe$Just(
 			_Utils_Tuple3(
 				{
-					W: delimiter,
+					X: delimiter,
 					o: $elm$core$String$length(indentString) + 1,
 					G: false,
-					ac: A2(
+					ad: A2(
 						$elm$core$Maybe$withDefault,
 						$pablohirafuji$elm_markdown$Markdown$Block$Unordered,
 						A2(
@@ -8875,10 +9200,10 @@ var $pablohirafuji$elm_markdown$Markdown$Block$extractUnorderedListRM = function
 		return $elm$core$Maybe$Just(
 			_Utils_Tuple3(
 				{
-					W: delimiter,
+					X: delimiter,
 					o: $elm$core$String$length(indentString) + 1,
 					G: false,
-					ac: $pablohirafuji$elm_markdown$Markdown$Block$Unordered
+					ad: $pablohirafuji$elm_markdown$Markdown$Block$Unordered
 				},
 				A2($elm$core$Maybe$withDefault, '', maybeIndentSpace),
 				A2($elm$core$Maybe$withDefault, '', maybeRawLine)));
@@ -9280,7 +9605,7 @@ var $pablohirafuji$elm_markdown$Markdown$Block$parseListLine = F3(
 						var model = _v2.a;
 						var items = _v2.b;
 						var astTail = ast.b;
-						return _Utils_eq(listBlock.W, model.W) ? function (a) {
+						return _Utils_eq(listBlock.X, model.X) ? function (a) {
 							return A2($elm$core$List$cons, a, astTail);
 						}(
 							A2(
@@ -9303,7 +9628,7 @@ var $pablohirafuji$elm_markdown$Markdown$Block$parseListLine = F3(
 								A2($pablohirafuji$elm_markdown$Markdown$Block$addToParagraph, rawText, rawLine),
 								astTail);
 						} else {
-							var _v5 = listBlock.ac;
+							var _v5 = listBlock.ad;
 							if (_v5.$ === 1) {
 								if (_v5.a === 1) {
 									return newList;
@@ -9383,7 +9708,7 @@ var $pablohirafuji$elm_markdown$Markdown$Config$defaultAllowedHtmlAttributes = _
 	['name', 'class']);
 var $pablohirafuji$elm_markdown$Markdown$Config$defaultAllowedHtmlElements = _List_fromArray(
 	['address', 'article', 'aside', 'b', 'blockquote', 'br', 'caption', 'center', 'cite', 'code', 'col', 'colgroup', 'dd', 'details', 'div', 'dl', 'dt', 'figcaption', 'figure', 'footer', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'hr', 'i', 'legend', 'li', 'menu', 'menuitem', 'nav', 'ol', 'optgroup', 'option', 'p', 'pre', 'section', 'strike', 'summary', 'small', 'table', 'tbody', 'td', 'tfoot', 'th', 'thead', 'tr', 'ul']);
-var $pablohirafuji$elm_markdown$Markdown$Config$defaultSanitizeOptions = {aK: $pablohirafuji$elm_markdown$Markdown$Config$defaultAllowedHtmlAttributes, aL: $pablohirafuji$elm_markdown$Markdown$Config$defaultAllowedHtmlElements};
+var $pablohirafuji$elm_markdown$Markdown$Config$defaultSanitizeOptions = {aL: $pablohirafuji$elm_markdown$Markdown$Config$defaultAllowedHtmlAttributes, aM: $pablohirafuji$elm_markdown$Markdown$Config$defaultAllowedHtmlElements};
 var $pablohirafuji$elm_markdown$Markdown$Config$defaultOptions = {
 	bn: $pablohirafuji$elm_markdown$Markdown$Config$Sanitize($pablohirafuji$elm_markdown$Markdown$Config$defaultSanitizeOptions),
 	by: false
@@ -9417,14 +9742,14 @@ var $pablohirafuji$elm_markdown$Markdown$Inline$Text = function (a) {
 };
 var $pablohirafuji$elm_markdown$Markdown$InlineParser$matchToInline = function (_v0) {
 	var match = _v0;
-	var _v1 = match.ac;
+	var _v1 = match.ad;
 	switch (_v1.$) {
 		case 0:
-			return $pablohirafuji$elm_markdown$Markdown$Inline$Text(match.aH);
+			return $pablohirafuji$elm_markdown$Markdown$Inline$Text(match.aI);
 		case 1:
 			return $pablohirafuji$elm_markdown$Markdown$Inline$HardLineBreak;
 		case 2:
-			return $pablohirafuji$elm_markdown$Markdown$Inline$CodeInline(match.aH);
+			return $pablohirafuji$elm_markdown$Markdown$Inline$CodeInline(match.aI);
 		case 3:
 			var _v2 = _v1.a;
 			var text = _v2.a;
@@ -9459,8 +9784,8 @@ var $pablohirafuji$elm_markdown$Markdown$InlineParser$matchToInline = function (
 			var model = _v1.a;
 			return A3(
 				$pablohirafuji$elm_markdown$Markdown$Inline$HtmlInline,
-				model.aG,
-				model.aN,
+				model.aH,
+				model.aO,
 				$pablohirafuji$elm_markdown$Markdown$InlineParser$matchesToInlines(match.c));
 		default:
 			var length = _v1.a;
@@ -9478,7 +9803,7 @@ var $pablohirafuji$elm_markdown$Markdown$InlineParser$prepareChildMatch = F2(
 	function (parentMatch, childMatch) {
 		return _Utils_update(
 			childMatch,
-			{aW: childMatch.aW - parentMatch.C, aD: childMatch.aD - parentMatch.C, T: childMatch.T - parentMatch.C, C: childMatch.C - parentMatch.C});
+			{aX: childMatch.aX - parentMatch.C, aE: childMatch.aE - parentMatch.C, U: childMatch.U - parentMatch.C, C: childMatch.C - parentMatch.C});
 	});
 var $pablohirafuji$elm_markdown$Markdown$InlineParser$addChild = F2(
 	function (parentMatch, childMatch) {
@@ -9500,7 +9825,7 @@ var $pablohirafuji$elm_markdown$Markdown$InlineParser$organizeMatch = F2(
 		} else {
 			var prevMatch = matches.a;
 			var matchesTail = matches.b;
-			return (_Utils_cmp(prevMatch.aW, match.aD) < 1) ? A2($elm$core$List$cons, match, matches) : (((_Utils_cmp(prevMatch.aD, match.aD) < 0) && (_Utils_cmp(prevMatch.aW, match.aW) > 0)) ? A2(
+			return (_Utils_cmp(prevMatch.aX, match.aE) < 1) ? A2($elm$core$List$cons, match, matches) : (((_Utils_cmp(prevMatch.aE, match.aE) < 0) && (_Utils_cmp(prevMatch.aX, match.aX) > 0)) ? A2(
 				$elm$core$List$cons,
 				A2($pablohirafuji$elm_markdown$Markdown$InlineParser$addChild, prevMatch, match),
 				matchesTail) : matches);
@@ -9513,7 +9838,7 @@ function $pablohirafuji$elm_markdown$Markdown$InlineParser$cyclic$organizeMatche
 		$elm$core$List$sortBy(
 			function (_v0) {
 				var match = _v0;
-				return match.aD;
+				return match.aE;
 			}),
 		A2(
 			$elm$core$Basics$composeR,
@@ -9542,13 +9867,13 @@ var $pablohirafuji$elm_markdown$Markdown$InlineParser$organizeParserMatches = fu
 var $pablohirafuji$elm_markdown$Markdown$InlineParser$NormalType = {$: 0};
 var $pablohirafuji$elm_markdown$Markdown$InlineParser$normalMatch = function (text) {
 	return {
-		aW: 0,
+		aX: 0,
 		c: _List_Nil,
-		aD: 0,
-		aH: $pablohirafuji$elm_markdown$Markdown$Helpers$formatStr(text),
-		T: 0,
+		aE: 0,
+		aI: $pablohirafuji$elm_markdown$Markdown$Helpers$formatStr(text),
+		U: 0,
 		C: 0,
-		ac: $pablohirafuji$elm_markdown$Markdown$InlineParser$NormalType
+		ad: $pablohirafuji$elm_markdown$Markdown$InlineParser$NormalType
 	};
 };
 var $pablohirafuji$elm_markdown$Markdown$InlineParser$parseTextMatch = F3(
@@ -9557,10 +9882,10 @@ var $pablohirafuji$elm_markdown$Markdown$InlineParser$parseTextMatch = F3(
 		var updtMatch = _Utils_update(
 			matchModel,
 			{
-				c: A3($pablohirafuji$elm_markdown$Markdown$InlineParser$parseTextMatches, matchModel.aH, _List_Nil, matchModel.c)
+				c: A3($pablohirafuji$elm_markdown$Markdown$InlineParser$parseTextMatches, matchModel.aI, _List_Nil, matchModel.c)
 			});
 		if (!parsedMatches.b) {
-			var finalStr = A2($elm$core$String$dropLeft, matchModel.aW, rawText);
+			var finalStr = A2($elm$core$String$dropLeft, matchModel.aX, rawText);
 			return $elm$core$String$isEmpty(finalStr) ? _List_fromArray(
 				[updtMatch]) : _List_fromArray(
 				[
@@ -9570,13 +9895,13 @@ var $pablohirafuji$elm_markdown$Markdown$InlineParser$parseTextMatch = F3(
 		} else {
 			var matchHead = parsedMatches.a;
 			var matchesTail = parsedMatches.b;
-			return _Utils_eq(matchHead.ac, $pablohirafuji$elm_markdown$Markdown$InlineParser$NormalType) ? A2($elm$core$List$cons, updtMatch, parsedMatches) : (_Utils_eq(matchModel.aW, matchHead.aD) ? A2($elm$core$List$cons, updtMatch, parsedMatches) : ((_Utils_cmp(matchModel.aW, matchHead.aD) < 0) ? A2(
+			return _Utils_eq(matchHead.ad, $pablohirafuji$elm_markdown$Markdown$InlineParser$NormalType) ? A2($elm$core$List$cons, updtMatch, parsedMatches) : (_Utils_eq(matchModel.aX, matchHead.aE) ? A2($elm$core$List$cons, updtMatch, parsedMatches) : ((_Utils_cmp(matchModel.aX, matchHead.aE) < 0) ? A2(
 				$elm$core$List$cons,
 				updtMatch,
 				A2(
 					$elm$core$List$cons,
 					$pablohirafuji$elm_markdown$Markdown$InlineParser$normalMatch(
-						A3($elm$core$String$slice, matchModel.aW, matchHead.aD, rawText)),
+						A3($elm$core$String$slice, matchModel.aX, matchHead.aE, rawText)),
 					parsedMatches)) : parsedMatches));
 		}
 	});
@@ -9592,10 +9917,10 @@ var $pablohirafuji$elm_markdown$Markdown$InlineParser$parseTextMatches = F3(
 						]);
 				} else {
 					var matchModel = parsedMatches.a;
-					return (matchModel.aD > 0) ? A2(
+					return (matchModel.aE > 0) ? A2(
 						$elm$core$List$cons,
 						$pablohirafuji$elm_markdown$Markdown$InlineParser$normalMatch(
-							A2($elm$core$String$left, matchModel.aD, rawText)),
+							A2($elm$core$String$left, matchModel.aE, rawText)),
 						parsedMatches) : parsedMatches;
 				}
 			} else {
@@ -9727,7 +10052,6 @@ var $pablohirafuji$elm_markdown$Markdown$InlineParser$getFringeRank = A2(
 				$elm$core$Maybe$map($elm$core$Tuple$first),
 				$pablohirafuji$elm_markdown$Markdown$InlineParser$maybeCharFringeRank))),
 	$elm$core$Maybe$withDefault(0));
-var $elm$core$Basics$neq = _Utils_notEqual;
 var $pablohirafuji$elm_markdown$Markdown$InlineParser$regMatchToEmphasisToken = F3(
 	function (_char, rawText, regMatch) {
 		var _v0 = regMatch.cv;
@@ -10085,14 +10409,14 @@ var $pablohirafuji$elm_markdown$Markdown$InlineParser$urlRegex = A2(
 	$elm$regex$Regex$fromString('^([A-Za-z][A-Za-z0-9.+\\-]{1,31}:[^<>\\x00-\\x20]*)$'));
 var $pablohirafuji$elm_markdown$Markdown$InlineParser$autolinkToMatch = function (_v0) {
 	var match = _v0;
-	return A2($elm$regex$Regex$contains, $pablohirafuji$elm_markdown$Markdown$InlineParser$urlRegex, match.aH) ? $elm$core$Result$Ok(
+	return A2($elm$regex$Regex$contains, $pablohirafuji$elm_markdown$Markdown$InlineParser$urlRegex, match.aI) ? $elm$core$Result$Ok(
 		_Utils_update(
 			match,
 			{
-				ac: $pablohirafuji$elm_markdown$Markdown$InlineParser$AutolinkType(
+				ad: $pablohirafuji$elm_markdown$Markdown$InlineParser$AutolinkType(
 					_Utils_Tuple2(
-						match.aH,
-						$pablohirafuji$elm_markdown$Markdown$InlineParser$encodeUrl(match.aH)))
+						match.aI,
+						$pablohirafuji$elm_markdown$Markdown$InlineParser$encodeUrl(match.aI)))
 			})) : $elm$core$Result$Err(match);
 };
 var $pablohirafuji$elm_markdown$Markdown$Helpers$whiteSpaceChars = ' \\t\\f\\v\\r\\n';
@@ -10142,9 +10466,9 @@ var $pablohirafuji$elm_markdown$Markdown$InlineParser$inlineLinkTypeOrImageTypeR
 				return _Utils_update(
 					matchModel,
 					{
-						aW: matchModel.aW + $elm$core$String$length(regexMatch.b9),
-						ac: function () {
-							var _v5 = matchModel.ac;
+						aX: matchModel.aX + $elm$core$String$length(regexMatch.b9),
+						ad: function () {
+							var _v5 = matchModel.ad;
 							if (_v5.$ === 5) {
 								return $pablohirafuji$elm_markdown$Markdown$InlineParser$ImageType;
 							} else {
@@ -10218,9 +10542,9 @@ var $pablohirafuji$elm_markdown$Markdown$InlineParser$refRegexToMatch = F3(
 			return _Utils_update(
 				matchModel,
 				{
-					aW: matchModel.aW + regexMatchLength,
-					ac: function () {
-						var _v0 = matchModel.ac;
+					aX: matchModel.aX + regexMatchLength,
+					ad: function () {
+						var _v0 = matchModel.ad;
 						if (_v0.$ === 5) {
 							return $pablohirafuji$elm_markdown$Markdown$InlineParser$ImageType;
 						} else {
@@ -10231,11 +10555,11 @@ var $pablohirafuji$elm_markdown$Markdown$InlineParser$refRegexToMatch = F3(
 				});
 		};
 		var refLabel = function (str) {
-			return $elm$core$String$isEmpty(str) ? matchModel.aH : str;
+			return $elm$core$String$isEmpty(str) ? matchModel.aI : str;
 		}(
 			A2(
 				$elm$core$Maybe$withDefault,
-				matchModel.aH,
+				matchModel.aI,
 				A2(
 					$elm$core$Maybe$withDefault,
 					$elm$core$Maybe$Nothing,
@@ -10292,7 +10616,7 @@ var $pablohirafuji$elm_markdown$Markdown$InlineParser$checkParsedAheadOverlappin
 			$elm$core$List$filter,
 			function (_v1) {
 				var testMatch = _v1;
-				return (_Utils_cmp(match.aW, testMatch.aD) > 0) && (_Utils_cmp(match.aW, testMatch.aW) < 0);
+				return (_Utils_cmp(match.aX, testMatch.aE) > 0) && (_Utils_cmp(match.aX, testMatch.aX) < 0);
 			},
 			remainMatches);
 		return ($elm$core$List$isEmpty(remainMatches) || $elm$core$List$isEmpty(overlappingMatches)) ? $elm$core$Result$Ok(parser) : $elm$core$Result$Err(0);
@@ -10304,14 +10628,14 @@ var $pablohirafuji$elm_markdown$Markdown$InlineParser$emailRegex = A2(
 	$elm$regex$Regex$fromString('^([a-zA-Z0-9.!#$%&\'*+\\/=?^_`{|}~\\-]+@[a-zA-Z0-9](?:[a-zA-Z0-9\\-]{0,61}[a-zA-Z0-9])?(?:\\.[a-zA-Z0-9](?:[a-zA-Z0-9\\-]{0,61}[a-zA-Z0-9])?)*)$'));
 var $pablohirafuji$elm_markdown$Markdown$InlineParser$emailAutolinkTypeToMatch = function (_v0) {
 	var match = _v0;
-	return A2($elm$regex$Regex$contains, $pablohirafuji$elm_markdown$Markdown$InlineParser$emailRegex, match.aH) ? $elm$core$Result$Ok(
+	return A2($elm$regex$Regex$contains, $pablohirafuji$elm_markdown$Markdown$InlineParser$emailRegex, match.aI) ? $elm$core$Result$Ok(
 		_Utils_update(
 			match,
 			{
-				ac: $pablohirafuji$elm_markdown$Markdown$InlineParser$AutolinkType(
+				ad: $pablohirafuji$elm_markdown$Markdown$InlineParser$AutolinkType(
 					_Utils_Tuple2(
-						match.aH,
-						'mailto:' + $pablohirafuji$elm_markdown$Markdown$InlineParser$encodeUrl(match.aH)))
+						match.aI,
+						'mailto:' + $pablohirafuji$elm_markdown$Markdown$InlineParser$encodeUrl(match.aI)))
 			})) : $elm$core$Result$Err(match);
 };
 var $pablohirafuji$elm_markdown$Markdown$InlineParser$filterTokens = F2(
@@ -10367,7 +10691,7 @@ var $pablohirafuji$elm_markdown$Markdown$InlineParser$findToken = F2(
 	});
 var $pablohirafuji$elm_markdown$Markdown$InlineParser$HtmlModel = F2(
 	function (tag, attributes) {
-		return {aN: attributes, aG: tag};
+		return {aO: attributes, aH: tag};
 	});
 var $pablohirafuji$elm_markdown$Markdown$InlineParser$HtmlToken = F2(
 	function (a, b) {
@@ -10437,8 +10761,8 @@ var $pablohirafuji$elm_markdown$Markdown$InlineParser$htmlFromRegex = F3(
 					$pablohirafuji$elm_markdown$Markdown$InlineParser$addToken,
 					model,
 					{
-						b3: match.aD,
-						d: match.aW - match.aD,
+						b3: match.aE,
+						d: match.aX - match.aE,
 						f: A2(
 							$pablohirafuji$elm_markdown$Markdown$InlineParser$HtmlToken,
 							_Utils_eq(maybeClose, $elm$core$Maybe$Nothing) && _Utils_eq(maybeSelfClosing, $elm$core$Maybe$Nothing),
@@ -10465,8 +10789,8 @@ var $pablohirafuji$elm_markdown$Markdown$InlineParser$htmlFromRegex = F3(
 					return noAttributesInCloseTag ? $elm$core$Maybe$Just(
 						updateModel(attributes)) : $elm$core$Maybe$Nothing;
 				case 1:
-					var allowedHtmlElements = _v4.a.aL;
-					var allowedHtmlAttributes = _v4.a.aK;
+					var allowedHtmlElements = _v4.a.aM;
+					var allowedHtmlAttributes = _v4.a.aL;
 					return (A2($elm$core$List$member, tag, allowedHtmlElements) && noAttributesInCloseTag) ? $elm$core$Maybe$Just(
 						updateModel(
 							A2(filterAttributes, attributes, allowedHtmlAttributes))) : $elm$core$Maybe$Nothing;
@@ -10492,7 +10816,7 @@ var $pablohirafuji$elm_markdown$Markdown$InlineParser$htmlToToken = F2(
 				$elm$core$Maybe$andThen,
 				A2($pablohirafuji$elm_markdown$Markdown$InlineParser$htmlFromRegex, model, match),
 				$elm$core$List$head(
-					A3($elm$regex$Regex$findAtMost, 1, $pablohirafuji$elm_markdown$Markdown$InlineParser$htmlRegex, match.aH)));
+					A3($elm$regex$Regex$findAtMost, 1, $pablohirafuji$elm_markdown$Markdown$InlineParser$htmlRegex, match.aI)));
 		}
 	});
 var $pablohirafuji$elm_markdown$Markdown$InlineParser$isCloseToken = F2(
@@ -10500,7 +10824,7 @@ var $pablohirafuji$elm_markdown$Markdown$InlineParser$isCloseToken = F2(
 		var _v0 = token.f;
 		if ((_v0.$ === 5) && (!_v0.a)) {
 			var htmlModel_ = _v0.b;
-			return _Utils_eq(htmlModel.aG, htmlModel_.aG);
+			return _Utils_eq(htmlModel.aH, htmlModel_.aH);
 		} else {
 			return false;
 		}
@@ -10551,7 +10875,7 @@ var $pablohirafuji$elm_markdown$Markdown$InlineParser$isOpenEmphasisToken = F2(
 var $pablohirafuji$elm_markdown$Markdown$InlineParser$voidHtmlTags = _List_fromArray(
 	['area', 'base', 'br', 'col', 'embed', 'hr', 'img', 'input', 'keygen', 'link', 'meta', 'param', 'source', 'track', 'wbr']);
 var $pablohirafuji$elm_markdown$Markdown$InlineParser$isVoidTag = function (htmlModel) {
-	return A2($elm$core$List$member, htmlModel.aG, $pablohirafuji$elm_markdown$Markdown$InlineParser$voidHtmlTags);
+	return A2($elm$core$List$member, htmlModel.aH, $pablohirafuji$elm_markdown$Markdown$InlineParser$voidHtmlTags);
 };
 var $pablohirafuji$elm_markdown$Markdown$InlineParser$HardLineBreakType = {$: 1};
 var $pablohirafuji$elm_markdown$Markdown$InlineParser$SoftLineBreakToken = {$: 7};
@@ -10564,7 +10888,7 @@ var $pablohirafuji$elm_markdown$Markdown$InlineParser$reverseTokens = function (
 };
 var $pablohirafuji$elm_markdown$Markdown$InlineParser$tokenToMatch = F2(
 	function (token, type_) {
-		return {aW: token.b3 + token.d, c: _List_Nil, aD: token.b3, aH: '', T: 0, C: 0, ac: type_};
+		return {aX: token.b3 + token.d, c: _List_Nil, aE: token.b3, aI: '', U: 0, C: 0, ad: type_};
 	});
 var $pablohirafuji$elm_markdown$Markdown$InlineParser$lineBreakTTM = function (_v0) {
 	lineBreakTTM:
@@ -10610,7 +10934,7 @@ var $pablohirafuji$elm_markdown$Markdown$InlineParser$removeParsedAheadTokens = 
 				A2(
 					$elm$core$List$filter,
 					function (token) {
-						return _Utils_cmp(token.b3, match.aW) > -1;
+						return _Utils_cmp(token.b3, match.aX) > -1;
 					},
 					tokensTail),
 				parser);
@@ -10827,12 +11151,12 @@ var $pablohirafuji$elm_markdown$Markdown$InlineParser$emphasisToMatch = F4(
 		var innerTokens = _v15.b;
 		var remainTokens = _v15.c;
 		var remainLength = openToken.d - closeToken.d;
-		var updt = (!remainLength) ? {af: closeToken, X: openToken, aj: remainTokens, an: tokensTail} : ((remainLength > 0) ? {
-			af: closeToken,
-			X: _Utils_update(
+		var updt = (!remainLength) ? {ag: closeToken, Y: openToken, al: remainTokens, an: tokensTail} : ((remainLength > 0) ? {
+			ag: closeToken,
+			Y: _Utils_update(
 				openToken,
 				{b3: openToken.b3 + remainLength, d: closeToken.d}),
-			aj: A2(
+			al: A2(
 				$elm$core$List$cons,
 				_Utils_update(
 					openToken,
@@ -10840,11 +11164,11 @@ var $pablohirafuji$elm_markdown$Markdown$InlineParser$emphasisToMatch = F4(
 				remainTokens),
 			an: tokensTail
 		} : {
-			af: _Utils_update(
+			ag: _Utils_update(
 				closeToken,
 				{d: openToken.d}),
-			X: openToken,
-			aj: remainTokens,
+			Y: openToken,
+			al: remainTokens,
 			an: A2(
 				$elm$core$List$cons,
 				_Utils_update(
@@ -10858,9 +11182,9 @@ var $pablohirafuji$elm_markdown$Markdown$InlineParser$emphasisToMatch = F4(
 			function (s) {
 				return s;
 			},
-			$pablohirafuji$elm_markdown$Markdown$InlineParser$EmphasisType(updt.X.d),
-			updt.X,
-			updt.af,
+			$pablohirafuji$elm_markdown$Markdown$InlineParser$EmphasisType(updt.Y.d),
+			updt.Y,
+			updt.ag,
 			$elm$core$List$reverse(innerTokens));
 		return _Utils_Tuple2(
 			updt.an,
@@ -10868,7 +11192,7 @@ var $pablohirafuji$elm_markdown$Markdown$InlineParser$emphasisToMatch = F4(
 				model,
 				{
 					c: A2($elm$core$List$cons, match, model.c),
-					h: updt.aj
+					h: updt.al
 				}));
 	});
 var $pablohirafuji$elm_markdown$Markdown$InlineParser$htmlElementTTM = function (_v12) {
@@ -11100,14 +11424,14 @@ var $pablohirafuji$elm_markdown$Markdown$InlineParser$tokenPairToMatch = F6(
 		var start = openToken.b3;
 		var end = closeToken.b3 + closeToken.d;
 		var match = {
-			aW: end,
+			aX: end,
 			c: _List_Nil,
-			aD: start,
-			aH: processText(
+			aE: start,
+			aI: processText(
 				A3($elm$core$String$slice, textStart, textEnd, model.s)),
-			T: textEnd,
+			U: textEnd,
 			C: textStart,
-			ac: type_
+			ad: type_
 		};
 		var matches = A2(
 			$elm$core$List$map,
@@ -11769,7 +12093,7 @@ var $pablohirafuji$elm_markdown$Markdown$Block$defaultHtml = F3(
 					return A2($elm$core$List$cons, a, _List_Nil);
 				}(
 					function () {
-						var _v5 = model.ac;
+						var _v5 = model.ad;
 						if (_v5.$ === 1) {
 							var startInt = _v5.a;
 							return (startInt === 1) ? $elm$html$Html$ol(_List_Nil) : $elm$html$Html$ol(
@@ -11881,6 +12205,56 @@ var $elm$html$Html$Events$onClick = function (msg) {
 };
 var $author$project$Navigation$Class$pad = $author$project$Navigation$Class$navigtaion('pad');
 var $elm$html$Html$section = _VirtualDom_node('section');
+var $elm$core$List$singleton = function (value) {
+	return _List_fromArray(
+		[value]);
+};
+var $author$project$Terminal$Class$stack = $author$project$Terminal$Class$terminal('stack');
+var $author$project$Terminal$Class$stackFrame = $author$project$Terminal$Class$terminal('stack-frame');
+var $icidasset$elm_material_icons$Material$Icons$skip_next = A2(
+	$icidasset$elm_material_icons$Material$Icons$Internal$icon,
+	_List_fromArray(
+		[
+			$icidasset$elm_material_icons$Material$Icons$Internal$v('0 0 24 24')
+		]),
+	_List_fromArray(
+		[
+			A2(
+			$icidasset$elm_material_icons$Material$Icons$Internal$p,
+			_List_fromArray(
+				[
+					$elm$svg$Svg$Attributes$d('M0 0h24v24H0z'),
+					$icidasset$elm_material_icons$Material$Icons$Internal$f('none')
+				]),
+			_List_Nil),
+			A2(
+			$icidasset$elm_material_icons$Material$Icons$Internal$p,
+			_List_fromArray(
+				[
+					$elm$svg$Svg$Attributes$d('M6 18l8.5-6L6 6v12zM16 6v12h2V6h-2z')
+				]),
+			_List_Nil)
+		]));
+var $author$project$Icon$step = A2($icidasset$elm_material_icons$Material$Icons$skip_next, $author$project$Icon$iconSize, $icidasset$elm_material_icons$Material$Icons$Types$Inherit);
+var $author$project$Language$Machine$toHtml = function (value) {
+	switch (value.$) {
+		case 0:
+			var _char = value.a;
+			return $elm$html$Html$text(
+				'\'' + ($elm$core$String$fromChar(_char) + '\''));
+		case 1:
+			var _int = value.a;
+			return $elm$html$Html$text(
+				$elm$core$String$fromInt(_int));
+		case 2:
+			return $elm$html$Html$text('< list >');
+		case 3:
+			var id = value.a;
+			return $elm$html$Html$text('{ ' + (id + ' }'));
+		default:
+			return $elm$html$Html$text('< command >');
+	}
+};
 var $author$project$Editor$Main$SourceChange = function (a) {
 	return {$: 0, a: a};
 };
@@ -11964,7 +12338,7 @@ var $elm_community$maybe_extra$Maybe$Extra$toList = function (m) {
 var $elm$html$Html$Attributes$value = $elm$html$Html$Attributes$stringProperty('value');
 var $author$project$Editor$Main$view = function (model) {
 	var numberOfLines = $elm$core$List$length(
-		$elm$core$String$lines(model._));
+		$elm$core$String$lines(model.aa));
 	var errorLines = function () {
 		var _v0 = model.be;
 		if (_v0.$ === 1) {
@@ -12010,7 +12384,7 @@ var $author$project$Editor$Main$view = function (model) {
 					$author$project$Editor$Class$textarea,
 					$elm$html$Html$Events$onInput($author$project$Editor$Main$SourceChange),
 					$elm$html$Html$Attributes$autofocus(true),
-					$elm$html$Html$Attributes$value(model._)
+					$elm$html$Html$Attributes$value(model.aa)
 				]),
 			_List_Nil)
 		]);
@@ -12035,9 +12409,9 @@ var $author$project$Main$view = function (model) {
 		]);
 	var ide = function () {
 		var world_ = function () {
-			var _v1 = model.al;
-			if (!_v1.$) {
-				var world = _v1.a.aI;
+			var _v2 = model.O;
+			if (!_v2.$) {
+				var world = _v2.a.aJ;
 				return A2(
 					$elm$html$Html$section,
 					_List_fromArray(
@@ -12076,6 +12450,26 @@ var $author$project$Main$view = function (model) {
 						]));
 			}
 		}();
+		var stack_ = function () {
+			var _v1 = model.O;
+			if (!_v1.$) {
+				var stack = _v1.a.aD;
+				return A2(
+					$elm$core$List$map,
+					A2(
+						$elm$core$Basics$composeR,
+						$author$project$Language$Machine$toHtml,
+						A2(
+							$elm$core$Basics$composeR,
+							$elm$core$List$singleton,
+							$elm$html$Html$div(
+								_List_fromArray(
+									[$author$project$Terminal$Class$stackFrame])))),
+					stack);
+			} else {
+				return _List_Nil;
+			}
+		}();
 		return _List_fromArray(
 			[
 				A2(
@@ -12091,7 +12485,14 @@ var $author$project$Main$view = function (model) {
 				_List_fromArray(
 					[$author$project$Terminal$Class$half]),
 				_List_fromArray(
-					[world_]))
+					[
+						world_,
+						A2(
+						$elm$html$Html$section,
+						_List_fromArray(
+							[$author$project$Terminal$Class$stack]),
+						stack_)
+					]))
 			]);
 	}();
 	var checkResult = function () {
@@ -12110,7 +12511,7 @@ var $author$project$Main$view = function (model) {
 		$elm$html$Html$nav,
 		_List_fromArray(
 			[$author$project$Navigation$Class$bar]),
-		model.R ? _List_fromArray(
+		model.S ? _List_fromArray(
 			[
 				A2(
 				$elm$html$Html$div,
@@ -12122,27 +12523,30 @@ var $author$project$Main$view = function (model) {
 				_List_fromArray(
 					[
 						$author$project$Navigation$Class$icon,
-						$elm$html$Html$Events$onClick($author$project$Main$ToggleHelp)
+						$elm$html$Html$Events$onClick($author$project$Main$ToggleHelp),
+						$elm$html$Html$Attributes$title('Hide help')
 					]),
 				$author$project$Icon$exit)
 			]) : _List_fromArray(
 			[
 				A2(
-				$elm$html$Html$p,
-				_List_fromArray(
-					[$author$project$Navigation$Class$check]),
+				$author$project$Icon$map,
 				_List_fromArray(
 					[
-						$elm$html$Html$text('Check:')
-					])),
+						$author$project$Navigation$Class$icon,
+						$elm$html$Html$Events$onClick($author$project$Main$CheckSource),
+						$elm$html$Html$Attributes$title('Check code')
+					]),
+				checkResult),
 				A2(
 				$author$project$Icon$map,
 				_List_fromArray(
 					[
 						$author$project$Navigation$Class$icon,
-						$elm$html$Html$Events$onClick($author$project$Main$CheckSource)
+						$elm$html$Html$Events$onClick($author$project$Main$Step),
+						$elm$html$Html$Attributes$title('Step')
 					]),
-				checkResult),
+				$author$project$Icon$step),
 				A2(
 				$elm$html$Html$div,
 				_List_fromArray(
@@ -12153,7 +12557,8 @@ var $author$project$Main$view = function (model) {
 				_List_fromArray(
 					[
 						$author$project$Navigation$Class$icon,
-						$elm$html$Html$Events$onClick($author$project$Main$ToggleHelp)
+						$elm$html$Html$Events$onClick($author$project$Main$ToggleHelp),
+						$elm$html$Html$Attributes$title('Show help')
 					]),
 				$author$project$Icon$help)
 			]));
@@ -12174,7 +12579,7 @@ var $author$project$Main$view = function (model) {
 				]));
 	};
 	return titled(
-		model.R ? readme : ide);
+		model.S ? readme : ide);
 };
 var $author$project$Main$main = $elm$browser$Browser$document(
 	{b4: $author$project$Main$init, cw: $author$project$Main$subscriptions, cA: $author$project$Main$update, cC: $author$project$Main$view});
