@@ -2704,7 +2704,7 @@ var _VirtualDom_mapEventTuple = F2(function(func, tuple)
 var _VirtualDom_mapEventRecord = F2(function(func, record)
 {
 	return {
-		G: func(record.G),
+		H: func(record.H),
 		aF: record.aF,
 		aA: record.aA
 	}
@@ -2974,7 +2974,7 @@ function _VirtualDom_makeCallback(eventNode, initialHandler)
 		// 3 = Custom
 
 		var value = result.a;
-		var message = !tag ? value : tag < 3 ? value.a : value.G;
+		var message = !tag ? value : tag < 3 ? value.a : value.H;
 		var stopPropagation = tag == 1 ? value.b : tag == 3 && value.aF;
 		var currentEventNode = (
 			stopPropagation && event.stopPropagation(),
@@ -5433,7 +5433,7 @@ var $elm$core$Platform$Cmd$batch = _Platform_batch;
 var $elm$core$Platform$Cmd$none = $elm$core$Platform$Cmd$batch(_List_Nil);
 var $author$project$Main$init = function (_v0) {
 	return _Utils_Tuple2(
-		{J: $author$project$Editor$Main$init, X: false, al: $elm$core$Maybe$Nothing},
+		{F: $author$project$Editor$Main$init, X: false, al: $elm$core$Maybe$Nothing},
 		$elm$core$Platform$Cmd$none);
 };
 var $author$project$Main$KeyboardEvent = function (a) {
@@ -7489,11 +7489,11 @@ var $author$project$Editor$Main$update = F2(
 		}
 	});
 var $author$project$Main$checkSourceAndUpdate = function (model) {
-	var editor = A2($author$project$Editor$Main$update, $author$project$Editor$Main$SourceCheck, model.J);
+	var editor = A2($author$project$Editor$Main$update, $author$project$Editor$Main$SourceCheck, model.F);
 	return _Utils_update(
 		model,
 		{
-			J: editor,
+			F: editor,
 			al: function () {
 				var _v0 = editor.bq;
 				if ((!_v0.$) && (!_v0.a.$)) {
@@ -7531,7 +7531,7 @@ var $author$project$Main$update = F2(
 					_Utils_update(
 						model,
 						{
-							J: A2($author$project$Editor$Main$update, editorMsg, model.J)
+							F: A2($author$project$Editor$Main$update, editorMsg, model.F)
 						}),
 					$elm$core$Platform$Cmd$none);
 			case 1:
@@ -7577,6 +7577,14 @@ var $author$project$Help$Class$help = function (string) {
 	return $elm$html$Html$Attributes$class('help-' + string);
 };
 var $author$project$Help$Class$body = $author$project$Help$Class$help('body');
+var $icidasset$elm_material_icons$Material$Icons$Types$Color = function (a) {
+	return {$: 0, a: a};
+};
+var $avh4$elm_color$Color$RgbaSpace = F4(
+	function (a, b, c, d) {
+		return {$: 0, a: a, b: b, c: c, d: d};
+	});
+var $avh4$elm_color$Color$darkGray = A4($avh4$elm_color$Color$RgbaSpace, 186 / 255, 189 / 255, 182 / 255, 1.0);
 var $elm$svg$Svg$Attributes$enableBackground = _VirtualDom_attribute('enable-background');
 var $icidasset$elm_material_icons$Material$Icons$Internal$b = $elm$svg$Svg$Attributes$enableBackground;
 var $elm$svg$Svg$Attributes$d = _VirtualDom_attribute('d');
@@ -7695,9 +7703,43 @@ var $icidasset$elm_material_icons$Material$Icons$Outlined$flaky = A2(
 					_List_Nil)
 				]))
 		]));
-var $author$project$Icon$check = $icidasset$elm_material_icons$Material$Icons$Outlined$flaky;
+var $author$project$Icon$iconSize = 24;
+var $author$project$Icon$check = A2(
+	$icidasset$elm_material_icons$Material$Icons$Outlined$flaky,
+	$author$project$Icon$iconSize,
+	$icidasset$elm_material_icons$Material$Icons$Types$Color($avh4$elm_color$Color$darkGray));
+var $author$project$Navigation$Class$check = $author$project$Navigation$Class$navigtaion('check');
 var $author$project$Help$Class$container = $author$project$Help$Class$help('container');
 var $elm$html$Html$div = _VirtualDom_node('div');
+var $icidasset$elm_material_icons$Material$Icons$close = A2(
+	$icidasset$elm_material_icons$Material$Icons$Internal$icon,
+	_List_fromArray(
+		[
+			$icidasset$elm_material_icons$Material$Icons$Internal$v('0 0 24 24')
+		]),
+	_List_fromArray(
+		[
+			A2(
+			$icidasset$elm_material_icons$Material$Icons$Internal$p,
+			_List_fromArray(
+				[
+					$elm$svg$Svg$Attributes$d('M0 0h24v24H0z'),
+					$icidasset$elm_material_icons$Material$Icons$Internal$f('none')
+				]),
+			_List_Nil),
+			A2(
+			$icidasset$elm_material_icons$Material$Icons$Internal$p,
+			_List_fromArray(
+				[
+					$elm$svg$Svg$Attributes$d('M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z')
+				]),
+			_List_Nil)
+		]));
+var $avh4$elm_color$Color$darkRed = A4($avh4$elm_color$Color$RgbaSpace, 164 / 255, 0 / 255, 0 / 255, 1.0);
+var $author$project$Icon$fail = A2(
+	$icidasset$elm_material_icons$Material$Icons$close,
+	$author$project$Icon$iconSize,
+	$icidasset$elm_material_icons$Material$Icons$Types$Color($avh4$elm_color$Color$darkRed));
 var $elm$html$Html$h6 = _VirtualDom_node('h6');
 var $author$project$Editor$Class$editor = function (string) {
 	return $elm$html$Html$Attributes$class('editor-' + string);
@@ -7707,6 +7749,7 @@ var $author$project$Terminal$Class$terminal = function (string) {
 	return $elm$html$Html$Attributes$class('terminal-' + string);
 };
 var $author$project$Terminal$Class$half = $author$project$Terminal$Class$terminal('half');
+var $icidasset$elm_material_icons$Material$Icons$Types$Inherit = {$: 1};
 var $icidasset$elm_material_icons$Material$Icons$Outlined$help_outline = A2(
 	$icidasset$elm_material_icons$Material$Icons$Internal$icon,
 	_List_fromArray(
@@ -7731,7 +7774,8 @@ var $icidasset$elm_material_icons$Material$Icons$Outlined$help_outline = A2(
 				]),
 			_List_Nil)
 		]));
-var $author$project$Icon$help = $icidasset$elm_material_icons$Material$Icons$Outlined$help_outline;
+var $author$project$Icon$help = A2($icidasset$elm_material_icons$Material$Icons$Outlined$help_outline, $author$project$Icon$iconSize, $icidasset$elm_material_icons$Material$Icons$Types$Inherit);
+var $author$project$Navigation$Class$icon = $author$project$Navigation$Class$navigtaion('icon');
 var $elm$core$List$append = F2(
 	function (xs, ys) {
 		if (!ys.b) {
@@ -8708,7 +8752,7 @@ var $pablohirafuji$elm_markdown$Markdown$Block$extractOrderedListRM = function (
 				{
 					W: delimiter,
 					o: $elm$core$String$length(indentString) + 1,
-					F: false,
+					G: false,
 					ac: A2(
 						$elm$core$Maybe$withDefault,
 						$pablohirafuji$elm_markdown$Markdown$Block$Unordered,
@@ -8818,7 +8862,7 @@ var $pablohirafuji$elm_markdown$Markdown$Block$extractUnorderedListRM = function
 				{
 					W: delimiter,
 					o: $elm$core$String$length(indentString) + 1,
-					F: false,
+					G: false,
 					ac: $pablohirafuji$elm_markdown$Markdown$Block$Unordered
 				},
 				A2($elm$core$Maybe$withDefault, '', maybeIndentSpace),
@@ -9176,7 +9220,7 @@ var $pablohirafuji$elm_markdown$Markdown$Block$parseIndentedListLine = F5(
 									itemTail) ? A2($pablohirafuji$elm_markdown$Markdown$Block$parseRawLine, rawLine, ast) : updateList(
 									_Utils_update(
 										model,
-										{F: true}));
+										{G: true}));
 							}
 						case 6:
 							var _v9 = item.a;
@@ -9188,7 +9232,7 @@ var $pablohirafuji$elm_markdown$Markdown$Block$parseIndentedListLine = F5(
 								model_.o) > -1) ? updateList(model) : ($pablohirafuji$elm_markdown$Markdown$Block$isBlankLineLast(items_) ? updateList(
 								_Utils_update(
 									model,
-									{F: true})) : updateList(model));
+									{G: true})) : updateList(model));
 						default:
 							break _v7$3;
 					}
@@ -9230,7 +9274,7 @@ var $pablohirafuji$elm_markdown$Markdown$Block$parseListLine = F3(
 									model,
 									{
 										o: listBlock.o,
-										F: model.F || $pablohirafuji$elm_markdown$Markdown$Block$isBlankLineLast(items)
+										G: model.G || $pablohirafuji$elm_markdown$Markdown$Block$isBlankLineLast(items)
 									}),
 								A2($elm$core$List$cons, parsedRawLine, items))) : newList;
 					case 4:
@@ -11136,7 +11180,7 @@ var $pablohirafuji$elm_markdown$Markdown$Block$parseInline = F4(
 					}(
 						A2(
 							$elm$core$Basics$composeL,
-							A2($pablohirafuji$elm_markdown$Markdown$Block$parseInlines, maybeOptions, model.F),
+							A2($pablohirafuji$elm_markdown$Markdown$Block$parseInlines, maybeOptions, model.G),
 							function (b) {
 								return _Utils_Tuple2(refs, b);
 							})));
@@ -11764,7 +11808,6 @@ var $author$project$Help$Info$info = A2($pablohirafuji$elm_markdown$Markdown$toH
 var $elm$html$Html$main_ = _VirtualDom_node('main');
 var $elm$virtual_dom$VirtualDom$map = _VirtualDom_map;
 var $elm$html$Html$map = $elm$virtual_dom$VirtualDom$map;
-var $icidasset$elm_material_icons$Material$Icons$Types$Inherit = {$: 1};
 var $elm$html$Html$span = _VirtualDom_node('span');
 var $author$project$Icon$map = F2(
 	function (attrs, icon) {
@@ -11772,11 +11815,38 @@ var $author$project$Icon$map = F2(
 			$elm$html$Html$span,
 			attrs,
 			_List_fromArray(
-				[
-					A2(icon, 24, $icidasset$elm_material_icons$Material$Icons$Types$Inherit)
-				]));
+				[icon]));
 	});
 var $elm$html$Html$nav = _VirtualDom_node('nav');
+var $avh4$elm_color$Color$darkGreen = A4($avh4$elm_color$Color$RgbaSpace, 78 / 255, 154 / 255, 6 / 255, 1.0);
+var $icidasset$elm_material_icons$Material$Icons$done = A2(
+	$icidasset$elm_material_icons$Material$Icons$Internal$icon,
+	_List_fromArray(
+		[
+			$icidasset$elm_material_icons$Material$Icons$Internal$v('0 0 24 24')
+		]),
+	_List_fromArray(
+		[
+			A2(
+			$icidasset$elm_material_icons$Material$Icons$Internal$p,
+			_List_fromArray(
+				[
+					$elm$svg$Svg$Attributes$d('M0 0h24v24H0z'),
+					$icidasset$elm_material_icons$Material$Icons$Internal$f('none')
+				]),
+			_List_Nil),
+			A2(
+			$icidasset$elm_material_icons$Material$Icons$Internal$p,
+			_List_fromArray(
+				[
+					$elm$svg$Svg$Attributes$d('M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z')
+				]),
+			_List_Nil)
+		]));
+var $author$project$Icon$ok = A2(
+	$icidasset$elm_material_icons$Material$Icons$done,
+	$author$project$Icon$iconSize,
+	$icidasset$elm_material_icons$Material$Icons$Types$Color($avh4$elm_color$Color$darkGreen));
 var $elm$virtual_dom$VirtualDom$Normal = function (a) {
 	return {$: 0, a: a};
 };
@@ -11948,53 +12018,11 @@ var $author$project$Main$view = function (model) {
 					$author$project$Help$Info$info)
 				]))
 		]);
-	var navigation = A2(
-		$elm$html$Html$nav,
-		_List_fromArray(
-			[$author$project$Navigation$Class$bar]),
-		_List_fromArray(
-			[
-				A2(
-				$elm$html$Html$div,
-				_List_fromArray(
-					[$author$project$Navigation$Class$pad]),
-				_List_Nil),
-				A2(
-				$author$project$Icon$map,
-				_List_fromArray(
-					[
-						$elm$html$Html$Events$onClick($author$project$Main$CheckSource)
-					]),
-				$author$project$Icon$check),
-				A2(
-				$author$project$Icon$map,
-				_List_fromArray(
-					[
-						$elm$html$Html$Events$onClick($author$project$Main$ToggleHelp)
-					]),
-				$author$project$Icon$help)
-			]));
-	var titled = function (elems) {
-		return A2(
-			$elm$browser$Browser$Document,
-			'Pancake Playground',
-			_List_fromArray(
-				[
-					A2(
-					$elm$html$Html$main_,
-					_List_fromArray(
-						[
-							$elm$html$Html$Attributes$class('app')
-						]),
-					elems),
-					navigation
-				]));
-	};
 	var ide = function () {
 		var world_ = function () {
-			var _v0 = model.al;
-			if (!_v0.$) {
-				var world = _v0.a.aI;
+			var _v1 = model.al;
+			if (!_v1.$) {
+				var world = _v1.a.aI;
 				return A2(
 					$elm$html$Html$section,
 					_List_fromArray(
@@ -12042,7 +12070,7 @@ var $author$project$Main$view = function (model) {
 				A2(
 					$elm$core$List$map,
 					$elm$html$Html$map($author$project$Main$EditorMsg),
-					$author$project$Editor$Main$view(model.J))),
+					$author$project$Editor$Main$view(model.F))),
 				A2(
 				$elm$html$Html$section,
 				_List_fromArray(
@@ -12051,6 +12079,70 @@ var $author$project$Main$view = function (model) {
 					[world_]))
 			]);
 	}();
+	var checkResult = function () {
+		var _v0 = model.F.bq;
+		if (_v0.$ === 1) {
+			return $author$project$Icon$check;
+		} else {
+			if (_v0.a.$ === 1) {
+				return $author$project$Icon$fail;
+			} else {
+				return $author$project$Icon$ok;
+			}
+		}
+	}();
+	var navigation = A2(
+		$elm$html$Html$nav,
+		_List_fromArray(
+			[$author$project$Navigation$Class$bar]),
+		_List_fromArray(
+			[
+				A2(
+				$elm$html$Html$p,
+				_List_fromArray(
+					[$author$project$Navigation$Class$check]),
+				_List_fromArray(
+					[
+						$elm$html$Html$text('Check:')
+					])),
+				A2(
+				$author$project$Icon$map,
+				_List_fromArray(
+					[
+						$author$project$Navigation$Class$icon,
+						$elm$html$Html$Events$onClick($author$project$Main$CheckSource)
+					]),
+				checkResult),
+				A2(
+				$elm$html$Html$div,
+				_List_fromArray(
+					[$author$project$Navigation$Class$pad]),
+				_List_Nil),
+				A2(
+				$author$project$Icon$map,
+				_List_fromArray(
+					[
+						$author$project$Navigation$Class$icon,
+						$elm$html$Html$Events$onClick($author$project$Main$ToggleHelp)
+					]),
+				$author$project$Icon$help)
+			]));
+	var titled = function (elems) {
+		return A2(
+			$elm$browser$Browser$Document,
+			'Pancake Playground',
+			_List_fromArray(
+				[
+					A2(
+					$elm$html$Html$main_,
+					_List_fromArray(
+						[
+							$elm$html$Html$Attributes$class('app')
+						]),
+					elems),
+					navigation
+				]));
+	};
 	return titled(
 		model.X ? readme : ide);
 };
