@@ -7580,6 +7580,7 @@ var $author$project$Navigation$Class$bar = $author$project$Navigation$Class$navi
 var $author$project$Help$Class$help = function (string) {
 	return $elm$html$Html$Attributes$class('help-' + string);
 };
+var $author$project$Help$Class$body = $author$project$Help$Class$help('body');
 var $author$project$Help$Class$container = $author$project$Help$Class$help('container');
 var $elm$html$Html$div = _VirtualDom_node('div');
 var $elm$html$Html$h6 = _VirtualDom_node('h6');
@@ -11900,7 +11901,14 @@ var $author$project$Main$view = function (model) {
 			$elm$html$Html$div,
 			_List_fromArray(
 				[$author$project$Help$Class$container]),
-			$author$project$Help$Info$info)
+			_List_fromArray(
+				[
+					A2(
+					$elm$html$Html$div,
+					_List_fromArray(
+						[$author$project$Help$Class$body]),
+					$author$project$Help$Info$info)
+				]))
 		]);
 	var navigation = A2(
 		$elm$html$Html$nav,
