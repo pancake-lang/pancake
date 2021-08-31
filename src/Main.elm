@@ -162,11 +162,27 @@ view model =
                 , navigation
                 ]
 
+        checkResult =
+            case model.editor.result of
+                Nothing ->
+                    Icon.check
+
+                Just (Err _) ->
+                    Icon.fail
+
+                Just (Ok _) ->
+                    Icon.ok
+
         navigation =
             nav [ Navigation.Class.bar ]
-                [ div [ Navigation.Class.pad ] []
-                , Icon.map [ onClick CheckSource ] Icon.check
-                , Icon.map [ onClick ToggleHelp ] Icon.help
+                [ p [ Navigation.Class.check ] [ text "Check:" ]
+                , Icon.map
+                    [ Navigation.Class.icon, onClick CheckSource ]
+                    checkResult
+                , div [ Navigation.Class.pad ] []
+                , Icon.map
+                    [ Navigation.Class.icon, onClick ToggleHelp ]
+                    Icon.help
                 ]
 
         ide =

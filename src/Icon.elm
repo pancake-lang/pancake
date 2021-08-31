@@ -1,20 +1,37 @@
-module Icon exposing (check, help, map)
+module Icon exposing (check, fail, help, map, ok)
 
+import Color
 import Html exposing (Attribute, Html, span)
+import Material.Icons exposing (close, done)
 import Material.Icons.Outlined exposing (flaky, help_outline)
 import Material.Icons.Types exposing (Coloring(..), Icon)
 
 
-map : List (Attribute msg) -> Icon msg -> Html msg
+iconSize : Int
+iconSize =
+    24
+
+
+map : List (Attribute msg) -> Html msg -> Html msg
 map attrs icon =
-    span attrs [ icon 24 Inherit ]
+    span attrs [ icon ]
 
 
-help : Icon msg
+help : Html msg
 help =
-    help_outline
+    help_outline iconSize Inherit
 
 
-check : Icon msg
+check : Html msg
 check =
-    flaky
+    flaky iconSize (Color <| Color.darkGray)
+
+
+ok : Html msg
+ok =
+    done iconSize (Color <| Color.darkGreen)
+
+
+fail : Html msg
+fail =
+    close iconSize (Color <| Color.darkRed)
