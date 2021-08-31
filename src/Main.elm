@@ -45,6 +45,7 @@ type alias Model =
 type Msg
     = EditorMsg Editor.Msg
     | ToggleHelp
+    | CheckSource
     | KeyboardEvent KeyboardEvent
 
 
@@ -91,13 +92,41 @@ update msg model =
         ToggleHelp ->
             ( { model | help = not model.help }, Cmd.none )
 
+        CheckSource ->
+            ( checkSourceAndUpdate model, Cmd.none )
+
         KeyboardEvent event ->
-            ( updateOnKeyBinding event model, Cmd.none )
+            updateOnKeyBinding event model
 
 
-type KeyBinding
-    = ShowHelp
-    | CheckSource
+updateOnKeyBinding : KeyboardEvent -> Model -> ( Model, Cmd Msg )
+updateOnKeyBinding event model =
+    if isToggleHelp event then
+        update ToggleHelp model
+
+    else if isCheckSource event then
+        update CheckSource model
+
+    else
+        ( model, Cmd.none )
+
+
+checkSourceAndUpdate : Model -> Model
+checkSourceAndUpdate model =
+    let
+        editor =
+            Editor.update Editor.SourceCheck model.editor
+    in
+    { model
+        | editor = editor
+        , runtime =
+            case editor.result of
+                Just (Ok ast) ->
+                    Just <| Compiler.compile ast
+
+                _ ->
+                    Nothing
+    }
 
 
 key : String -> KeyboardEvent -> Bool
@@ -120,31 +149,6 @@ isToggleHelp e =
     e.ctrlKey && key ";" e
 
 
-updateOnKeyBinding : KeyboardEvent -> Model -> Model
-updateOnKeyBinding event model =
-    if isToggleHelp event then
-        { model | help = not model.help }
-
-    else if isCheckSource event then
-        let
-            editor =
-                Editor.update Editor.SourceCheck model.editor
-        in
-        { model
-            | editor = editor
-            , runtime =
-                case editor.result of
-                    Just (Ok ast) ->
-                        Just <| Compiler.compile ast
-
-                    _ ->
-                        Nothing
-        }
-
-    else
-        model
-
-
 
 -- VIEW
 
@@ -161,6 +165,7 @@ view model =
         navigation =
             nav [ Navigation.Class.bar ]
                 [ div [ Navigation.Class.pad ] []
+                , Icon.map [ onClick CheckSource ] Icon.check
                 , Icon.map [ onClick ToggleHelp ] Icon.help
                 ]
 

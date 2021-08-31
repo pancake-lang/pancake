@@ -1,7 +1,7 @@
-module Icon exposing (help, map)
+module Icon exposing (check, help, map)
 
 import Html exposing (Attribute, Html, span)
-import Material.Icons.Outlined exposing (help_outline)
+import Material.Icons.Outlined exposing (flaky, help_outline)
 import Material.Icons.Types exposing (Coloring(..), Icon)
 
 
@@ -13,3 +13,8 @@ map attrs icon =
 help : Icon msg
 help =
     help_outline
+
+
+check : Icon msg
+check =
+    flaky
