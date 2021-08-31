@@ -5,7 +5,9 @@ OUTPUT_PATH = 'src/Help/Info.elm'
 TEMPLATE = '''module Help.Info exposing (info)
 
 import Markdown
+import Html exposing (Html)
 
+info : List (Html msg)
 info = 
     Markdown.toHtml Nothing """{}"""
 '''

@@ -16,7 +16,7 @@ import Set
 
 type alias Model =
     { source : String
-    , result : Maybe ParseResult
+    , parsed : Maybe ParseResult
     }
 
 
@@ -26,7 +26,17 @@ type alias Model =
 
 type Msg
     = SourceChange String
-    | SourceCheck
+    | CheckResult ParseResult
+
+
+isSourceChange : Msg -> Bool
+isSourceChange msg =
+    case msg of
+        SourceChange _ ->
+            True
+
+        _ ->
+            False
 
 
 
@@ -65,11 +75,8 @@ update msg model =
         SourceChange change ->
             { model | source = change }
 
-        SourceCheck ->
+        CheckResult result ->
             let
-                result =
-                    Parser.parse model.source
-
                 source =
                     case result of
                         Err _ ->
@@ -89,7 +96,7 @@ view : Model -> List (Html Msg)
 view model =
     let
         errorLines =
-            case model.result of
+            case model.parsed of
                 Nothing ->
                     Set.empty
 

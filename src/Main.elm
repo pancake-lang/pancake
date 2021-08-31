@@ -14,6 +14,7 @@ import Json.Decode
 import Keyboard.Event as Keyboard exposing (KeyboardEvent, decodeKeyboardEvent)
 import Language.Compiler as Compiler
 import Language.Machine exposing (Machine)
+import Language.Parser as Parser exposing (ParseResult)
 import Language.World exposing (World(..))
 import Navigation.Class
 import Terminal.Class
@@ -34,6 +35,7 @@ type alias Flags =
 type alias Model =
     { editor : Editor.Model
     , help : Bool
+    , parsed : Maybe ParseResult
     , runtime : Maybe Machine
     }
 
@@ -71,6 +73,7 @@ init : Flags -> ( Model, Cmd Msg )
 init _ =
     ( { editor = Editor.init
       , help = False
+      , parsed = Nothing
       , runtime = Nothing
       }
     , Cmd.none
@@ -85,7 +88,15 @@ update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
     case msg of
         EditorMsg editorMsg ->
-            ( { model | editor = Editor.update editorMsg model.editor }
+            ( { model
+                | editor = Editor.update editorMsg model.editor
+                , parsed =
+                    if Editor.isSourceChange editorMsg then
+                        Nothing
+
+                    else
+                        model.parsed
+              }
             , Cmd.none
             )
 
@@ -114,14 +125,18 @@ updateOnKeyBinding event model =
 checkSourceAndUpdate : Model -> Model
 checkSourceAndUpdate model =
     let
+        parsed =
+            Parser.parse model.editor.source
+
         editor =
-            Editor.update Editor.SourceCheck model.editor
+            Editor.update (Editor.CheckResult parsed) model.editor
     in
     { model
         | editor = editor
+        , parsed = Just parsed
         , runtime =
-            case editor.result of
-                Just (Ok ast) ->
+            case parsed of
+                Ok ast ->
                     Just <| Compiler.compile ast
 
                 _ ->
@@ -163,7 +178,7 @@ view model =
                 ]
 
         checkResult =
-            case model.editor.result of
+            case model.parsed of
                 Nothing ->
                     Icon.check
 
