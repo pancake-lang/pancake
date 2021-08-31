@@ -1,11 +1,3 @@
-@import url("https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@500&display=swap");
-
-:root {
-  --editor-line-numbers-color: #464646;
-  --editor-font-size: 18px;
-  --editor-line-height: 24px;
-}
-
 .editor-half {
   width: 50%;
   height: 100%;
@@ -50,4 +42,8 @@
   border-radius: 0;
   border: none;
   font-family: "Roboto Mono", monospace;
+  white-space: pre;
+  overflow-wrap: normal;
+  overflow-x: scroll;
+  resize: none;
 }
