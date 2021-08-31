@@ -1,4 +1,10 @@
-module Editor.Class exposing (..)
+module Editor.Class exposing
+    ( half
+    , lineNumbers
+    , number
+    , numberError
+    , textarea
+    )
 
 import Html exposing (Attribute)
 import Html.Attributes exposing (class)

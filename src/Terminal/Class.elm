@@ -1,4 +1,4 @@
-module Terminal.Class exposing (..)
+module Terminal.Class exposing (half, world, worldUnknown)
 
 import Html exposing (Attribute)
 import Html.Attributes exposing (class)

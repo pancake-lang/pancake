@@ -78,3 +78,13 @@ what we can learn from looking at it:
 
 - `CTRL + ;` = toggle help
 - `CTRL + ENTER` = run source code checks and formatting
+
+### Inspirations
+
+> You gotta give credit where credit's due!
+
+- **Editor color theme:** [Gruvbox Material][gruvbox-theme]
+- **Navigation bar:** inspired by [Elm online editor][elm-editor]
+
+[gruvbox-theme]: https://github.com/sainnhe/gruvbox-materia)
+[elm-editor]: https://elm-lang.org/examples/clock

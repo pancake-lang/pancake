@@ -34,7 +34,7 @@ type alias Flags =
 
 type alias Model =
     { editor : Editor.Model
-    , help : Bool
+    , helpIsShown : Bool
     , parsed : Maybe ParseResult
     , runtime : Maybe Machine
     }
@@ -72,7 +72,7 @@ main =
 init : Flags -> ( Model, Cmd Msg )
 init _ =
     ( { editor = Editor.init
-      , help = False
+      , helpIsShown = False
       , parsed = Nothing
       , runtime = Nothing
       }
@@ -101,7 +101,7 @@ update msg model =
             )
 
         ToggleHelp ->
-            ( { model | help = not model.help }, Cmd.none )
+            ( { model | helpIsShown = not model.helpIsShown }, Cmd.none )
 
         CheckSource ->
             ( checkSourceAndUpdate model, Cmd.none )
@@ -172,7 +172,7 @@ view : Model -> Document Msg
 view model =
     let
         titled elems =
-            Document "Pancake Playground"
+            Document "🥞 Pancake Playground"
                 [ main_ [ class "app" ] elems
                 , navigation
                 ]
@@ -189,16 +189,21 @@ view model =
                     Icon.ok
 
         navigation =
-            nav [ Navigation.Class.bar ]
-                [ p [ Navigation.Class.check ] [ text "Check:" ]
-                , Icon.map
-                    [ Navigation.Class.icon, onClick CheckSource ]
-                    checkResult
-                , div [ Navigation.Class.pad ] []
-                , Icon.map
-                    [ Navigation.Class.icon, onClick ToggleHelp ]
-                    Icon.help
-                ]
+            nav [ Navigation.Class.bar ] <|
+                if model.helpIsShown then
+                    [ div [ Navigation.Class.pad ] []
+                    , Icon.map [ Navigation.Class.icon, onClick ToggleHelp ]
+                        Icon.exit
+                    ]
+
+                else
+                    [ p [ Navigation.Class.check ] [ text "Check:" ]
+                    , Icon.map [ Navigation.Class.icon, onClick CheckSource ]
+                        checkResult
+                    , div [ Navigation.Class.pad ] []
+                    , Icon.map [ Navigation.Class.icon, onClick ToggleHelp ]
+                        Icon.help
+                    ]
 
         ide =
             let
@@ -238,7 +243,7 @@ view model =
             ]
     in
     titled <|
-        if model.help then
+        if model.helpIsShown then
             readme
 
         else

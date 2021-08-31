@@ -1,4 +1,11 @@
-module Icon exposing (check, fail, help, map, ok)
+module Icon exposing
+    ( check
+    , exit
+    , fail
+    , help
+    , map
+    , ok
+    )
 
 import Color
 import Html exposing (Attribute, Html, span)
@@ -35,3 +42,8 @@ ok =
 fail : Html msg
 fail =
     close iconSize (Color <| Color.darkRed)
+
+
+exit : Html msg
+exit =
+    close iconSize Inherit
