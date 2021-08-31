@@ -5433,7 +5433,7 @@ var $elm$core$Platform$Cmd$batch = _Platform_batch;
 var $elm$core$Platform$Cmd$none = $elm$core$Platform$Cmd$batch(_List_Nil);
 var $author$project$Main$init = function (_v0) {
 	return _Utils_Tuple2(
-		{F: $author$project$Editor$Main$init, W: false, be: $elm$core$Maybe$Nothing, al: $elm$core$Maybe$Nothing},
+		{F: $author$project$Editor$Main$init, R: false, be: $elm$core$Maybe$Nothing, al: $elm$core$Maybe$Nothing},
 		$elm$core$Platform$Cmd$none);
 };
 var $author$project$Main$KeyboardEvent = function (a) {
@@ -7552,7 +7552,7 @@ var $author$project$Main$update = F2(
 				return _Utils_Tuple2(
 					_Utils_update(
 						model,
-						{W: !model.W}),
+						{R: !model.R}),
 					$elm$core$Platform$Cmd$none);
 			case 2:
 				return _Utils_Tuple2(
@@ -7725,6 +7725,7 @@ var $author$project$Icon$check = A2(
 var $author$project$Navigation$Class$check = $author$project$Navigation$Class$navigtaion('check');
 var $author$project$Help$Class$container = $author$project$Help$Class$help('container');
 var $elm$html$Html$div = _VirtualDom_node('div');
+var $icidasset$elm_material_icons$Material$Icons$Types$Inherit = {$: 1};
 var $icidasset$elm_material_icons$Material$Icons$close = A2(
 	$icidasset$elm_material_icons$Material$Icons$Internal$icon,
 	_List_fromArray(
@@ -7749,6 +7750,7 @@ var $icidasset$elm_material_icons$Material$Icons$close = A2(
 				]),
 			_List_Nil)
 		]));
+var $author$project$Icon$exit = A2($icidasset$elm_material_icons$Material$Icons$close, $author$project$Icon$iconSize, $icidasset$elm_material_icons$Material$Icons$Types$Inherit);
 var $avh4$elm_color$Color$darkRed = A4($avh4$elm_color$Color$RgbaSpace, 164 / 255, 0 / 255, 0 / 255, 1.0);
 var $author$project$Icon$fail = A2(
 	$icidasset$elm_material_icons$Material$Icons$close,
@@ -7763,7 +7765,6 @@ var $author$project$Terminal$Class$terminal = function (string) {
 	return $elm$html$Html$Attributes$class('terminal-' + string);
 };
 var $author$project$Terminal$Class$half = $author$project$Terminal$Class$terminal('half');
-var $icidasset$elm_material_icons$Material$Icons$Types$Inherit = {$: 1};
 var $icidasset$elm_material_icons$Material$Icons$Outlined$help_outline = A2(
 	$icidasset$elm_material_icons$Material$Icons$Internal$icon,
 	_List_fromArray(
@@ -8764,7 +8765,7 @@ var $pablohirafuji$elm_markdown$Markdown$Block$extractOrderedListRM = function (
 		return $elm$core$Maybe$Just(
 			_Utils_Tuple3(
 				{
-					V: delimiter,
+					W: delimiter,
 					o: $elm$core$String$length(indentString) + 1,
 					G: false,
 					ac: A2(
@@ -8874,7 +8875,7 @@ var $pablohirafuji$elm_markdown$Markdown$Block$extractUnorderedListRM = function
 		return $elm$core$Maybe$Just(
 			_Utils_Tuple3(
 				{
-					V: delimiter,
+					W: delimiter,
 					o: $elm$core$String$length(indentString) + 1,
 					G: false,
 					ac: $pablohirafuji$elm_markdown$Markdown$Block$Unordered
@@ -9279,7 +9280,7 @@ var $pablohirafuji$elm_markdown$Markdown$Block$parseListLine = F3(
 						var model = _v2.a;
 						var items = _v2.b;
 						var astTail = ast.b;
-						return _Utils_eq(listBlock.V, model.V) ? function (a) {
+						return _Utils_eq(listBlock.W, model.W) ? function (a) {
 							return A2($elm$core$List$cons, a, astTail);
 						}(
 							A2(
@@ -9477,7 +9478,7 @@ var $pablohirafuji$elm_markdown$Markdown$InlineParser$prepareChildMatch = F2(
 	function (parentMatch, childMatch) {
 		return _Utils_update(
 			childMatch,
-			{aW: childMatch.aW - parentMatch.C, aD: childMatch.aD - parentMatch.C, S: childMatch.S - parentMatch.C, C: childMatch.C - parentMatch.C});
+			{aW: childMatch.aW - parentMatch.C, aD: childMatch.aD - parentMatch.C, T: childMatch.T - parentMatch.C, C: childMatch.C - parentMatch.C});
 	});
 var $pablohirafuji$elm_markdown$Markdown$InlineParser$addChild = F2(
 	function (parentMatch, childMatch) {
@@ -9545,7 +9546,7 @@ var $pablohirafuji$elm_markdown$Markdown$InlineParser$normalMatch = function (te
 		c: _List_Nil,
 		aD: 0,
 		aH: $pablohirafuji$elm_markdown$Markdown$Helpers$formatStr(text),
-		S: 0,
+		T: 0,
 		C: 0,
 		ac: $pablohirafuji$elm_markdown$Markdown$InlineParser$NormalType
 	};
@@ -10563,7 +10564,7 @@ var $pablohirafuji$elm_markdown$Markdown$InlineParser$reverseTokens = function (
 };
 var $pablohirafuji$elm_markdown$Markdown$InlineParser$tokenToMatch = F2(
 	function (token, type_) {
-		return {aW: token.b3 + token.d, c: _List_Nil, aD: token.b3, aH: '', S: 0, C: 0, ac: type_};
+		return {aW: token.b3 + token.d, c: _List_Nil, aD: token.b3, aH: '', T: 0, C: 0, ac: type_};
 	});
 var $pablohirafuji$elm_markdown$Markdown$InlineParser$lineBreakTTM = function (_v0) {
 	lineBreakTTM:
@@ -11104,7 +11105,7 @@ var $pablohirafuji$elm_markdown$Markdown$InlineParser$tokenPairToMatch = F6(
 			aD: start,
 			aH: processText(
 				A3($elm$core$String$slice, textStart, textEnd, model.s)),
-			S: textEnd,
+			T: textEnd,
 			C: textStart,
 			ac: type_
 		};
@@ -11818,7 +11819,7 @@ var $pablohirafuji$elm_markdown$Markdown$toHtml = F2(
 				$pablohirafuji$elm_markdown$Markdown$Block$toHtml,
 				A2($pablohirafuji$elm_markdown$Markdown$Block$parse, maybeOptions, rawText)));
 	});
-var $author$project$Help$Info$info = A2($pablohirafuji$elm_markdown$Markdown$toHtml, $elm$core$Maybe$Nothing, '# 🥞 Pancake Programming Language\n\nPancake is an esoteric programming language that is conceptually split into two\nworlds -- _alpha_ and _omega_. But don\'t worry, those are two sides of the same\npancake 😉.\n\nThis project was concieved during the first [Lang Jam][langjam] with an amazing\nteam of creative coders:\n\n- [Viktor the `sharpvik`](https://github.com/sharpvik)\n- [Kyle the `Kylebrown9`](https://github.com/Kylebrown9)\n- [Aleksi the `aleksimart`](https://github.com/aleksimart)\n- [Holly the `dejawuuu`](https://github.com/dejawuuu)\n\n**NOTE:** [this site][playground] is an IDE for our language. Take a look at\nthe **Editor** section to learn more!\n\n[playground]: https://pancake-lang.github.io/pancake\n[langjam]: https://github.com/langjam/jam0001\n\n## Internals\n\nInternally, Pancake runtime is a very simple stack machine that keeps track of\nthe current world in which it\'s operating. Commands are executed top to bottom\n(although there are jumps) and if we are in the _alpha_ world, all _omega_\ninstructions are skipped (and vice versa).\n\n> You can `flip`, `flip if true`, or `flip if false` between the worlds to\n> create conditional statements. That is what makes Pancake so special and\n> yummy!\n\n## Syntax and Semantics\n\nHere\'s an example of a simple program with world and stack state annotated for\nthe first pass:\n\n```\n3               ; ALPHA [ 3 ]\n{i}             ; ALPHA [ 3 {i} ]\nbind            ; ALPHA [ ]                  { i = 3 }\ni               ; ALPHA [ i ]                { i = 3 }\n\n@ loop start\n\nflip if false   ; ALPHA [ ]                  { i = 3 }\n# loop end      ; skipped\n\n"hello world"   ; ALPHA [ "hello world" ]    { i = 3 }\nprint           ; ALPHA [ ]                  { i = 3 }\n\ni               ; ALPHA [ 3 ]                { i = 3 }\n1               ; ALPHA [ 3 1 ]              { i = 3 }\n-               ; ALPHA [ 2 ]                { i = 3 }\n{i}             ; ALPHA [ 2 {i} ]            { i = 3 }\nbind            ; ALPHA [ ]                  { i = 2 }\n\nloop start\n\n@ loop end      ; "loop end" is a label to which we can jump\n```\n\nThis program will print `hello world` three times before halting forever. Here\'s\nwhat we can learn from looking at it:\n\n1. Each line is an instruction.\n2. Lines prefixed with `@` are lables to which we can jump by writing their name\n   on one of the lines.\n3. Instructions in the _alpha_ world are not prefixed, while _omega_\n   instructions have a leading `#`.\n4. Names like `i` can be put on the stack raw, without being evaluated if you\n   wrap them in `{ }`. This can be used to `bind` a variable or in higher order\n   functions.\n5. All names and their values are stored in a global namespace.\n\n## Editor\n\n### Key Bindings\n\n- `CTRL + ;` = toggle help\n- `CTRL + ENTER` = run source code checks and formatting\n');
+var $author$project$Help$Info$info = A2($pablohirafuji$elm_markdown$Markdown$toHtml, $elm$core$Maybe$Nothing, '# 🥞 Pancake Programming Language\n\nPancake is an esoteric programming language that is conceptually split into two\nworlds -- _alpha_ and _omega_. But don\'t worry, those are two sides of the same\npancake 😉.\n\nThis project was concieved during the first [Lang Jam][langjam] with an amazing\nteam of creative coders:\n\n- [Viktor the `sharpvik`](https://github.com/sharpvik)\n- [Kyle the `Kylebrown9`](https://github.com/Kylebrown9)\n- [Aleksi the `aleksimart`](https://github.com/aleksimart)\n- [Holly the `dejawuuu`](https://github.com/dejawuuu)\n\n**NOTE:** [this site][playground] is an IDE for our language. Take a look at\nthe **Editor** section to learn more!\n\n[playground]: https://pancake-lang.github.io/pancake\n[langjam]: https://github.com/langjam/jam0001\n\n## Internals\n\nInternally, Pancake runtime is a very simple stack machine that keeps track of\nthe current world in which it\'s operating. Commands are executed top to bottom\n(although there are jumps) and if we are in the _alpha_ world, all _omega_\ninstructions are skipped (and vice versa).\n\n> You can `flip`, `flip if true`, or `flip if false` between the worlds to\n> create conditional statements. That is what makes Pancake so special and\n> yummy!\n\n## Syntax and Semantics\n\nHere\'s an example of a simple program with world and stack state annotated for\nthe first pass:\n\n```\n3               ; ALPHA [ 3 ]\n{i}             ; ALPHA [ 3 {i} ]\nbind            ; ALPHA [ ]                  { i = 3 }\ni               ; ALPHA [ i ]                { i = 3 }\n\n@ loop start\n\nflip if false   ; ALPHA [ ]                  { i = 3 }\n# loop end      ; skipped\n\n"hello world"   ; ALPHA [ "hello world" ]    { i = 3 }\nprint           ; ALPHA [ ]                  { i = 3 }\n\ni               ; ALPHA [ 3 ]                { i = 3 }\n1               ; ALPHA [ 3 1 ]              { i = 3 }\n-               ; ALPHA [ 2 ]                { i = 3 }\n{i}             ; ALPHA [ 2 {i} ]            { i = 3 }\nbind            ; ALPHA [ ]                  { i = 2 }\n\nloop start\n\n@ loop end      ; "loop end" is a label to which we can jump\n```\n\nThis program will print `hello world` three times before halting forever. Here\'s\nwhat we can learn from looking at it:\n\n1. Each line is an instruction.\n2. Lines prefixed with `@` are lables to which we can jump by writing their name\n   on one of the lines.\n3. Instructions in the _alpha_ world are not prefixed, while _omega_\n   instructions have a leading `#`.\n4. Names like `i` can be put on the stack raw, without being evaluated if you\n   wrap them in `{ }`. This can be used to `bind` a variable or in higher order\n   functions.\n5. All names and their values are stored in a global namespace.\n\n## Editor\n\n### Key Bindings\n\n- `CTRL + ;` = toggle help\n- `CTRL + ENTER` = run source code checks and formatting\n\n### Inspirations\n\n> You gotta give credit where credit\'s due!\n\n- **Editor color theme:** [Gruvbox Material][gruvbox-theme]\n- **Navigation bar:** inspired by [Elm online editor][elm-editor]\n\n[gruvbox-theme]: https://github.com/sainnhe/gruvbox-materia)\n[elm-editor]: https://elm-lang.org/examples/clock\n');
 var $elm$html$Html$main_ = _VirtualDom_node('main');
 var $elm$virtual_dom$VirtualDom$map = _VirtualDom_map;
 var $elm$html$Html$map = $elm$virtual_dom$VirtualDom$map;
@@ -12109,7 +12110,22 @@ var $author$project$Main$view = function (model) {
 		$elm$html$Html$nav,
 		_List_fromArray(
 			[$author$project$Navigation$Class$bar]),
-		_List_fromArray(
+		model.R ? _List_fromArray(
+			[
+				A2(
+				$elm$html$Html$div,
+				_List_fromArray(
+					[$author$project$Navigation$Class$pad]),
+				_List_Nil),
+				A2(
+				$author$project$Icon$map,
+				_List_fromArray(
+					[
+						$author$project$Navigation$Class$icon,
+						$elm$html$Html$Events$onClick($author$project$Main$ToggleHelp)
+					]),
+				$author$project$Icon$exit)
+			]) : _List_fromArray(
 			[
 				A2(
 				$elm$html$Html$p,
@@ -12144,7 +12160,7 @@ var $author$project$Main$view = function (model) {
 	var titled = function (elems) {
 		return A2(
 			$elm$browser$Browser$Document,
-			'Pancake Playground',
+			'🥞 Pancake Playground',
 			_List_fromArray(
 				[
 					A2(
@@ -12158,7 +12174,7 @@ var $author$project$Main$view = function (model) {
 				]));
 	};
 	return titled(
-		model.W ? readme : ide);
+		model.R ? readme : ide);
 };
 var $author$project$Main$main = $elm$browser$Browser$document(
 	{b4: $author$project$Main$init, cw: $author$project$Main$subscriptions, cA: $author$project$Main$update, cC: $author$project$Main$view});
