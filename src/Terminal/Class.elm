@@ -9,13 +9,16 @@ terminal string =
     class <| "terminal-" ++ string
 
 
+half : Attribute msg
 half =
     terminal "half"
 
 
+world : Attribute msg
 world =
     terminal "world"
 
 
+worldUnknown : Attribute msg
 worldUnknown =
     terminal "world-unknown"

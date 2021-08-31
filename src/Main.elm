@@ -9,11 +9,13 @@ import Help.Info
 import Html exposing (..)
 import Html.Attributes exposing (..)
 import Html.Events exposing (..)
+import Icon
 import Json.Decode
 import Keyboard.Event as Keyboard exposing (KeyboardEvent, decodeKeyboardEvent)
 import Language.Compiler as Compiler
 import Language.Machine exposing (Machine)
 import Language.World exposing (World(..))
+import Navigation.Class
 import Terminal.Class
 
 
@@ -151,14 +153,16 @@ view : Model -> Document Msg
 view model =
     let
         titled elems =
-            Document "Pancake Playground" <| showHelpButton :: elems
-
-        showHelpButton =
-            button
-                [ Help.Class.showButton
-                , onClick ToggleHelp
+            Document "Pancake Playground"
+                [ main_ [ class "app" ] elems
+                , navigation
                 ]
-                [ text "👽" ]
+
+        navigation =
+            nav [ Navigation.Class.bar ]
+                [ div [ Navigation.Class.pad ] []
+                , Icon.map [ onClick ToggleHelp ] Icon.help
+                ]
 
         ide =
             let

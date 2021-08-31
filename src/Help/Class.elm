@@ -1,7 +1,7 @@
-module Help.Class exposing (..)
+module Help.Class exposing (container)
 
 import Html exposing (Attribute)
-import Html.Attributes exposing (..)
+import Html.Attributes exposing (class)
 
 
 help : String -> Attribute msg
@@ -12,8 +12,3 @@ help string =
 container : Attribute msg
 container =
     help "container"
-
-
-showButton : Attribute msg
-showButton =
-    help "show-button"
