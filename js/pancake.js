@@ -4358,6 +4358,43 @@ function _Browser_load(url)
 
 
 
+var _Bitwise_and = F2(function(a, b)
+{
+	return a & b;
+});
+
+var _Bitwise_or = F2(function(a, b)
+{
+	return a | b;
+});
+
+var _Bitwise_xor = F2(function(a, b)
+{
+	return a ^ b;
+});
+
+function _Bitwise_complement(a)
+{
+	return ~a;
+};
+
+var _Bitwise_shiftLeftBy = F2(function(offset, a)
+{
+	return a << offset;
+});
+
+var _Bitwise_shiftRightBy = F2(function(offset, a)
+{
+	return a >> offset;
+});
+
+var _Bitwise_shiftRightZfBy = F2(function(offset, a)
+{
+	return a >>> offset;
+});
+
+
+
 
 // STRINGS
 
@@ -4484,43 +4521,6 @@ var _Parser_findSubString = F5(function(smallString, offset, row, col, bigString
 	}
 
 	return _Utils_Tuple3(newOffset, row, col);
-});
-
-
-
-var _Bitwise_and = F2(function(a, b)
-{
-	return a & b;
-});
-
-var _Bitwise_or = F2(function(a, b)
-{
-	return a | b;
-});
-
-var _Bitwise_xor = F2(function(a, b)
-{
-	return a ^ b;
-});
-
-function _Bitwise_complement(a)
-{
-	return ~a;
-};
-
-var _Bitwise_shiftLeftBy = F2(function(offset, a)
-{
-	return a << offset;
-});
-
-var _Bitwise_shiftRightBy = F2(function(offset, a)
-{
-	return a >> offset;
-});
-
-var _Bitwise_shiftRightZfBy = F2(function(offset, a)
-{
-	return a >>> offset;
 });
 
 
@@ -5425,7 +5425,7 @@ var $elm$core$Task$perform = F2(
 var $elm$browser$Browser$document = _Browser_document;
 var $author$project$Editor$Main$Model = F2(
 	function (source, result) {
-		return {bq: result, T: source};
+		return {bq: result, S: source};
 	});
 var $author$project$Editor$Main$demo = '1\n# 3\n2\n3\n<\nflip if  ; flip the world if 2 < 3\n4\n5\n# 2\n# flip\n+\n@end\nexit';
 var $author$project$Editor$Main$init = A2($author$project$Editor$Main$Model, $author$project$Editor$Main$demo, $elm$core$Maybe$Nothing);
@@ -5433,11 +5433,11 @@ var $elm$core$Platform$Cmd$batch = _Platform_batch;
 var $elm$core$Platform$Cmd$none = $elm$core$Platform$Cmd$batch(_List_Nil);
 var $author$project$Main$init = function (_v0) {
 	return _Utils_Tuple2(
-		{J: $author$project$Editor$Main$init, L: false, al: $elm$core$Maybe$Nothing},
+		{J: $author$project$Editor$Main$init, X: false, al: $elm$core$Maybe$Nothing},
 		$elm$core$Platform$Cmd$none);
 };
 var $author$project$Main$KeyboardEvent = function (a) {
-	return {$: 2, a: a};
+	return {$: 3, a: a};
 };
 var $Gizra$elm_keyboard_event$Keyboard$Event$KeyboardEvent = F7(
 	function (altKey, ctrlKey, key, keyCode, metaKey, repeat, shiftKey) {
@@ -6176,7 +6176,274 @@ var $author$project$Main$subscriptions = function (_v0) {
 	return $elm$browser$Browser$Events$onKeyDown(
 		A2($elm$json$Json$Decode$map, $author$project$Main$KeyboardEvent, $Gizra$elm_keyboard_event$Keyboard$Event$decodeKeyboardEvent));
 };
+var $author$project$Main$CheckSource = {$: 2};
+var $author$project$Main$ToggleHelp = {$: 1};
+var $author$project$Editor$Main$SourceCheck = {$: 1};
+var $elm$core$List$filter = F2(
+	function (isGood, list) {
+		return A3(
+			$elm$core$List$foldr,
+			F2(
+				function (x, xs) {
+					return isGood(x) ? A2($elm$core$List$cons, x, xs) : xs;
+				}),
+			_List_Nil,
+			list);
+	});
+var $elm$core$Array$fromListHelp = F3(
+	function (list, nodeList, nodeListSize) {
+		fromListHelp:
+		while (true) {
+			var _v0 = A2($elm$core$Elm$JsArray$initializeFromList, $elm$core$Array$branchFactor, list);
+			var jsArray = _v0.a;
+			var remainingItems = _v0.b;
+			if (_Utils_cmp(
+				$elm$core$Elm$JsArray$length(jsArray),
+				$elm$core$Array$branchFactor) < 0) {
+				return A2(
+					$elm$core$Array$builderToArray,
+					true,
+					{m: nodeList, j: nodeListSize, l: jsArray});
+			} else {
+				var $temp$list = remainingItems,
+					$temp$nodeList = A2(
+					$elm$core$List$cons,
+					$elm$core$Array$Leaf(jsArray),
+					nodeList),
+					$temp$nodeListSize = nodeListSize + 1;
+				list = $temp$list;
+				nodeList = $temp$nodeList;
+				nodeListSize = $temp$nodeListSize;
+				continue fromListHelp;
+			}
+		}
+	});
+var $elm$core$Array$fromList = function (list) {
+	if (!list.b) {
+		return $elm$core$Array$empty;
+	} else {
+		return A3($elm$core$Array$fromListHelp, list, _List_Nil, 0);
+	}
+};
+var $author$project$Language$Parser$getLabel = function (citizen_) {
+	if (citizen_.$ === 1) {
+		var l = citizen_.a;
+		return $elm$core$Maybe$Just(l);
+	} else {
+		return $elm$core$Maybe$Nothing;
+	}
+};
+var $elm$core$Elm$JsArray$foldl = _JsArray_foldl;
+var $elm$core$Elm$JsArray$indexedMap = _JsArray_indexedMap;
+var $elm$core$Bitwise$shiftLeftBy = _Bitwise_shiftLeftBy;
+var $elm$core$Bitwise$shiftRightZfBy = _Bitwise_shiftRightZfBy;
+var $elm$core$Array$tailIndex = function (len) {
+	return (len >>> 5) << 5;
+};
+var $elm$core$Array$indexedMap = F2(
+	function (func, _v0) {
+		var len = _v0.a;
+		var tree = _v0.c;
+		var tail = _v0.d;
+		var initialBuilder = {
+			m: _List_Nil,
+			j: 0,
+			l: A3(
+				$elm$core$Elm$JsArray$indexedMap,
+				func,
+				$elm$core$Array$tailIndex(len),
+				tail)
+		};
+		var helper = F2(
+			function (node, builder) {
+				if (!node.$) {
+					var subTree = node.a;
+					return A3($elm$core$Elm$JsArray$foldl, helper, builder, subTree);
+				} else {
+					var leaf = node.a;
+					var offset = builder.j * $elm$core$Array$branchFactor;
+					var mappedLeaf = $elm$core$Array$Leaf(
+						A3($elm$core$Elm$JsArray$indexedMap, func, offset, leaf));
+					return {
+						m: A2($elm$core$List$cons, mappedLeaf, builder.m),
+						j: builder.j + 1,
+						l: builder.l
+					};
+				}
+			});
+		return A2(
+			$elm$core$Array$builderToArray,
+			true,
+			A3($elm$core$Elm$JsArray$foldl, helper, initialBuilder, tree));
+	});
+var $author$project$Language$World$Alpha = 0;
+var $author$project$Language$Stack$empty = _List_Nil;
+var $author$project$Language$Machine$init = F2(
+	function (code, labels) {
+		return {
+			aR: code,
+			a6: 0,
+			a8: labels,
+			bb: $elm$core$Dict$empty,
+			am: $author$project$Language$Stack$empty,
+			aE: $elm$core$Result$Ok(0),
+			aI: 0
+		};
+	});
+var $author$project$Language$Parser$isLabel = function (citizen_) {
+	if (citizen_.$ === 1) {
+		return true;
+	} else {
+		return false;
+	}
+};
+var $author$project$Language$Parser$isNote = function (citizen_) {
+	if (citizen_.$ === 2) {
+		return true;
+	} else {
+		return false;
+	}
+};
+var $elm$core$Elm$JsArray$map = _JsArray_map;
+var $elm$core$Array$map = F2(
+	function (func, _v0) {
+		var len = _v0.a;
+		var startShift = _v0.b;
+		var tree = _v0.c;
+		var tail = _v0.d;
+		var helper = function (node) {
+			if (!node.$) {
+				var subTree = node.a;
+				return $elm$core$Array$SubTree(
+					A2($elm$core$Elm$JsArray$map, helper, subTree));
+			} else {
+				var values = node.a;
+				return $elm$core$Array$Leaf(
+					A2($elm$core$Elm$JsArray$map, func, values));
+			}
+		};
+		return A4(
+			$elm$core$Array$Array_elm_builtin,
+			len,
+			startShift,
+			A2($elm$core$Elm$JsArray$map, helper, tree),
+			A2($elm$core$Elm$JsArray$map, func, tail));
+	});
 var $elm$core$Basics$not = _Basics_not;
+var $author$project$Language$Machine$Char = function (a) {
+	return {$: 0, a: a};
+};
+var $author$project$Language$Machine$Id = function (a) {
+	return {$: 3, a: a};
+};
+var $author$project$Language$Machine$Instruction = F3(
+	function (line, world, value) {
+		return {b8: line, cB: value, aI: world};
+	});
+var $author$project$Language$Machine$Int = function (a) {
+	return {$: 1, a: a};
+};
+var $author$project$Language$Machine$List = function (a) {
+	return {$: 2, a: a};
+};
+var $elm$core$String$foldr = _String_foldr;
+var $elm$core$String$toList = function (string) {
+	return A3($elm$core$String$foldr, $elm$core$List$cons, _List_Nil, string);
+};
+var $author$project$Language$Compiler$toInstruction = function (_v0) {
+	var number = _v0.cm;
+	var item = _v0.ag;
+	switch (item.$) {
+		case 0:
+			var world = item.a;
+			var atom = item.b;
+			switch (atom.$) {
+				case 0:
+					var _int = atom.a;
+					return A3(
+						$author$project$Language$Machine$Instruction,
+						number,
+						world,
+						$author$project$Language$Machine$Int(_int));
+				case 1:
+					var str = atom.a;
+					return A3(
+						$author$project$Language$Machine$Instruction,
+						number,
+						world,
+						$author$project$Language$Machine$List(
+							A2(
+								$elm$core$List$map,
+								$author$project$Language$Machine$Char,
+								$elm$core$String$toList(str))));
+				default:
+					var id = atom.a;
+					return A3(
+						$author$project$Language$Machine$Instruction,
+						number,
+						world,
+						$author$project$Language$Machine$Id(id));
+			}
+		case 1:
+			return A3(
+				$author$project$Language$Machine$Instruction,
+				number,
+				0,
+				$author$project$Language$Machine$Id('pass'));
+		default:
+			return A3(
+				$author$project$Language$Machine$Instruction,
+				number,
+				0,
+				$author$project$Language$Machine$Id('Language.Compiler.toInstruction: fix if this blows up'));
+	}
+};
+var $elm_community$maybe_extra$Maybe$Extra$cons = F2(
+	function (item, list) {
+		if (!item.$) {
+			var v = item.a;
+			return A2($elm$core$List$cons, v, list);
+		} else {
+			return list;
+		}
+	});
+var $elm_community$maybe_extra$Maybe$Extra$values = A2($elm$core$List$foldr, $elm_community$maybe_extra$Maybe$Extra$cons, _List_Nil);
+var $elm$core$Maybe$withDefault = F2(
+	function (_default, maybe) {
+		if (!maybe.$) {
+			var value = maybe.a;
+			return value;
+		} else {
+			return _default;
+		}
+	});
+var $author$project$Language$Compiler$compile = function (ast) {
+	var noNotes = $elm$core$Array$fromList(
+		A2(
+			$elm$core$List$filter,
+			function (astLine) {
+				return !$author$project$Language$Parser$isNote(astLine.ag);
+			},
+			ast));
+	var labels = $elm$core$Dict$fromList(
+		$elm_community$maybe_extra$Maybe$Extra$values(
+			$elm$core$Array$toList(
+				A2(
+					$elm$core$Array$indexedMap,
+					F2(
+						function (id, astLine) {
+							return $author$project$Language$Parser$isLabel(astLine.ag) ? $elm$core$Maybe$Just(
+								_Utils_Tuple2(
+									A2(
+										$elm$core$Maybe$withDefault,
+										'',
+										$author$project$Language$Parser$getLabel(astLine.ag)),
+									id)) : $elm$core$Maybe$Nothing;
+						}),
+					noNotes))));
+	var code = A2($elm$core$Array$map, $author$project$Language$Compiler$toInstruction, noNotes);
+	return A2($author$project$Language$Machine$init, code, labels);
+};
 var $elm$core$Result$map2 = F3(
 	function (func, ra, rb) {
 		if (ra.$ === 1) {
@@ -6214,17 +6481,6 @@ var $elm$core$Basics$composeR = F3(
 	function (f, g, x) {
 		return g(
 			f(x));
-	});
-var $elm$core$List$filter = F2(
-	function (isGood, list) {
-		return A3(
-			$elm$core$List$foldr,
-			F2(
-				function (x, xs) {
-					return isGood(x) ? A2($elm$core$List$cons, x, xs) : xs;
-				}),
-			_List_Nil,
-			list);
 	});
 var $elm$core$String$lines = _String_lines;
 var $elm$core$String$trim = _String_trim;
@@ -6267,7 +6523,6 @@ var $elm$core$Basics$always = F2(
 	function (a, _v0) {
 		return a;
 	});
-var $author$project$Language$World$Alpha = 0;
 var $author$project$Language$Parser$Citizen = F3(
 	function (a, b, c) {
 		return {$: 0, a: a, b: b, c: c};
@@ -7182,15 +7437,6 @@ var $elm$core$List$repeat = F2(
 	function (n, value) {
 		return A3($elm$core$List$repeatHelp, _List_Nil, n, value);
 	});
-var $elm$core$Maybe$withDefault = F2(
-	function (_default, maybe) {
-		if (!maybe.$) {
-			var value = maybe.a;
-			return value;
-		} else {
-			return _default;
-		}
-	});
 var $author$project$Language$Pretty$print = function (ast) {
 	var prettyLines = $elm$core$Dict$fromList(
 		A2($elm$core$List$map, $author$project$Language$Pretty$astLine, ast));
@@ -7225,12 +7471,12 @@ var $author$project$Editor$Main$update = F2(
 			var change = msg.a;
 			return _Utils_update(
 				model,
-				{T: change});
+				{S: change});
 		} else {
-			var result = $author$project$Language$Parser$parse(model.T);
+			var result = $author$project$Language$Parser$parse(model.S);
 			var source = function () {
 				if (result.$ === 1) {
-					return model.T;
+					return model.S;
 				} else {
 					var ast = result.a;
 					return $author$project$Language$Pretty$print(ast);
@@ -7242,249 +7488,23 @@ var $author$project$Editor$Main$update = F2(
 				$elm$core$Maybe$Just(result));
 		}
 	});
-var $author$project$Editor$Main$SourceCheck = {$: 1};
-var $elm$core$Array$fromListHelp = F3(
-	function (list, nodeList, nodeListSize) {
-		fromListHelp:
-		while (true) {
-			var _v0 = A2($elm$core$Elm$JsArray$initializeFromList, $elm$core$Array$branchFactor, list);
-			var jsArray = _v0.a;
-			var remainingItems = _v0.b;
-			if (_Utils_cmp(
-				$elm$core$Elm$JsArray$length(jsArray),
-				$elm$core$Array$branchFactor) < 0) {
-				return A2(
-					$elm$core$Array$builderToArray,
-					true,
-					{m: nodeList, j: nodeListSize, l: jsArray});
-			} else {
-				var $temp$list = remainingItems,
-					$temp$nodeList = A2(
-					$elm$core$List$cons,
-					$elm$core$Array$Leaf(jsArray),
-					nodeList),
-					$temp$nodeListSize = nodeListSize + 1;
-				list = $temp$list;
-				nodeList = $temp$nodeList;
-				nodeListSize = $temp$nodeListSize;
-				continue fromListHelp;
-			}
-		}
-	});
-var $elm$core$Array$fromList = function (list) {
-	if (!list.b) {
-		return $elm$core$Array$empty;
-	} else {
-		return A3($elm$core$Array$fromListHelp, list, _List_Nil, 0);
-	}
-};
-var $author$project$Language$Parser$getLabel = function (citizen_) {
-	if (citizen_.$ === 1) {
-		var l = citizen_.a;
-		return $elm$core$Maybe$Just(l);
-	} else {
-		return $elm$core$Maybe$Nothing;
-	}
-};
-var $elm$core$Elm$JsArray$foldl = _JsArray_foldl;
-var $elm$core$Elm$JsArray$indexedMap = _JsArray_indexedMap;
-var $elm$core$Bitwise$shiftLeftBy = _Bitwise_shiftLeftBy;
-var $elm$core$Bitwise$shiftRightZfBy = _Bitwise_shiftRightZfBy;
-var $elm$core$Array$tailIndex = function (len) {
-	return (len >>> 5) << 5;
-};
-var $elm$core$Array$indexedMap = F2(
-	function (func, _v0) {
-		var len = _v0.a;
-		var tree = _v0.c;
-		var tail = _v0.d;
-		var initialBuilder = {
-			m: _List_Nil,
-			j: 0,
-			l: A3(
-				$elm$core$Elm$JsArray$indexedMap,
-				func,
-				$elm$core$Array$tailIndex(len),
-				tail)
-		};
-		var helper = F2(
-			function (node, builder) {
-				if (!node.$) {
-					var subTree = node.a;
-					return A3($elm$core$Elm$JsArray$foldl, helper, builder, subTree);
+var $author$project$Main$checkSourceAndUpdate = function (model) {
+	var editor = A2($author$project$Editor$Main$update, $author$project$Editor$Main$SourceCheck, model.J);
+	return _Utils_update(
+		model,
+		{
+			J: editor,
+			al: function () {
+				var _v0 = editor.bq;
+				if ((!_v0.$) && (!_v0.a.$)) {
+					var ast = _v0.a.a;
+					return $elm$core$Maybe$Just(
+						$author$project$Language$Compiler$compile(ast));
 				} else {
-					var leaf = node.a;
-					var offset = builder.j * $elm$core$Array$branchFactor;
-					var mappedLeaf = $elm$core$Array$Leaf(
-						A3($elm$core$Elm$JsArray$indexedMap, func, offset, leaf));
-					return {
-						m: A2($elm$core$List$cons, mappedLeaf, builder.m),
-						j: builder.j + 1,
-						l: builder.l
-					};
+					return $elm$core$Maybe$Nothing;
 				}
-			});
-		return A2(
-			$elm$core$Array$builderToArray,
-			true,
-			A3($elm$core$Elm$JsArray$foldl, helper, initialBuilder, tree));
-	});
-var $author$project$Language$Stack$empty = _List_Nil;
-var $author$project$Language$Machine$init = F2(
-	function (code, labels) {
-		return {
-			aR: code,
-			a6: 0,
-			a8: labels,
-			bb: $elm$core$Dict$empty,
-			am: $author$project$Language$Stack$empty,
-			aE: $elm$core$Result$Ok(0),
-			aI: 0
-		};
-	});
-var $author$project$Language$Parser$isLabel = function (citizen_) {
-	if (citizen_.$ === 1) {
-		return true;
-	} else {
-		return false;
-	}
-};
-var $author$project$Language$Parser$isNote = function (citizen_) {
-	if (citizen_.$ === 2) {
-		return true;
-	} else {
-		return false;
-	}
-};
-var $elm$core$Elm$JsArray$map = _JsArray_map;
-var $elm$core$Array$map = F2(
-	function (func, _v0) {
-		var len = _v0.a;
-		var startShift = _v0.b;
-		var tree = _v0.c;
-		var tail = _v0.d;
-		var helper = function (node) {
-			if (!node.$) {
-				var subTree = node.a;
-				return $elm$core$Array$SubTree(
-					A2($elm$core$Elm$JsArray$map, helper, subTree));
-			} else {
-				var values = node.a;
-				return $elm$core$Array$Leaf(
-					A2($elm$core$Elm$JsArray$map, func, values));
-			}
-		};
-		return A4(
-			$elm$core$Array$Array_elm_builtin,
-			len,
-			startShift,
-			A2($elm$core$Elm$JsArray$map, helper, tree),
-			A2($elm$core$Elm$JsArray$map, func, tail));
-	});
-var $author$project$Language$Machine$Char = function (a) {
-	return {$: 0, a: a};
-};
-var $author$project$Language$Machine$Id = function (a) {
-	return {$: 3, a: a};
-};
-var $author$project$Language$Machine$Instruction = F3(
-	function (line, world, value) {
-		return {b8: line, cB: value, aI: world};
-	});
-var $author$project$Language$Machine$Int = function (a) {
-	return {$: 1, a: a};
-};
-var $author$project$Language$Machine$List = function (a) {
-	return {$: 2, a: a};
-};
-var $elm$core$String$foldr = _String_foldr;
-var $elm$core$String$toList = function (string) {
-	return A3($elm$core$String$foldr, $elm$core$List$cons, _List_Nil, string);
-};
-var $author$project$Language$Compiler$toInstruction = function (_v0) {
-	var number = _v0.cm;
-	var item = _v0.ag;
-	switch (item.$) {
-		case 0:
-			var world = item.a;
-			var atom = item.b;
-			switch (atom.$) {
-				case 0:
-					var _int = atom.a;
-					return A3(
-						$author$project$Language$Machine$Instruction,
-						number,
-						world,
-						$author$project$Language$Machine$Int(_int));
-				case 1:
-					var str = atom.a;
-					return A3(
-						$author$project$Language$Machine$Instruction,
-						number,
-						world,
-						$author$project$Language$Machine$List(
-							A2(
-								$elm$core$List$map,
-								$author$project$Language$Machine$Char,
-								$elm$core$String$toList(str))));
-				default:
-					var id = atom.a;
-					return A3(
-						$author$project$Language$Machine$Instruction,
-						number,
-						world,
-						$author$project$Language$Machine$Id(id));
-			}
-		case 1:
-			return A3(
-				$author$project$Language$Machine$Instruction,
-				number,
-				0,
-				$author$project$Language$Machine$Id('pass'));
-		default:
-			return A3(
-				$author$project$Language$Machine$Instruction,
-				number,
-				0,
-				$author$project$Language$Machine$Id('Language.Compiler.toInstruction: fix if this blows up'));
-	}
-};
-var $elm_community$maybe_extra$Maybe$Extra$cons = F2(
-	function (item, list) {
-		if (!item.$) {
-			var v = item.a;
-			return A2($elm$core$List$cons, v, list);
-		} else {
-			return list;
-		}
-	});
-var $elm_community$maybe_extra$Maybe$Extra$values = A2($elm$core$List$foldr, $elm_community$maybe_extra$Maybe$Extra$cons, _List_Nil);
-var $author$project$Language$Compiler$compile = function (ast) {
-	var noNotes = $elm$core$Array$fromList(
-		A2(
-			$elm$core$List$filter,
-			function (astLine) {
-				return !$author$project$Language$Parser$isNote(astLine.ag);
-			},
-			ast));
-	var labels = $elm$core$Dict$fromList(
-		$elm_community$maybe_extra$Maybe$Extra$values(
-			$elm$core$Array$toList(
-				A2(
-					$elm$core$Array$indexedMap,
-					F2(
-						function (id, astLine) {
-							return $author$project$Language$Parser$isLabel(astLine.ag) ? $elm$core$Maybe$Just(
-								_Utils_Tuple2(
-									A2(
-										$elm$core$Maybe$withDefault,
-										'',
-										$author$project$Language$Parser$getLabel(astLine.ag)),
-									id)) : $elm$core$Maybe$Nothing;
-						}),
-					noNotes))));
-	var code = A2($elm$core$Array$map, $author$project$Language$Compiler$toInstruction, noNotes);
-	return A2($author$project$Language$Machine$init, code, labels);
+			}()
+		});
 };
 var $author$project$Main$key = F2(
 	function (k, event) {
@@ -7502,35 +7522,6 @@ var $author$project$Main$isCheckSource = function (e) {
 var $author$project$Main$isToggleHelp = function (e) {
 	return e.aT && A2($author$project$Main$key, ';', e);
 };
-var $author$project$Main$updateOnKeyBinding = F2(
-	function (event, model) {
-		if ($author$project$Main$isToggleHelp(event)) {
-			return _Utils_update(
-				model,
-				{L: !model.L});
-		} else {
-			if ($author$project$Main$isCheckSource(event)) {
-				var editor = A2($author$project$Editor$Main$update, $author$project$Editor$Main$SourceCheck, model.J);
-				return _Utils_update(
-					model,
-					{
-						J: editor,
-						al: function () {
-							var _v0 = editor.bq;
-							if ((!_v0.$) && (!_v0.a.$)) {
-								var ast = _v0.a.a;
-								return $elm$core$Maybe$Just(
-									$author$project$Language$Compiler$compile(ast));
-							} else {
-								return $elm$core$Maybe$Nothing;
-							}
-						}()
-					});
-			} else {
-				return model;
-			}
-		}
-	});
 var $author$project$Main$update = F2(
 	function (msg, model) {
 		switch (msg.$) {
@@ -7547,14 +7538,20 @@ var $author$project$Main$update = F2(
 				return _Utils_Tuple2(
 					_Utils_update(
 						model,
-						{L: !model.L}),
+						{X: !model.X}),
+					$elm$core$Platform$Cmd$none);
+			case 2:
+				return _Utils_Tuple2(
+					$author$project$Main$checkSourceAndUpdate(model),
 					$elm$core$Platform$Cmd$none);
 			default:
 				var event = msg.a;
-				return _Utils_Tuple2(
-					A2($author$project$Main$updateOnKeyBinding, event, model),
-					$elm$core$Platform$Cmd$none);
+				return A2($author$project$Main$updateOnKeyBinding, event, model);
 		}
+	});
+var $author$project$Main$updateOnKeyBinding = F2(
+	function (event, model) {
+		return $author$project$Main$isToggleHelp(event) ? A2($author$project$Main$update, $author$project$Main$ToggleHelp, model) : ($author$project$Main$isCheckSource(event) ? A2($author$project$Main$update, $author$project$Main$CheckSource, model) : _Utils_Tuple2(model, $elm$core$Platform$Cmd$none));
 	});
 var $elm$browser$Browser$Document = F2(
 	function (title, body) {
@@ -7563,7 +7560,6 @@ var $elm$browser$Browser$Document = F2(
 var $author$project$Main$EditorMsg = function (a) {
 	return {$: 0, a: a};
 };
-var $author$project$Main$ToggleHelp = {$: 1};
 var $elm$json$Json$Encode$string = _Json_wrap;
 var $elm$html$Html$Attributes$stringProperty = F2(
 	function (key, string) {
@@ -7581,20 +7577,12 @@ var $author$project$Help$Class$help = function (string) {
 	return $elm$html$Html$Attributes$class('help-' + string);
 };
 var $author$project$Help$Class$body = $author$project$Help$Class$help('body');
-var $author$project$Help$Class$container = $author$project$Help$Class$help('container');
-var $elm$html$Html$div = _VirtualDom_node('div');
-var $elm$html$Html$h6 = _VirtualDom_node('h6');
-var $author$project$Editor$Class$editor = function (string) {
-	return $elm$html$Html$Attributes$class('editor-' + string);
-};
-var $author$project$Editor$Class$half = $author$project$Editor$Class$editor('half');
-var $author$project$Terminal$Class$terminal = function (string) {
-	return $elm$html$Html$Attributes$class('terminal-' + string);
-};
-var $author$project$Terminal$Class$half = $author$project$Terminal$Class$terminal('half');
+var $elm$svg$Svg$Attributes$enableBackground = _VirtualDom_attribute('enable-background');
+var $icidasset$elm_material_icons$Material$Icons$Internal$b = $elm$svg$Svg$Attributes$enableBackground;
 var $elm$svg$Svg$Attributes$d = _VirtualDom_attribute('d');
 var $elm$svg$Svg$Attributes$fill = _VirtualDom_attribute('fill');
 var $icidasset$elm_material_icons$Material$Icons$Internal$f = $elm$svg$Svg$Attributes$fill;
+var $elm$svg$Svg$Attributes$fillRule = _VirtualDom_attribute('fill-rule');
 var $elm$svg$Svg$trustedNode = _VirtualDom_nodeNS('http://www.w3.org/2000/svg');
 var $elm$svg$Svg$g = $elm$svg$Svg$trustedNode('g');
 var $elm$svg$Svg$Attributes$height = _VirtualDom_attribute('height');
@@ -7667,8 +7655,58 @@ var $icidasset$elm_material_icons$Material$Icons$Internal$icon = F4(
 	});
 var $elm$svg$Svg$path = $elm$svg$Svg$trustedNode('path');
 var $icidasset$elm_material_icons$Material$Icons$Internal$p = $elm$svg$Svg$path;
+var $elm$svg$Svg$rect = $elm$svg$Svg$trustedNode('rect');
 var $elm$svg$Svg$Attributes$viewBox = _VirtualDom_attribute('viewBox');
 var $icidasset$elm_material_icons$Material$Icons$Internal$v = $elm$svg$Svg$Attributes$viewBox;
+var $icidasset$elm_material_icons$Material$Icons$Outlined$flaky = A2(
+	$icidasset$elm_material_icons$Material$Icons$Internal$icon,
+	_List_fromArray(
+		[
+			$icidasset$elm_material_icons$Material$Icons$Internal$b('new 0 0 24 24'),
+			$icidasset$elm_material_icons$Material$Icons$Internal$v('0 0 24 24')
+		]),
+	_List_fromArray(
+		[
+			A2(
+			$elm$svg$Svg$g,
+			_List_Nil,
+			_List_fromArray(
+				[
+					A2(
+					$elm$svg$Svg$rect,
+					_List_fromArray(
+						[
+							$icidasset$elm_material_icons$Material$Icons$Internal$f('none')
+						]),
+					_List_Nil)
+				])),
+			A2(
+			$elm$svg$Svg$g,
+			_List_Nil,
+			_List_fromArray(
+				[
+					A2(
+					$icidasset$elm_material_icons$Material$Icons$Internal$p,
+					_List_fromArray(
+						[
+							$elm$svg$Svg$Attributes$d('M14.05,17.58l-0.01,0.01l-2.4-2.4l1.06-1.06l1.35,1.35L16.54,13l1.06,1.06 l-3.54,3.54L14.05,17.58z M12,2C6.5,2,2,6.5,2,12s4.5,10,10,10s10-4.5,10-10S17.5,2,12,2z M7.34,6.28l1.41,1.41l1.41-1.41 l1.06,1.06L9.81,8.75l1.41,1.41l-1.06,1.06L8.75,9.81l-1.41,1.41l-1.06-1.06l1.41-1.41L6.28,7.34L7.34,6.28z M12,20 c-2.2,0-4.2-0.9-5.7-2.3L17.7,6.3C19.1,7.8,20,9.8,20,12C20,16.4,16.4,20,12,20z'),
+							$elm$svg$Svg$Attributes$fillRule('evenodd')
+						]),
+					_List_Nil)
+				]))
+		]));
+var $author$project$Icon$check = $icidasset$elm_material_icons$Material$Icons$Outlined$flaky;
+var $author$project$Help$Class$container = $author$project$Help$Class$help('container');
+var $elm$html$Html$div = _VirtualDom_node('div');
+var $elm$html$Html$h6 = _VirtualDom_node('h6');
+var $author$project$Editor$Class$editor = function (string) {
+	return $elm$html$Html$Attributes$class('editor-' + string);
+};
+var $author$project$Editor$Class$half = $author$project$Editor$Class$editor('half');
+var $author$project$Terminal$Class$terminal = function (string) {
+	return $elm$html$Html$Attributes$class('terminal-' + string);
+};
+var $author$project$Terminal$Class$half = $author$project$Terminal$Class$terminal('half');
 var $icidasset$elm_material_icons$Material$Icons$Outlined$help_outline = A2(
 	$icidasset$elm_material_icons$Material$Icons$Internal$icon,
 	_List_fromArray(
@@ -8668,7 +8706,7 @@ var $pablohirafuji$elm_markdown$Markdown$Block$extractOrderedListRM = function (
 		return $elm$core$Maybe$Just(
 			_Utils_Tuple3(
 				{
-					X: delimiter,
+					W: delimiter,
 					o: $elm$core$String$length(indentString) + 1,
 					F: false,
 					ac: A2(
@@ -8778,7 +8816,7 @@ var $pablohirafuji$elm_markdown$Markdown$Block$extractUnorderedListRM = function
 		return $elm$core$Maybe$Just(
 			_Utils_Tuple3(
 				{
-					X: delimiter,
+					W: delimiter,
 					o: $elm$core$String$length(indentString) + 1,
 					F: false,
 					ac: $pablohirafuji$elm_markdown$Markdown$Block$Unordered
@@ -9183,7 +9221,7 @@ var $pablohirafuji$elm_markdown$Markdown$Block$parseListLine = F3(
 						var model = _v2.a;
 						var items = _v2.b;
 						var astTail = ast.b;
-						return _Utils_eq(listBlock.X, model.X) ? function (a) {
+						return _Utils_eq(listBlock.W, model.W) ? function (a) {
 							return A2($elm$core$List$cons, a, astTail);
 						}(
 							A2(
@@ -9381,7 +9419,7 @@ var $pablohirafuji$elm_markdown$Markdown$InlineParser$prepareChildMatch = F2(
 	function (parentMatch, childMatch) {
 		return _Utils_update(
 			childMatch,
-			{aW: childMatch.aW - parentMatch.C, aD: childMatch.aD - parentMatch.C, U: childMatch.U - parentMatch.C, C: childMatch.C - parentMatch.C});
+			{aW: childMatch.aW - parentMatch.C, aD: childMatch.aD - parentMatch.C, T: childMatch.T - parentMatch.C, C: childMatch.C - parentMatch.C});
 	});
 var $pablohirafuji$elm_markdown$Markdown$InlineParser$addChild = F2(
 	function (parentMatch, childMatch) {
@@ -9449,7 +9487,7 @@ var $pablohirafuji$elm_markdown$Markdown$InlineParser$normalMatch = function (te
 		c: _List_Nil,
 		aD: 0,
 		aH: $pablohirafuji$elm_markdown$Markdown$Helpers$formatStr(text),
-		U: 0,
+		T: 0,
 		C: 0,
 		ac: $pablohirafuji$elm_markdown$Markdown$InlineParser$NormalType
 	};
@@ -10467,7 +10505,7 @@ var $pablohirafuji$elm_markdown$Markdown$InlineParser$reverseTokens = function (
 };
 var $pablohirafuji$elm_markdown$Markdown$InlineParser$tokenToMatch = F2(
 	function (token, type_) {
-		return {aW: token.b3 + token.d, c: _List_Nil, aD: token.b3, aH: '', U: 0, C: 0, ac: type_};
+		return {aW: token.b3 + token.d, c: _List_Nil, aD: token.b3, aH: '', T: 0, C: 0, ac: type_};
 	});
 var $pablohirafuji$elm_markdown$Markdown$InlineParser$lineBreakTTM = function (_v0) {
 	lineBreakTTM:
@@ -11008,7 +11046,7 @@ var $pablohirafuji$elm_markdown$Markdown$InlineParser$tokenPairToMatch = F6(
 			aD: start,
 			aH: processText(
 				A3($elm$core$String$slice, textStart, textEnd, model.s)),
-			U: textEnd,
+			T: textEnd,
 			C: textStart,
 			ac: type_
 		};
@@ -11150,9 +11188,9 @@ var $elm$core$Dict$member = F2(
 	});
 var $pablohirafuji$elm_markdown$Markdown$Block$insertLinkMatch = F2(
 	function (refs, linkMatch) {
-		return A2($elm$core$Dict$member, linkMatch.M, refs) ? refs : A3(
+		return A2($elm$core$Dict$member, linkMatch.L, refs) ? refs : A3(
 			$elm$core$Dict$insert,
-			linkMatch.M,
+			linkMatch.L,
 			_Utils_Tuple2(linkMatch.ao, linkMatch.aw),
 			refs);
 	});
@@ -11172,7 +11210,7 @@ var $pablohirafuji$elm_markdown$Markdown$Block$extractUrlTitleRegex = function (
 		var maybeTitleParenthesis = _v5.a;
 		var toReturn = function (rawUrl) {
 			return {
-				M: rawText,
+				L: rawText,
 				av: $elm$core$String$length(regexMatch.b9),
 				aw: $pablohirafuji$elm_markdown$Markdown$Helpers$returnFirstJust(
 					_List_fromArray(
@@ -11197,7 +11235,7 @@ var $pablohirafuji$elm_markdown$Markdown$Block$maybeLinkMatch = function (rawTex
 	return A2(
 		$elm$core$Maybe$andThen,
 		function (linkMatch) {
-			return ((linkMatch.ao === '') || (linkMatch.M === '')) ? $elm$core$Maybe$Nothing : $elm$core$Maybe$Just(linkMatch);
+			return ((linkMatch.ao === '') || (linkMatch.L === '')) ? $elm$core$Maybe$Nothing : $elm$core$Maybe$Just(linkMatch);
 		},
 		A2(
 			$elm$core$Maybe$map,
@@ -11205,7 +11243,7 @@ var $pablohirafuji$elm_markdown$Markdown$Block$maybeLinkMatch = function (rawTex
 				return _Utils_update(
 					linkMatch,
 					{
-						M: $pablohirafuji$elm_markdown$Markdown$Helpers$prepareRefLabel(linkMatch.M)
+						L: $pablohirafuji$elm_markdown$Markdown$Helpers$prepareRefLabel(linkMatch.L)
 					});
 			},
 			A2(
@@ -11841,7 +11879,7 @@ var $elm_community$maybe_extra$Maybe$Extra$toList = function (m) {
 var $elm$html$Html$Attributes$value = $elm$html$Html$Attributes$stringProperty('value');
 var $author$project$Editor$Main$view = function (model) {
 	var numberOfLines = $elm$core$List$length(
-		$elm$core$String$lines(model.T));
+		$elm$core$String$lines(model.S));
 	var errorLines = function () {
 		var _v0 = model.bq;
 		if (_v0.$ === 1) {
@@ -11887,7 +11925,7 @@ var $author$project$Editor$Main$view = function (model) {
 					$author$project$Editor$Class$textarea,
 					$elm$html$Html$Events$onInput($author$project$Editor$Main$SourceChange),
 					$elm$html$Html$Attributes$autofocus(true),
-					$elm$html$Html$Attributes$value(model.T)
+					$elm$html$Html$Attributes$value(model.S)
 				]),
 			_List_Nil)
 		]);
@@ -11921,6 +11959,13 @@ var $author$project$Main$view = function (model) {
 				_List_fromArray(
 					[$author$project$Navigation$Class$pad]),
 				_List_Nil),
+				A2(
+				$author$project$Icon$map,
+				_List_fromArray(
+					[
+						$elm$html$Html$Events$onClick($author$project$Main$CheckSource)
+					]),
+				$author$project$Icon$check),
 				A2(
 				$author$project$Icon$map,
 				_List_fromArray(
@@ -12007,7 +12052,7 @@ var $author$project$Main$view = function (model) {
 			]);
 	}();
 	return titled(
-		model.L ? readme : ide);
+		model.X ? readme : ide);
 };
 var $author$project$Main$main = $elm$browser$Browser$document(
 	{b4: $author$project$Main$init, cw: $author$project$Main$subscriptions, cA: $author$project$Main$update, cC: $author$project$Main$view});
