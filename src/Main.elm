@@ -262,6 +262,7 @@ view model =
                                     >> div [ Terminal.Class.stackFrame ]
                                 )
                                 stack
+                                |> List.reverse
 
                         Nothing ->
                             []

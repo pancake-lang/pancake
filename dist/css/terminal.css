@@ -22,11 +22,10 @@
 }
 
 .terminal-stack {
+  height: 100%;
   flex-grow: 2;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
   padding: 15px 0;
+  overflow-y: scroll;
 }
 
 .terminal-stack-frame {
