@@ -12454,18 +12454,19 @@ var $author$project$Main$view = function (model) {
 			var _v1 = model.O;
 			if (!_v1.$) {
 				var stack = _v1.a.aD;
-				return A2(
-					$elm$core$List$map,
+				return $elm$core$List$reverse(
 					A2(
-						$elm$core$Basics$composeR,
-						$author$project$Language$Machine$toHtml,
+						$elm$core$List$map,
 						A2(
 							$elm$core$Basics$composeR,
-							$elm$core$List$singleton,
-							$elm$html$Html$div(
-								_List_fromArray(
-									[$author$project$Terminal$Class$stackFrame])))),
-					stack);
+							$author$project$Language$Machine$toHtml,
+							A2(
+								$elm$core$Basics$composeR,
+								$elm$core$List$singleton,
+								$elm$html$Html$div(
+									_List_fromArray(
+										[$author$project$Terminal$Class$stackFrame])))),
+						stack));
 			} else {
 				return _List_Nil;
 			}
