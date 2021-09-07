@@ -12236,25 +12236,28 @@ var $icidasset$elm_material_icons$Material$Icons$skip_next = A2(
 			_List_Nil)
 		]));
 var $author$project$Icon$step = A2($icidasset$elm_material_icons$Material$Icons$skip_next, $author$project$Icon$iconSize, $icidasset$elm_material_icons$Material$Icons$Types$Inherit);
-var $author$project$Language$Machine$toHtml = function (value) {
+var $author$project$Language$Machine$toString = function (value) {
 	switch (value.$) {
 		case 0:
 			var _char = value.a;
-			return $elm$html$Html$text(
-				'\'' + ($elm$core$String$fromChar(_char) + '\''));
+			return '\'' + ($elm$core$String$fromChar(_char) + '\'');
 		case 1:
 			var _int = value.a;
-			return $elm$html$Html$text(
-				$elm$core$String$fromInt(_int));
+			return $elm$core$String$fromInt(_int);
 		case 2:
-			return $elm$html$Html$text('< list >');
+			var list = value.a;
+			return '[ ' + (A2(
+				$elm$core$String$join,
+				', ',
+				A2($elm$core$List$map, $author$project$Language$Machine$toString, list)) + ' ]');
 		case 3:
 			var id = value.a;
-			return $elm$html$Html$text('{ ' + (id + ' }'));
+			return '{ ' + (id + ' }');
 		default:
-			return $elm$html$Html$text('< command >');
+			return '< command >';
 	}
 };
+var $author$project$Language$Machine$toHtml = A2($elm$core$Basics$composeR, $author$project$Language$Machine$toString, $elm$html$Html$text);
 var $author$project$Editor$Main$SourceChange = function (a) {
 	return {$: 0, a: a};
 };
