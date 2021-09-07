@@ -99,22 +99,27 @@ toInt value =
 
 
 toHtml : Value -> Html msg
-toHtml value =
+toHtml =
+    toString >> text
+
+
+toString : Value -> String
+toString value =
     case value of
         Char char ->
-            "'" ++ String.fromChar char ++ "'" |> text
+            "'" ++ String.fromChar char ++ "'"
 
         Int int ->
-            String.fromInt int |> text
+            String.fromInt int
 
-        List _ ->
-            text "< list >"
+        List list ->
+            "[ " ++ (List.map toString list |> String.join ", ") ++ " ]"
 
         Id id ->
-            "{ " ++ id ++ " }" |> text
+            "{ " ++ id ++ " }"
 
         Command _ ->
-            "< command >" |> text
+            "< command >"
 
 
 
