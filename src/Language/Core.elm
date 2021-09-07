@@ -13,7 +13,6 @@ import Language.Machine as Machine
         , panic
         , push
         )
-import Language.Stack as Stack
 import Language.World as World
 import Maybe.Extra as MaybeX
 
