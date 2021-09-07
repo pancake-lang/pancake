@@ -8,9 +8,13 @@ import Language.Machine as Machine
         ( Command
         , Machine
         , Value(..)
+        , asBool
+        , combine
         , panic
         , push
         )
+import Language.Stack as Stack
+import Language.World as World
 import Maybe.Extra as MaybeX
 
 
@@ -21,7 +25,12 @@ import Maybe.Extra as MaybeX
 lib : Dict String Command
 lib =
     Dict.fromList
+        -- State controll.
         [ ( "pass", identity )
+        , ( "flip", flip_ )
+        , ( "flip if true", flipIfTrue )
+
+        -- Arithmetic.
         , ( "+", binOp (+) )
         , ( "-", binOp <| flip (-) )
         , ( "*", binOp (*) )
@@ -32,6 +41,38 @@ lib =
 lookup : String -> Maybe Command
 lookup =
     flip Dict.get lib
+
+
+
+-- FLIPS
+
+
+flip_ : Command
+flip_ machine =
+    { machine | world = World.flip machine.world }
+
+
+flipIfTrue : Command
+flipIfTrue machine =
+    let
+        arg =
+            List.head machine.stack
+    in
+    case arg of
+        Just value ->
+            case asBool value of
+                Just True ->
+                    popN 1 machine |> flip_
+
+                Just False ->
+                    popN 1 machine
+
+                Nothing ->
+                    combine "flip expected a boolean" "type error"
+                        |> flip panic machine
+
+        Nothing ->
+            panic "wrong number of arguments in function call" machine
 
 
 
@@ -69,6 +110,6 @@ binOpArgs machine =
 -- POP N ARGS OFF OF THE STACK
 
 
-popN : Int -> Machine -> Machine
+popN : Int -> Command
 popN argc machine =
     { machine | stack = List.drop argc machine.stack }

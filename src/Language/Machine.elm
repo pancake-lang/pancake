@@ -101,6 +101,11 @@ toInt value =
             Nothing
 
 
+asBool : Value -> Maybe Bool
+asBool =
+    toInt >> Maybe.map ((/=) 0)
+
+
 toHtml : Value -> Html msg
 toHtml =
     toString >> text
