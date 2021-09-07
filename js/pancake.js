@@ -5423,383 +5423,67 @@ var $elm$core$Task$perform = F2(
 			A2($elm$core$Task$map, toMessage, task));
 	});
 var $elm$browser$Browser$document = _Browser_document;
+var $author$project$Main$CheckSource = {$: 2};
 var $author$project$Editor$Main$Model = F2(
 	function (source, parsed) {
 		return {be: parsed, aa: source};
 	});
 var $author$project$Editor$Main$demo = '1\n2\n+';
 var $author$project$Editor$Main$init = A2($author$project$Editor$Main$Model, $author$project$Editor$Main$demo, $elm$core$Maybe$Nothing);
-var $elm$core$Platform$Cmd$batch = _Platform_batch;
-var $elm$core$Platform$Cmd$none = $elm$core$Platform$Cmd$batch(_List_Nil);
-var $author$project$Main$init = function (_v0) {
-	return _Utils_Tuple2(
-		{F: $author$project$Editor$Main$init, S: false, be: $elm$core$Maybe$Nothing, O: $elm$core$Maybe$Nothing},
-		$elm$core$Platform$Cmd$none);
+var $author$project$Main$initModel = {F: $author$project$Editor$Main$init, S: false, be: $elm$core$Maybe$Nothing, O: $elm$core$Maybe$Nothing};
+var $author$project$Main$NextStep = {$: 3};
+var $author$project$Main$ToggleHelp = {$: 1};
+var $author$project$Editor$Main$CheckResult = function (a) {
+	return {$: 1, a: a};
 };
-var $author$project$Main$KeyboardEvent = function (a) {
-	return {$: 4, a: a};
-};
-var $Gizra$elm_keyboard_event$Keyboard$Event$KeyboardEvent = F7(
-	function (altKey, ctrlKey, key, keyCode, metaKey, repeat, shiftKey) {
-		return {bL: altKey, aU: ctrlKey, b6: key, b7: keyCode, ca: metaKey, cs: repeat, cu: shiftKey};
+var $elm$core$List$filter = F2(
+	function (isGood, list) {
+		return A3(
+			$elm$core$List$foldr,
+			F2(
+				function (x, xs) {
+					return isGood(x) ? A2($elm$core$List$cons, x, xs) : xs;
+				}),
+			_List_Nil,
+			list);
 	});
-var $elm$json$Json$Decode$bool = _Json_decodeBool;
-var $elm$json$Json$Decode$andThen = _Json_andThen;
-var $elm$json$Json$Decode$fail = _Json_fail;
-var $elm$json$Json$Decode$field = _Json_decodeField;
-var $elm$json$Json$Decode$oneOf = _Json_oneOf;
-var $elm$json$Json$Decode$maybe = function (decoder) {
-	return $elm$json$Json$Decode$oneOf(
-		_List_fromArray(
-			[
-				A2($elm$json$Json$Decode$map, $elm$core$Maybe$Just, decoder),
-				$elm$json$Json$Decode$succeed($elm$core$Maybe$Nothing)
-			]));
-};
-var $elm$json$Json$Decode$string = _Json_decodeString;
-var $Gizra$elm_keyboard_event$Keyboard$Event$decodeKey = $elm$json$Json$Decode$maybe(
-	A2(
-		$elm$json$Json$Decode$andThen,
-		function (key) {
-			return $elm$core$String$isEmpty(key) ? $elm$json$Json$Decode$fail('empty key') : $elm$json$Json$Decode$succeed(key);
-		},
-		A2($elm$json$Json$Decode$field, 'key', $elm$json$Json$Decode$string)));
-var $elm$json$Json$Decode$int = _Json_decodeInt;
-var $Gizra$elm_keyboard_event$Keyboard$Event$decodeNonZero = A2(
-	$elm$json$Json$Decode$andThen,
-	function (code) {
-		return (!code) ? $elm$json$Json$Decode$fail('code was zero') : $elm$json$Json$Decode$succeed(code);
-	},
-	$elm$json$Json$Decode$int);
-var $Gizra$elm_keyboard_event$Keyboard$Event$decodeKeyCode = $elm$json$Json$Decode$oneOf(
-	_List_fromArray(
-		[
-			A2($elm$json$Json$Decode$field, 'keyCode', $Gizra$elm_keyboard_event$Keyboard$Event$decodeNonZero),
-			A2($elm$json$Json$Decode$field, 'which', $Gizra$elm_keyboard_event$Keyboard$Event$decodeNonZero),
-			A2($elm$json$Json$Decode$field, 'charCode', $Gizra$elm_keyboard_event$Keyboard$Event$decodeNonZero),
-			$elm$json$Json$Decode$succeed(0)
-		]));
-var $SwiftsNamesake$proper_keyboard$Keyboard$Key$A = {$: 0};
-var $SwiftsNamesake$proper_keyboard$Keyboard$Key$Add = {$: 85};
-var $SwiftsNamesake$proper_keyboard$Keyboard$Key$Alt = {$: 32};
-var $SwiftsNamesake$proper_keyboard$Keyboard$Key$Ambiguous = function (a) {
-	return {$: 89, a: a};
-};
-var $SwiftsNamesake$proper_keyboard$Keyboard$Key$B = {$: 1};
-var $SwiftsNamesake$proper_keyboard$Keyboard$Key$Backspace = {$: 38};
-var $SwiftsNamesake$proper_keyboard$Keyboard$Key$C = {$: 2};
-var $SwiftsNamesake$proper_keyboard$Keyboard$Key$CapsLock = {$: 34};
-var $SwiftsNamesake$proper_keyboard$Keyboard$Key$ChromeSearch = {$: 59};
-var $SwiftsNamesake$proper_keyboard$Keyboard$Key$Command = {$: 58};
-var $SwiftsNamesake$proper_keyboard$Keyboard$Key$Ctrl = function (a) {
-	return {$: 31, a: a};
-};
-var $SwiftsNamesake$proper_keyboard$Keyboard$Key$D = {$: 3};
-var $SwiftsNamesake$proper_keyboard$Keyboard$Key$Decimal = {$: 87};
-var $SwiftsNamesake$proper_keyboard$Keyboard$Key$Delete = {$: 39};
-var $SwiftsNamesake$proper_keyboard$Keyboard$Key$Divide = {$: 88};
-var $SwiftsNamesake$proper_keyboard$Keyboard$Key$Down = {$: 29};
-var $SwiftsNamesake$proper_keyboard$Keyboard$Key$E = {$: 4};
-var $SwiftsNamesake$proper_keyboard$Keyboard$Key$Eight = {$: 52};
-var $SwiftsNamesake$proper_keyboard$Keyboard$Key$End = {$: 42};
-var $SwiftsNamesake$proper_keyboard$Keyboard$Key$Enter = {$: 37};
-var $SwiftsNamesake$proper_keyboard$Keyboard$Key$Escape = {$: 36};
-var $SwiftsNamesake$proper_keyboard$Keyboard$Key$F = {$: 5};
-var $SwiftsNamesake$proper_keyboard$Keyboard$Key$F1 = {$: 62};
-var $SwiftsNamesake$proper_keyboard$Keyboard$Key$F10 = {$: 71};
-var $SwiftsNamesake$proper_keyboard$Keyboard$Key$F11 = {$: 72};
-var $SwiftsNamesake$proper_keyboard$Keyboard$Key$F12 = {$: 73};
-var $SwiftsNamesake$proper_keyboard$Keyboard$Key$F2 = {$: 63};
-var $SwiftsNamesake$proper_keyboard$Keyboard$Key$F3 = {$: 64};
-var $SwiftsNamesake$proper_keyboard$Keyboard$Key$F4 = {$: 65};
-var $SwiftsNamesake$proper_keyboard$Keyboard$Key$F5 = {$: 66};
-var $SwiftsNamesake$proper_keyboard$Keyboard$Key$F6 = {$: 67};
-var $SwiftsNamesake$proper_keyboard$Keyboard$Key$F7 = {$: 68};
-var $SwiftsNamesake$proper_keyboard$Keyboard$Key$F8 = {$: 69};
-var $SwiftsNamesake$proper_keyboard$Keyboard$Key$F9 = {$: 70};
-var $SwiftsNamesake$proper_keyboard$Keyboard$Key$Five = {$: 49};
-var $SwiftsNamesake$proper_keyboard$Keyboard$Key$Four = {$: 48};
-var $SwiftsNamesake$proper_keyboard$Keyboard$Key$G = {$: 6};
-var $SwiftsNamesake$proper_keyboard$Keyboard$Key$H = {$: 7};
-var $SwiftsNamesake$proper_keyboard$Keyboard$Key$Home = {$: 43};
-var $SwiftsNamesake$proper_keyboard$Keyboard$Key$I = {$: 8};
-var $SwiftsNamesake$proper_keyboard$Keyboard$Key$Insert = {$: 54};
-var $SwiftsNamesake$proper_keyboard$Keyboard$Key$J = {$: 9};
-var $SwiftsNamesake$proper_keyboard$Keyboard$Key$K = {$: 10};
-var $SwiftsNamesake$proper_keyboard$Keyboard$Key$L = {$: 11};
-var $SwiftsNamesake$proper_keyboard$Keyboard$Key$Left = {$: 26};
-var $SwiftsNamesake$proper_keyboard$Keyboard$Key$M = {$: 12};
-var $SwiftsNamesake$proper_keyboard$Keyboard$Key$Multiply = {$: 84};
-var $SwiftsNamesake$proper_keyboard$Keyboard$Key$N = {$: 13};
-var $SwiftsNamesake$proper_keyboard$Keyboard$Key$Nine = {$: 53};
-var $SwiftsNamesake$proper_keyboard$Keyboard$Key$NumLock = {$: 60};
-var $SwiftsNamesake$proper_keyboard$Keyboard$Key$NumpadEight = {$: 82};
-var $SwiftsNamesake$proper_keyboard$Keyboard$Key$NumpadFive = {$: 79};
-var $SwiftsNamesake$proper_keyboard$Keyboard$Key$NumpadFour = {$: 78};
-var $SwiftsNamesake$proper_keyboard$Keyboard$Key$NumpadNine = {$: 83};
-var $SwiftsNamesake$proper_keyboard$Keyboard$Key$NumpadOne = {$: 75};
-var $SwiftsNamesake$proper_keyboard$Keyboard$Key$NumpadSeven = {$: 81};
-var $SwiftsNamesake$proper_keyboard$Keyboard$Key$NumpadSix = {$: 80};
-var $SwiftsNamesake$proper_keyboard$Keyboard$Key$NumpadThree = {$: 77};
-var $SwiftsNamesake$proper_keyboard$Keyboard$Key$NumpadTwo = {$: 76};
-var $SwiftsNamesake$proper_keyboard$Keyboard$Key$NumpadZero = {$: 74};
-var $SwiftsNamesake$proper_keyboard$Keyboard$Key$O = {$: 14};
-var $SwiftsNamesake$proper_keyboard$Keyboard$Key$One = {$: 45};
-var $SwiftsNamesake$proper_keyboard$Keyboard$Key$P = {$: 15};
-var $SwiftsNamesake$proper_keyboard$Keyboard$Key$PageDown = {$: 41};
-var $SwiftsNamesake$proper_keyboard$Keyboard$Key$PageUp = {$: 40};
-var $SwiftsNamesake$proper_keyboard$Keyboard$Key$PauseBreak = {$: 56};
-var $SwiftsNamesake$proper_keyboard$Keyboard$Key$PrintScreen = {$: 55};
-var $SwiftsNamesake$proper_keyboard$Keyboard$Key$Q = {$: 16};
-var $SwiftsNamesake$proper_keyboard$Keyboard$Key$R = {$: 17};
-var $SwiftsNamesake$proper_keyboard$Keyboard$Key$Right = {$: 27};
-var $SwiftsNamesake$proper_keyboard$Keyboard$Key$S = {$: 18};
-var $SwiftsNamesake$proper_keyboard$Keyboard$Key$ScrollLock = {$: 61};
-var $SwiftsNamesake$proper_keyboard$Keyboard$Key$Seven = {$: 51};
-var $SwiftsNamesake$proper_keyboard$Keyboard$Key$Shift = function (a) {
-	return {$: 30, a: a};
-};
-var $SwiftsNamesake$proper_keyboard$Keyboard$Key$Six = {$: 50};
-var $SwiftsNamesake$proper_keyboard$Keyboard$Key$Spacebar = {$: 35};
-var $SwiftsNamesake$proper_keyboard$Keyboard$Key$Subtract = {$: 86};
-var $SwiftsNamesake$proper_keyboard$Keyboard$Key$T = {$: 19};
-var $SwiftsNamesake$proper_keyboard$Keyboard$Key$Tab = {$: 33};
-var $SwiftsNamesake$proper_keyboard$Keyboard$Key$Three = {$: 47};
-var $SwiftsNamesake$proper_keyboard$Keyboard$Key$Two = {$: 46};
-var $SwiftsNamesake$proper_keyboard$Keyboard$Key$U = {$: 20};
-var $SwiftsNamesake$proper_keyboard$Keyboard$Key$Unknown = function (a) {
-	return {$: 90, a: a};
-};
-var $SwiftsNamesake$proper_keyboard$Keyboard$Key$Up = {$: 28};
-var $SwiftsNamesake$proper_keyboard$Keyboard$Key$V = {$: 21};
-var $SwiftsNamesake$proper_keyboard$Keyboard$Key$W = {$: 22};
-var $SwiftsNamesake$proper_keyboard$Keyboard$Key$Windows = {$: 57};
-var $SwiftsNamesake$proper_keyboard$Keyboard$Key$X = {$: 23};
-var $SwiftsNamesake$proper_keyboard$Keyboard$Key$Y = {$: 24};
-var $SwiftsNamesake$proper_keyboard$Keyboard$Key$Z = {$: 25};
-var $SwiftsNamesake$proper_keyboard$Keyboard$Key$Zero = {$: 44};
-var $SwiftsNamesake$proper_keyboard$Keyboard$Key$fromCode = function (keyCode) {
-	switch (keyCode) {
-		case 8:
-			return $SwiftsNamesake$proper_keyboard$Keyboard$Key$Backspace;
-		case 9:
-			return $SwiftsNamesake$proper_keyboard$Keyboard$Key$Tab;
-		case 13:
-			return $SwiftsNamesake$proper_keyboard$Keyboard$Key$Enter;
-		case 16:
-			return $SwiftsNamesake$proper_keyboard$Keyboard$Key$Shift($elm$core$Maybe$Nothing);
-		case 17:
-			return $SwiftsNamesake$proper_keyboard$Keyboard$Key$Ctrl($elm$core$Maybe$Nothing);
-		case 18:
-			return $SwiftsNamesake$proper_keyboard$Keyboard$Key$Alt;
-		case 19:
-			return $SwiftsNamesake$proper_keyboard$Keyboard$Key$PauseBreak;
-		case 20:
-			return $SwiftsNamesake$proper_keyboard$Keyboard$Key$CapsLock;
-		case 27:
-			return $SwiftsNamesake$proper_keyboard$Keyboard$Key$Escape;
-		case 32:
-			return $SwiftsNamesake$proper_keyboard$Keyboard$Key$Spacebar;
-		case 33:
-			return $SwiftsNamesake$proper_keyboard$Keyboard$Key$PageUp;
-		case 34:
-			return $SwiftsNamesake$proper_keyboard$Keyboard$Key$PageDown;
-		case 35:
-			return $SwiftsNamesake$proper_keyboard$Keyboard$Key$End;
-		case 36:
-			return $SwiftsNamesake$proper_keyboard$Keyboard$Key$Home;
-		case 37:
-			return $SwiftsNamesake$proper_keyboard$Keyboard$Key$Left;
-		case 38:
-			return $SwiftsNamesake$proper_keyboard$Keyboard$Key$Up;
-		case 39:
-			return $SwiftsNamesake$proper_keyboard$Keyboard$Key$Right;
-		case 40:
-			return $SwiftsNamesake$proper_keyboard$Keyboard$Key$Down;
-		case 44:
-			return $SwiftsNamesake$proper_keyboard$Keyboard$Key$PrintScreen;
-		case 45:
-			return $SwiftsNamesake$proper_keyboard$Keyboard$Key$Insert;
-		case 46:
-			return $SwiftsNamesake$proper_keyboard$Keyboard$Key$Delete;
-		case 48:
-			return $SwiftsNamesake$proper_keyboard$Keyboard$Key$Zero;
-		case 49:
-			return $SwiftsNamesake$proper_keyboard$Keyboard$Key$One;
-		case 50:
-			return $SwiftsNamesake$proper_keyboard$Keyboard$Key$Two;
-		case 51:
-			return $SwiftsNamesake$proper_keyboard$Keyboard$Key$Three;
-		case 52:
-			return $SwiftsNamesake$proper_keyboard$Keyboard$Key$Four;
-		case 53:
-			return $SwiftsNamesake$proper_keyboard$Keyboard$Key$Five;
-		case 54:
-			return $SwiftsNamesake$proper_keyboard$Keyboard$Key$Six;
-		case 55:
-			return $SwiftsNamesake$proper_keyboard$Keyboard$Key$Seven;
-		case 56:
-			return $SwiftsNamesake$proper_keyboard$Keyboard$Key$Eight;
-		case 57:
-			return $SwiftsNamesake$proper_keyboard$Keyboard$Key$Nine;
-		case 65:
-			return $SwiftsNamesake$proper_keyboard$Keyboard$Key$A;
-		case 66:
-			return $SwiftsNamesake$proper_keyboard$Keyboard$Key$B;
-		case 67:
-			return $SwiftsNamesake$proper_keyboard$Keyboard$Key$C;
-		case 68:
-			return $SwiftsNamesake$proper_keyboard$Keyboard$Key$D;
-		case 69:
-			return $SwiftsNamesake$proper_keyboard$Keyboard$Key$E;
-		case 70:
-			return $SwiftsNamesake$proper_keyboard$Keyboard$Key$F;
-		case 71:
-			return $SwiftsNamesake$proper_keyboard$Keyboard$Key$G;
-		case 72:
-			return $SwiftsNamesake$proper_keyboard$Keyboard$Key$H;
-		case 73:
-			return $SwiftsNamesake$proper_keyboard$Keyboard$Key$I;
-		case 74:
-			return $SwiftsNamesake$proper_keyboard$Keyboard$Key$J;
-		case 75:
-			return $SwiftsNamesake$proper_keyboard$Keyboard$Key$K;
-		case 76:
-			return $SwiftsNamesake$proper_keyboard$Keyboard$Key$L;
-		case 77:
-			return $SwiftsNamesake$proper_keyboard$Keyboard$Key$M;
-		case 78:
-			return $SwiftsNamesake$proper_keyboard$Keyboard$Key$N;
-		case 79:
-			return $SwiftsNamesake$proper_keyboard$Keyboard$Key$O;
-		case 80:
-			return $SwiftsNamesake$proper_keyboard$Keyboard$Key$P;
-		case 81:
-			return $SwiftsNamesake$proper_keyboard$Keyboard$Key$Q;
-		case 82:
-			return $SwiftsNamesake$proper_keyboard$Keyboard$Key$R;
-		case 83:
-			return $SwiftsNamesake$proper_keyboard$Keyboard$Key$S;
-		case 84:
-			return $SwiftsNamesake$proper_keyboard$Keyboard$Key$T;
-		case 85:
-			return $SwiftsNamesake$proper_keyboard$Keyboard$Key$U;
-		case 86:
-			return $SwiftsNamesake$proper_keyboard$Keyboard$Key$V;
-		case 87:
-			return $SwiftsNamesake$proper_keyboard$Keyboard$Key$W;
-		case 88:
-			return $SwiftsNamesake$proper_keyboard$Keyboard$Key$X;
-		case 89:
-			return $SwiftsNamesake$proper_keyboard$Keyboard$Key$Y;
-		case 90:
-			return $SwiftsNamesake$proper_keyboard$Keyboard$Key$Z;
-		case 91:
-			return $SwiftsNamesake$proper_keyboard$Keyboard$Key$Ambiguous(
-				_List_fromArray(
-					[$SwiftsNamesake$proper_keyboard$Keyboard$Key$Windows, $SwiftsNamesake$proper_keyboard$Keyboard$Key$Command, $SwiftsNamesake$proper_keyboard$Keyboard$Key$ChromeSearch]));
-		case 96:
-			return $SwiftsNamesake$proper_keyboard$Keyboard$Key$NumpadZero;
-		case 97:
-			return $SwiftsNamesake$proper_keyboard$Keyboard$Key$NumpadOne;
-		case 98:
-			return $SwiftsNamesake$proper_keyboard$Keyboard$Key$NumpadTwo;
-		case 99:
-			return $SwiftsNamesake$proper_keyboard$Keyboard$Key$NumpadThree;
-		case 100:
-			return $SwiftsNamesake$proper_keyboard$Keyboard$Key$NumpadFour;
-		case 101:
-			return $SwiftsNamesake$proper_keyboard$Keyboard$Key$NumpadFive;
-		case 102:
-			return $SwiftsNamesake$proper_keyboard$Keyboard$Key$NumpadSix;
-		case 103:
-			return $SwiftsNamesake$proper_keyboard$Keyboard$Key$NumpadSeven;
-		case 104:
-			return $SwiftsNamesake$proper_keyboard$Keyboard$Key$NumpadEight;
-		case 105:
-			return $SwiftsNamesake$proper_keyboard$Keyboard$Key$NumpadNine;
-		case 106:
-			return $SwiftsNamesake$proper_keyboard$Keyboard$Key$Multiply;
-		case 107:
-			return $SwiftsNamesake$proper_keyboard$Keyboard$Key$Add;
-		case 109:
-			return $SwiftsNamesake$proper_keyboard$Keyboard$Key$Subtract;
-		case 110:
-			return $SwiftsNamesake$proper_keyboard$Keyboard$Key$Decimal;
-		case 111:
-			return $SwiftsNamesake$proper_keyboard$Keyboard$Key$Divide;
-		case 112:
-			return $SwiftsNamesake$proper_keyboard$Keyboard$Key$F1;
-		case 113:
-			return $SwiftsNamesake$proper_keyboard$Keyboard$Key$F2;
-		case 114:
-			return $SwiftsNamesake$proper_keyboard$Keyboard$Key$F3;
-		case 115:
-			return $SwiftsNamesake$proper_keyboard$Keyboard$Key$F4;
-		case 116:
-			return $SwiftsNamesake$proper_keyboard$Keyboard$Key$F5;
-		case 117:
-			return $SwiftsNamesake$proper_keyboard$Keyboard$Key$F6;
-		case 118:
-			return $SwiftsNamesake$proper_keyboard$Keyboard$Key$F7;
-		case 119:
-			return $SwiftsNamesake$proper_keyboard$Keyboard$Key$F8;
-		case 120:
-			return $SwiftsNamesake$proper_keyboard$Keyboard$Key$F9;
-		case 121:
-			return $SwiftsNamesake$proper_keyboard$Keyboard$Key$F10;
-		case 122:
-			return $SwiftsNamesake$proper_keyboard$Keyboard$Key$F11;
-		case 123:
-			return $SwiftsNamesake$proper_keyboard$Keyboard$Key$F12;
-		case 144:
-			return $SwiftsNamesake$proper_keyboard$Keyboard$Key$NumLock;
-		case 145:
-			return $SwiftsNamesake$proper_keyboard$Keyboard$Key$ScrollLock;
-		default:
-			return $SwiftsNamesake$proper_keyboard$Keyboard$Key$Unknown(keyCode);
+var $elm$core$Array$fromListHelp = F3(
+	function (list, nodeList, nodeListSize) {
+		fromListHelp:
+		while (true) {
+			var _v0 = A2($elm$core$Elm$JsArray$initializeFromList, $elm$core$Array$branchFactor, list);
+			var jsArray = _v0.a;
+			var remainingItems = _v0.b;
+			if (_Utils_cmp(
+				$elm$core$Elm$JsArray$length(jsArray),
+				$elm$core$Array$branchFactor) < 0) {
+				return A2(
+					$elm$core$Array$builderToArray,
+					true,
+					{m: nodeList, j: nodeListSize, l: jsArray});
+			} else {
+				var $temp$list = remainingItems,
+					$temp$nodeList = A2(
+					$elm$core$List$cons,
+					$elm$core$Array$Leaf(jsArray),
+					nodeList),
+					$temp$nodeListSize = nodeListSize + 1;
+				list = $temp$list;
+				nodeList = $temp$nodeList;
+				nodeListSize = $temp$nodeListSize;
+				continue fromListHelp;
+			}
+		}
+	});
+var $elm$core$Array$fromList = function (list) {
+	if (!list.b) {
+		return $elm$core$Array$empty;
+	} else {
+		return A3($elm$core$Array$fromListHelp, list, _List_Nil, 0);
 	}
 };
-var $elm$json$Json$Decode$map7 = _Json_map7;
-var $Gizra$elm_keyboard_event$Keyboard$Event$decodeKeyboardEvent = A8(
-	$elm$json$Json$Decode$map7,
-	$Gizra$elm_keyboard_event$Keyboard$Event$KeyboardEvent,
-	A2($elm$json$Json$Decode$field, 'altKey', $elm$json$Json$Decode$bool),
-	A2($elm$json$Json$Decode$field, 'ctrlKey', $elm$json$Json$Decode$bool),
-	$Gizra$elm_keyboard_event$Keyboard$Event$decodeKey,
-	A2($elm$json$Json$Decode$map, $SwiftsNamesake$proper_keyboard$Keyboard$Key$fromCode, $Gizra$elm_keyboard_event$Keyboard$Event$decodeKeyCode),
-	A2($elm$json$Json$Decode$field, 'metaKey', $elm$json$Json$Decode$bool),
-	A2($elm$json$Json$Decode$field, 'repeat', $elm$json$Json$Decode$bool),
-	A2($elm$json$Json$Decode$field, 'shiftKey', $elm$json$Json$Decode$bool));
-var $elm$browser$Browser$Events$Document = 0;
-var $elm$browser$Browser$Events$MySub = F3(
-	function (a, b, c) {
-		return {$: 0, a: a, b: b, c: c};
-	});
-var $elm$browser$Browser$Events$State = F2(
-	function (subs, pids) {
-		return {bg: pids, bC: subs};
-	});
 var $elm$core$Dict$RBEmpty_elm_builtin = {$: -2};
 var $elm$core$Dict$empty = $elm$core$Dict$RBEmpty_elm_builtin;
-var $elm$browser$Browser$Events$init = $elm$core$Task$succeed(
-	A2($elm$browser$Browser$Events$State, _List_Nil, $elm$core$Dict$empty));
-var $elm$browser$Browser$Events$nodeToKey = function (node) {
-	if (!node) {
-		return 'd_';
-	} else {
-		return 'w_';
-	}
-};
-var $elm$browser$Browser$Events$addKey = function (sub) {
-	var node = sub.a;
-	var name = sub.b;
-	return _Utils_Tuple2(
-		_Utils_ap(
-			$elm$browser$Browser$Events$nodeToKey(node),
-			name),
-		sub);
-};
 var $elm$core$Dict$Black = 1;
 var $elm$core$Dict$RBNode_elm_builtin = F5(
 	function (a, b, c, d, e) {
@@ -5920,312 +5604,6 @@ var $elm$core$Dict$fromList = function (assocs) {
 			}),
 		$elm$core$Dict$empty,
 		assocs);
-};
-var $elm$core$Process$kill = _Scheduler_kill;
-var $elm$core$Dict$foldl = F3(
-	function (func, acc, dict) {
-		foldl:
-		while (true) {
-			if (dict.$ === -2) {
-				return acc;
-			} else {
-				var key = dict.b;
-				var value = dict.c;
-				var left = dict.d;
-				var right = dict.e;
-				var $temp$func = func,
-					$temp$acc = A3(
-					func,
-					key,
-					value,
-					A3($elm$core$Dict$foldl, func, acc, left)),
-					$temp$dict = right;
-				func = $temp$func;
-				acc = $temp$acc;
-				dict = $temp$dict;
-				continue foldl;
-			}
-		}
-	});
-var $elm$core$Dict$merge = F6(
-	function (leftStep, bothStep, rightStep, leftDict, rightDict, initialResult) {
-		var stepState = F3(
-			function (rKey, rValue, _v0) {
-				stepState:
-				while (true) {
-					var list = _v0.a;
-					var result = _v0.b;
-					if (!list.b) {
-						return _Utils_Tuple2(
-							list,
-							A3(rightStep, rKey, rValue, result));
-					} else {
-						var _v2 = list.a;
-						var lKey = _v2.a;
-						var lValue = _v2.b;
-						var rest = list.b;
-						if (_Utils_cmp(lKey, rKey) < 0) {
-							var $temp$rKey = rKey,
-								$temp$rValue = rValue,
-								$temp$_v0 = _Utils_Tuple2(
-								rest,
-								A3(leftStep, lKey, lValue, result));
-							rKey = $temp$rKey;
-							rValue = $temp$rValue;
-							_v0 = $temp$_v0;
-							continue stepState;
-						} else {
-							if (_Utils_cmp(lKey, rKey) > 0) {
-								return _Utils_Tuple2(
-									list,
-									A3(rightStep, rKey, rValue, result));
-							} else {
-								return _Utils_Tuple2(
-									rest,
-									A4(bothStep, lKey, lValue, rValue, result));
-							}
-						}
-					}
-				}
-			});
-		var _v3 = A3(
-			$elm$core$Dict$foldl,
-			stepState,
-			_Utils_Tuple2(
-				$elm$core$Dict$toList(leftDict),
-				initialResult),
-			rightDict);
-		var leftovers = _v3.a;
-		var intermediateResult = _v3.b;
-		return A3(
-			$elm$core$List$foldl,
-			F2(
-				function (_v4, result) {
-					var k = _v4.a;
-					var v = _v4.b;
-					return A3(leftStep, k, v, result);
-				}),
-			intermediateResult,
-			leftovers);
-	});
-var $elm$browser$Browser$Events$Event = F2(
-	function (key, event) {
-		return {aY: event, b6: key};
-	});
-var $elm$core$Platform$sendToSelf = _Platform_sendToSelf;
-var $elm$browser$Browser$Events$spawn = F3(
-	function (router, key, _v0) {
-		var node = _v0.a;
-		var name = _v0.b;
-		var actualNode = function () {
-			if (!node) {
-				return _Browser_doc;
-			} else {
-				return _Browser_window;
-			}
-		}();
-		return A2(
-			$elm$core$Task$map,
-			function (value) {
-				return _Utils_Tuple2(key, value);
-			},
-			A3(
-				_Browser_on,
-				actualNode,
-				name,
-				function (event) {
-					return A2(
-						$elm$core$Platform$sendToSelf,
-						router,
-						A2($elm$browser$Browser$Events$Event, key, event));
-				}));
-	});
-var $elm$core$Dict$union = F2(
-	function (t1, t2) {
-		return A3($elm$core$Dict$foldl, $elm$core$Dict$insert, t2, t1);
-	});
-var $elm$browser$Browser$Events$onEffects = F3(
-	function (router, subs, state) {
-		var stepRight = F3(
-			function (key, sub, _v6) {
-				var deads = _v6.a;
-				var lives = _v6.b;
-				var news = _v6.c;
-				return _Utils_Tuple3(
-					deads,
-					lives,
-					A2(
-						$elm$core$List$cons,
-						A3($elm$browser$Browser$Events$spawn, router, key, sub),
-						news));
-			});
-		var stepLeft = F3(
-			function (_v4, pid, _v5) {
-				var deads = _v5.a;
-				var lives = _v5.b;
-				var news = _v5.c;
-				return _Utils_Tuple3(
-					A2($elm$core$List$cons, pid, deads),
-					lives,
-					news);
-			});
-		var stepBoth = F4(
-			function (key, pid, _v2, _v3) {
-				var deads = _v3.a;
-				var lives = _v3.b;
-				var news = _v3.c;
-				return _Utils_Tuple3(
-					deads,
-					A3($elm$core$Dict$insert, key, pid, lives),
-					news);
-			});
-		var newSubs = A2($elm$core$List$map, $elm$browser$Browser$Events$addKey, subs);
-		var _v0 = A6(
-			$elm$core$Dict$merge,
-			stepLeft,
-			stepBoth,
-			stepRight,
-			state.bg,
-			$elm$core$Dict$fromList(newSubs),
-			_Utils_Tuple3(_List_Nil, $elm$core$Dict$empty, _List_Nil));
-		var deadPids = _v0.a;
-		var livePids = _v0.b;
-		var makeNewPids = _v0.c;
-		return A2(
-			$elm$core$Task$andThen,
-			function (pids) {
-				return $elm$core$Task$succeed(
-					A2(
-						$elm$browser$Browser$Events$State,
-						newSubs,
-						A2(
-							$elm$core$Dict$union,
-							livePids,
-							$elm$core$Dict$fromList(pids))));
-			},
-			A2(
-				$elm$core$Task$andThen,
-				function (_v1) {
-					return $elm$core$Task$sequence(makeNewPids);
-				},
-				$elm$core$Task$sequence(
-					A2($elm$core$List$map, $elm$core$Process$kill, deadPids))));
-	});
-var $elm$core$List$maybeCons = F3(
-	function (f, mx, xs) {
-		var _v0 = f(mx);
-		if (!_v0.$) {
-			var x = _v0.a;
-			return A2($elm$core$List$cons, x, xs);
-		} else {
-			return xs;
-		}
-	});
-var $elm$core$List$filterMap = F2(
-	function (f, xs) {
-		return A3(
-			$elm$core$List$foldr,
-			$elm$core$List$maybeCons(f),
-			_List_Nil,
-			xs);
-	});
-var $elm$browser$Browser$Events$onSelfMsg = F3(
-	function (router, _v0, state) {
-		var key = _v0.b6;
-		var event = _v0.aY;
-		var toMessage = function (_v2) {
-			var subKey = _v2.a;
-			var _v3 = _v2.b;
-			var node = _v3.a;
-			var name = _v3.b;
-			var decoder = _v3.c;
-			return _Utils_eq(subKey, key) ? A2(_Browser_decodeEvent, decoder, event) : $elm$core$Maybe$Nothing;
-		};
-		var messages = A2($elm$core$List$filterMap, toMessage, state.bC);
-		return A2(
-			$elm$core$Task$andThen,
-			function (_v1) {
-				return $elm$core$Task$succeed(state);
-			},
-			$elm$core$Task$sequence(
-				A2(
-					$elm$core$List$map,
-					$elm$core$Platform$sendToApp(router),
-					messages)));
-	});
-var $elm$browser$Browser$Events$subMap = F2(
-	function (func, _v0) {
-		var node = _v0.a;
-		var name = _v0.b;
-		var decoder = _v0.c;
-		return A3(
-			$elm$browser$Browser$Events$MySub,
-			node,
-			name,
-			A2($elm$json$Json$Decode$map, func, decoder));
-	});
-_Platform_effectManagers['Browser.Events'] = _Platform_createManager($elm$browser$Browser$Events$init, $elm$browser$Browser$Events$onEffects, $elm$browser$Browser$Events$onSelfMsg, 0, $elm$browser$Browser$Events$subMap);
-var $elm$browser$Browser$Events$subscription = _Platform_leaf('Browser.Events');
-var $elm$browser$Browser$Events$on = F3(
-	function (node, name, decoder) {
-		return $elm$browser$Browser$Events$subscription(
-			A3($elm$browser$Browser$Events$MySub, node, name, decoder));
-	});
-var $elm$browser$Browser$Events$onKeyDown = A2($elm$browser$Browser$Events$on, 0, 'keydown');
-var $author$project$Main$subscriptions = function (_v0) {
-	return $elm$browser$Browser$Events$onKeyDown(
-		A2($elm$json$Json$Decode$map, $author$project$Main$KeyboardEvent, $Gizra$elm_keyboard_event$Keyboard$Event$decodeKeyboardEvent));
-};
-var $author$project$Main$CheckSource = {$: 2};
-var $author$project$Main$ToggleHelp = {$: 1};
-var $author$project$Editor$Main$CheckResult = function (a) {
-	return {$: 1, a: a};
-};
-var $elm$core$List$filter = F2(
-	function (isGood, list) {
-		return A3(
-			$elm$core$List$foldr,
-			F2(
-				function (x, xs) {
-					return isGood(x) ? A2($elm$core$List$cons, x, xs) : xs;
-				}),
-			_List_Nil,
-			list);
-	});
-var $elm$core$Array$fromListHelp = F3(
-	function (list, nodeList, nodeListSize) {
-		fromListHelp:
-		while (true) {
-			var _v0 = A2($elm$core$Elm$JsArray$initializeFromList, $elm$core$Array$branchFactor, list);
-			var jsArray = _v0.a;
-			var remainingItems = _v0.b;
-			if (_Utils_cmp(
-				$elm$core$Elm$JsArray$length(jsArray),
-				$elm$core$Array$branchFactor) < 0) {
-				return A2(
-					$elm$core$Array$builderToArray,
-					true,
-					{m: nodeList, j: nodeListSize, l: jsArray});
-			} else {
-				var $temp$list = remainingItems,
-					$temp$nodeList = A2(
-					$elm$core$List$cons,
-					$elm$core$Array$Leaf(jsArray),
-					nodeList),
-					$temp$nodeListSize = nodeListSize + 1;
-				list = $temp$list;
-				nodeList = $temp$nodeList;
-				nodeListSize = $temp$nodeListSize;
-				continue fromListHelp;
-			}
-		}
-	});
-var $elm$core$Array$fromList = function (list) {
-	if (!list.b) {
-		return $elm$core$Array$empty;
-	} else {
-		return A3($elm$core$Array$fromListHelp, list, _List_Nil, 0);
-	}
 };
 var $author$project$Language$Parser$getLabel = function (citizen_) {
 	if (citizen_.$ === 1) {
@@ -6475,6 +5853,24 @@ var $elm_community$result_extra$Result$Extra$error = function (result) {
 		return $elm$core$Maybe$Just(err);
 	}
 };
+var $elm$core$List$maybeCons = F3(
+	function (f, mx, xs) {
+		var _v0 = f(mx);
+		if (!_v0.$) {
+			var x = _v0.a;
+			return A2($elm$core$List$cons, x, xs);
+		} else {
+			return xs;
+		}
+	});
+var $elm$core$List$filterMap = F2(
+	function (f, xs) {
+		return A3(
+			$elm$core$List$foldr,
+			$elm$core$List$maybeCons(f),
+			_List_Nil,
+			xs);
+	});
 var $author$project$Language$Parser$Line = F2(
 	function (number, value) {
 		return {cm: number, cB: value};
@@ -7525,6 +6921,9 @@ var $author$project$Main$key = F2(
 var $author$project$Main$isCheckSource = function (e) {
 	return e.aU && A2($author$project$Main$key, 'Enter', e);
 };
+var $author$project$Main$isNextStep = function (e) {
+	return e.cu && A2($author$project$Main$key, 'Enter', e);
+};
 var $author$project$Editor$Main$isSourceChange = function (msg) {
 	if (!msg.$) {
 		return true;
@@ -7545,6 +6944,8 @@ var $elm$core$Maybe$map = F2(
 			return $elm$core$Maybe$Nothing;
 		}
 	});
+var $elm$core$Platform$Cmd$batch = _Platform_batch;
+var $elm$core$Platform$Cmd$none = $elm$core$Platform$Cmd$batch(_List_Nil);
 var $elm$core$Bitwise$and = _Bitwise_and;
 var $elm$core$Array$bitMask = 4294967295 >>> (32 - $elm$core$Array$shiftStep);
 var $elm$core$Basics$ge = _Utils_ge;
@@ -7833,16 +7234,12 @@ var $author$project$Language$Runtime$name = function (id) {
 };
 var $author$project$Language$Runtime$exec = function (_v0) {
 	var value = _v0.cB;
-	switch (value.$) {
-		case 4:
-			var command = value.a;
-			return command;
-		case 3:
-			var id = value.a;
-			return $author$project$Language$Runtime$name(id);
-		default:
-			var atom = value;
-			return $author$project$Language$Machine$push(atom);
+	if (value.$ === 3) {
+		var id = value.a;
+		return $author$project$Language$Runtime$name(id);
+	} else {
+		var atom = value;
+		return $author$project$Language$Machine$push(atom);
 	}
 };
 var $author$project$Language$Machine$skip = function (machine) {
@@ -7902,8 +7299,610 @@ var $author$project$Main$update = F2(
 	});
 var $author$project$Main$updateOnKeyBinding = F2(
 	function (event, model) {
-		return $author$project$Main$isToggleHelp(event) ? A2($author$project$Main$update, $author$project$Main$ToggleHelp, model) : ($author$project$Main$isCheckSource(event) ? A2($author$project$Main$update, $author$project$Main$CheckSource, model) : _Utils_Tuple2(model, $elm$core$Platform$Cmd$none));
+		return $author$project$Main$isToggleHelp(event) ? A2($author$project$Main$update, $author$project$Main$ToggleHelp, model) : ($author$project$Main$isCheckSource(event) ? A2($author$project$Main$update, $author$project$Main$CheckSource, model) : ($author$project$Main$isNextStep(event) ? A2($author$project$Main$update, $author$project$Main$NextStep, model) : _Utils_Tuple2(model, $elm$core$Platform$Cmd$none)));
 	});
+var $author$project$Main$init = function (_v0) {
+	return A2($author$project$Main$update, $author$project$Main$CheckSource, $author$project$Main$initModel);
+};
+var $author$project$Main$KeyboardEvent = function (a) {
+	return {$: 4, a: a};
+};
+var $Gizra$elm_keyboard_event$Keyboard$Event$KeyboardEvent = F7(
+	function (altKey, ctrlKey, key, keyCode, metaKey, repeat, shiftKey) {
+		return {bL: altKey, aU: ctrlKey, b6: key, b7: keyCode, ca: metaKey, cs: repeat, cu: shiftKey};
+	});
+var $elm$json$Json$Decode$bool = _Json_decodeBool;
+var $elm$json$Json$Decode$andThen = _Json_andThen;
+var $elm$json$Json$Decode$fail = _Json_fail;
+var $elm$json$Json$Decode$field = _Json_decodeField;
+var $elm$json$Json$Decode$oneOf = _Json_oneOf;
+var $elm$json$Json$Decode$maybe = function (decoder) {
+	return $elm$json$Json$Decode$oneOf(
+		_List_fromArray(
+			[
+				A2($elm$json$Json$Decode$map, $elm$core$Maybe$Just, decoder),
+				$elm$json$Json$Decode$succeed($elm$core$Maybe$Nothing)
+			]));
+};
+var $elm$json$Json$Decode$string = _Json_decodeString;
+var $Gizra$elm_keyboard_event$Keyboard$Event$decodeKey = $elm$json$Json$Decode$maybe(
+	A2(
+		$elm$json$Json$Decode$andThen,
+		function (key) {
+			return $elm$core$String$isEmpty(key) ? $elm$json$Json$Decode$fail('empty key') : $elm$json$Json$Decode$succeed(key);
+		},
+		A2($elm$json$Json$Decode$field, 'key', $elm$json$Json$Decode$string)));
+var $elm$json$Json$Decode$int = _Json_decodeInt;
+var $Gizra$elm_keyboard_event$Keyboard$Event$decodeNonZero = A2(
+	$elm$json$Json$Decode$andThen,
+	function (code) {
+		return (!code) ? $elm$json$Json$Decode$fail('code was zero') : $elm$json$Json$Decode$succeed(code);
+	},
+	$elm$json$Json$Decode$int);
+var $Gizra$elm_keyboard_event$Keyboard$Event$decodeKeyCode = $elm$json$Json$Decode$oneOf(
+	_List_fromArray(
+		[
+			A2($elm$json$Json$Decode$field, 'keyCode', $Gizra$elm_keyboard_event$Keyboard$Event$decodeNonZero),
+			A2($elm$json$Json$Decode$field, 'which', $Gizra$elm_keyboard_event$Keyboard$Event$decodeNonZero),
+			A2($elm$json$Json$Decode$field, 'charCode', $Gizra$elm_keyboard_event$Keyboard$Event$decodeNonZero),
+			$elm$json$Json$Decode$succeed(0)
+		]));
+var $SwiftsNamesake$proper_keyboard$Keyboard$Key$A = {$: 0};
+var $SwiftsNamesake$proper_keyboard$Keyboard$Key$Add = {$: 85};
+var $SwiftsNamesake$proper_keyboard$Keyboard$Key$Alt = {$: 32};
+var $SwiftsNamesake$proper_keyboard$Keyboard$Key$Ambiguous = function (a) {
+	return {$: 89, a: a};
+};
+var $SwiftsNamesake$proper_keyboard$Keyboard$Key$B = {$: 1};
+var $SwiftsNamesake$proper_keyboard$Keyboard$Key$Backspace = {$: 38};
+var $SwiftsNamesake$proper_keyboard$Keyboard$Key$C = {$: 2};
+var $SwiftsNamesake$proper_keyboard$Keyboard$Key$CapsLock = {$: 34};
+var $SwiftsNamesake$proper_keyboard$Keyboard$Key$ChromeSearch = {$: 59};
+var $SwiftsNamesake$proper_keyboard$Keyboard$Key$Command = {$: 58};
+var $SwiftsNamesake$proper_keyboard$Keyboard$Key$Ctrl = function (a) {
+	return {$: 31, a: a};
+};
+var $SwiftsNamesake$proper_keyboard$Keyboard$Key$D = {$: 3};
+var $SwiftsNamesake$proper_keyboard$Keyboard$Key$Decimal = {$: 87};
+var $SwiftsNamesake$proper_keyboard$Keyboard$Key$Delete = {$: 39};
+var $SwiftsNamesake$proper_keyboard$Keyboard$Key$Divide = {$: 88};
+var $SwiftsNamesake$proper_keyboard$Keyboard$Key$Down = {$: 29};
+var $SwiftsNamesake$proper_keyboard$Keyboard$Key$E = {$: 4};
+var $SwiftsNamesake$proper_keyboard$Keyboard$Key$Eight = {$: 52};
+var $SwiftsNamesake$proper_keyboard$Keyboard$Key$End = {$: 42};
+var $SwiftsNamesake$proper_keyboard$Keyboard$Key$Enter = {$: 37};
+var $SwiftsNamesake$proper_keyboard$Keyboard$Key$Escape = {$: 36};
+var $SwiftsNamesake$proper_keyboard$Keyboard$Key$F = {$: 5};
+var $SwiftsNamesake$proper_keyboard$Keyboard$Key$F1 = {$: 62};
+var $SwiftsNamesake$proper_keyboard$Keyboard$Key$F10 = {$: 71};
+var $SwiftsNamesake$proper_keyboard$Keyboard$Key$F11 = {$: 72};
+var $SwiftsNamesake$proper_keyboard$Keyboard$Key$F12 = {$: 73};
+var $SwiftsNamesake$proper_keyboard$Keyboard$Key$F2 = {$: 63};
+var $SwiftsNamesake$proper_keyboard$Keyboard$Key$F3 = {$: 64};
+var $SwiftsNamesake$proper_keyboard$Keyboard$Key$F4 = {$: 65};
+var $SwiftsNamesake$proper_keyboard$Keyboard$Key$F5 = {$: 66};
+var $SwiftsNamesake$proper_keyboard$Keyboard$Key$F6 = {$: 67};
+var $SwiftsNamesake$proper_keyboard$Keyboard$Key$F7 = {$: 68};
+var $SwiftsNamesake$proper_keyboard$Keyboard$Key$F8 = {$: 69};
+var $SwiftsNamesake$proper_keyboard$Keyboard$Key$F9 = {$: 70};
+var $SwiftsNamesake$proper_keyboard$Keyboard$Key$Five = {$: 49};
+var $SwiftsNamesake$proper_keyboard$Keyboard$Key$Four = {$: 48};
+var $SwiftsNamesake$proper_keyboard$Keyboard$Key$G = {$: 6};
+var $SwiftsNamesake$proper_keyboard$Keyboard$Key$H = {$: 7};
+var $SwiftsNamesake$proper_keyboard$Keyboard$Key$Home = {$: 43};
+var $SwiftsNamesake$proper_keyboard$Keyboard$Key$I = {$: 8};
+var $SwiftsNamesake$proper_keyboard$Keyboard$Key$Insert = {$: 54};
+var $SwiftsNamesake$proper_keyboard$Keyboard$Key$J = {$: 9};
+var $SwiftsNamesake$proper_keyboard$Keyboard$Key$K = {$: 10};
+var $SwiftsNamesake$proper_keyboard$Keyboard$Key$L = {$: 11};
+var $SwiftsNamesake$proper_keyboard$Keyboard$Key$Left = {$: 26};
+var $SwiftsNamesake$proper_keyboard$Keyboard$Key$M = {$: 12};
+var $SwiftsNamesake$proper_keyboard$Keyboard$Key$Multiply = {$: 84};
+var $SwiftsNamesake$proper_keyboard$Keyboard$Key$N = {$: 13};
+var $SwiftsNamesake$proper_keyboard$Keyboard$Key$Nine = {$: 53};
+var $SwiftsNamesake$proper_keyboard$Keyboard$Key$NumLock = {$: 60};
+var $SwiftsNamesake$proper_keyboard$Keyboard$Key$NumpadEight = {$: 82};
+var $SwiftsNamesake$proper_keyboard$Keyboard$Key$NumpadFive = {$: 79};
+var $SwiftsNamesake$proper_keyboard$Keyboard$Key$NumpadFour = {$: 78};
+var $SwiftsNamesake$proper_keyboard$Keyboard$Key$NumpadNine = {$: 83};
+var $SwiftsNamesake$proper_keyboard$Keyboard$Key$NumpadOne = {$: 75};
+var $SwiftsNamesake$proper_keyboard$Keyboard$Key$NumpadSeven = {$: 81};
+var $SwiftsNamesake$proper_keyboard$Keyboard$Key$NumpadSix = {$: 80};
+var $SwiftsNamesake$proper_keyboard$Keyboard$Key$NumpadThree = {$: 77};
+var $SwiftsNamesake$proper_keyboard$Keyboard$Key$NumpadTwo = {$: 76};
+var $SwiftsNamesake$proper_keyboard$Keyboard$Key$NumpadZero = {$: 74};
+var $SwiftsNamesake$proper_keyboard$Keyboard$Key$O = {$: 14};
+var $SwiftsNamesake$proper_keyboard$Keyboard$Key$One = {$: 45};
+var $SwiftsNamesake$proper_keyboard$Keyboard$Key$P = {$: 15};
+var $SwiftsNamesake$proper_keyboard$Keyboard$Key$PageDown = {$: 41};
+var $SwiftsNamesake$proper_keyboard$Keyboard$Key$PageUp = {$: 40};
+var $SwiftsNamesake$proper_keyboard$Keyboard$Key$PauseBreak = {$: 56};
+var $SwiftsNamesake$proper_keyboard$Keyboard$Key$PrintScreen = {$: 55};
+var $SwiftsNamesake$proper_keyboard$Keyboard$Key$Q = {$: 16};
+var $SwiftsNamesake$proper_keyboard$Keyboard$Key$R = {$: 17};
+var $SwiftsNamesake$proper_keyboard$Keyboard$Key$Right = {$: 27};
+var $SwiftsNamesake$proper_keyboard$Keyboard$Key$S = {$: 18};
+var $SwiftsNamesake$proper_keyboard$Keyboard$Key$ScrollLock = {$: 61};
+var $SwiftsNamesake$proper_keyboard$Keyboard$Key$Seven = {$: 51};
+var $SwiftsNamesake$proper_keyboard$Keyboard$Key$Shift = function (a) {
+	return {$: 30, a: a};
+};
+var $SwiftsNamesake$proper_keyboard$Keyboard$Key$Six = {$: 50};
+var $SwiftsNamesake$proper_keyboard$Keyboard$Key$Spacebar = {$: 35};
+var $SwiftsNamesake$proper_keyboard$Keyboard$Key$Subtract = {$: 86};
+var $SwiftsNamesake$proper_keyboard$Keyboard$Key$T = {$: 19};
+var $SwiftsNamesake$proper_keyboard$Keyboard$Key$Tab = {$: 33};
+var $SwiftsNamesake$proper_keyboard$Keyboard$Key$Three = {$: 47};
+var $SwiftsNamesake$proper_keyboard$Keyboard$Key$Two = {$: 46};
+var $SwiftsNamesake$proper_keyboard$Keyboard$Key$U = {$: 20};
+var $SwiftsNamesake$proper_keyboard$Keyboard$Key$Unknown = function (a) {
+	return {$: 90, a: a};
+};
+var $SwiftsNamesake$proper_keyboard$Keyboard$Key$Up = {$: 28};
+var $SwiftsNamesake$proper_keyboard$Keyboard$Key$V = {$: 21};
+var $SwiftsNamesake$proper_keyboard$Keyboard$Key$W = {$: 22};
+var $SwiftsNamesake$proper_keyboard$Keyboard$Key$Windows = {$: 57};
+var $SwiftsNamesake$proper_keyboard$Keyboard$Key$X = {$: 23};
+var $SwiftsNamesake$proper_keyboard$Keyboard$Key$Y = {$: 24};
+var $SwiftsNamesake$proper_keyboard$Keyboard$Key$Z = {$: 25};
+var $SwiftsNamesake$proper_keyboard$Keyboard$Key$Zero = {$: 44};
+var $SwiftsNamesake$proper_keyboard$Keyboard$Key$fromCode = function (keyCode) {
+	switch (keyCode) {
+		case 8:
+			return $SwiftsNamesake$proper_keyboard$Keyboard$Key$Backspace;
+		case 9:
+			return $SwiftsNamesake$proper_keyboard$Keyboard$Key$Tab;
+		case 13:
+			return $SwiftsNamesake$proper_keyboard$Keyboard$Key$Enter;
+		case 16:
+			return $SwiftsNamesake$proper_keyboard$Keyboard$Key$Shift($elm$core$Maybe$Nothing);
+		case 17:
+			return $SwiftsNamesake$proper_keyboard$Keyboard$Key$Ctrl($elm$core$Maybe$Nothing);
+		case 18:
+			return $SwiftsNamesake$proper_keyboard$Keyboard$Key$Alt;
+		case 19:
+			return $SwiftsNamesake$proper_keyboard$Keyboard$Key$PauseBreak;
+		case 20:
+			return $SwiftsNamesake$proper_keyboard$Keyboard$Key$CapsLock;
+		case 27:
+			return $SwiftsNamesake$proper_keyboard$Keyboard$Key$Escape;
+		case 32:
+			return $SwiftsNamesake$proper_keyboard$Keyboard$Key$Spacebar;
+		case 33:
+			return $SwiftsNamesake$proper_keyboard$Keyboard$Key$PageUp;
+		case 34:
+			return $SwiftsNamesake$proper_keyboard$Keyboard$Key$PageDown;
+		case 35:
+			return $SwiftsNamesake$proper_keyboard$Keyboard$Key$End;
+		case 36:
+			return $SwiftsNamesake$proper_keyboard$Keyboard$Key$Home;
+		case 37:
+			return $SwiftsNamesake$proper_keyboard$Keyboard$Key$Left;
+		case 38:
+			return $SwiftsNamesake$proper_keyboard$Keyboard$Key$Up;
+		case 39:
+			return $SwiftsNamesake$proper_keyboard$Keyboard$Key$Right;
+		case 40:
+			return $SwiftsNamesake$proper_keyboard$Keyboard$Key$Down;
+		case 44:
+			return $SwiftsNamesake$proper_keyboard$Keyboard$Key$PrintScreen;
+		case 45:
+			return $SwiftsNamesake$proper_keyboard$Keyboard$Key$Insert;
+		case 46:
+			return $SwiftsNamesake$proper_keyboard$Keyboard$Key$Delete;
+		case 48:
+			return $SwiftsNamesake$proper_keyboard$Keyboard$Key$Zero;
+		case 49:
+			return $SwiftsNamesake$proper_keyboard$Keyboard$Key$One;
+		case 50:
+			return $SwiftsNamesake$proper_keyboard$Keyboard$Key$Two;
+		case 51:
+			return $SwiftsNamesake$proper_keyboard$Keyboard$Key$Three;
+		case 52:
+			return $SwiftsNamesake$proper_keyboard$Keyboard$Key$Four;
+		case 53:
+			return $SwiftsNamesake$proper_keyboard$Keyboard$Key$Five;
+		case 54:
+			return $SwiftsNamesake$proper_keyboard$Keyboard$Key$Six;
+		case 55:
+			return $SwiftsNamesake$proper_keyboard$Keyboard$Key$Seven;
+		case 56:
+			return $SwiftsNamesake$proper_keyboard$Keyboard$Key$Eight;
+		case 57:
+			return $SwiftsNamesake$proper_keyboard$Keyboard$Key$Nine;
+		case 65:
+			return $SwiftsNamesake$proper_keyboard$Keyboard$Key$A;
+		case 66:
+			return $SwiftsNamesake$proper_keyboard$Keyboard$Key$B;
+		case 67:
+			return $SwiftsNamesake$proper_keyboard$Keyboard$Key$C;
+		case 68:
+			return $SwiftsNamesake$proper_keyboard$Keyboard$Key$D;
+		case 69:
+			return $SwiftsNamesake$proper_keyboard$Keyboard$Key$E;
+		case 70:
+			return $SwiftsNamesake$proper_keyboard$Keyboard$Key$F;
+		case 71:
+			return $SwiftsNamesake$proper_keyboard$Keyboard$Key$G;
+		case 72:
+			return $SwiftsNamesake$proper_keyboard$Keyboard$Key$H;
+		case 73:
+			return $SwiftsNamesake$proper_keyboard$Keyboard$Key$I;
+		case 74:
+			return $SwiftsNamesake$proper_keyboard$Keyboard$Key$J;
+		case 75:
+			return $SwiftsNamesake$proper_keyboard$Keyboard$Key$K;
+		case 76:
+			return $SwiftsNamesake$proper_keyboard$Keyboard$Key$L;
+		case 77:
+			return $SwiftsNamesake$proper_keyboard$Keyboard$Key$M;
+		case 78:
+			return $SwiftsNamesake$proper_keyboard$Keyboard$Key$N;
+		case 79:
+			return $SwiftsNamesake$proper_keyboard$Keyboard$Key$O;
+		case 80:
+			return $SwiftsNamesake$proper_keyboard$Keyboard$Key$P;
+		case 81:
+			return $SwiftsNamesake$proper_keyboard$Keyboard$Key$Q;
+		case 82:
+			return $SwiftsNamesake$proper_keyboard$Keyboard$Key$R;
+		case 83:
+			return $SwiftsNamesake$proper_keyboard$Keyboard$Key$S;
+		case 84:
+			return $SwiftsNamesake$proper_keyboard$Keyboard$Key$T;
+		case 85:
+			return $SwiftsNamesake$proper_keyboard$Keyboard$Key$U;
+		case 86:
+			return $SwiftsNamesake$proper_keyboard$Keyboard$Key$V;
+		case 87:
+			return $SwiftsNamesake$proper_keyboard$Keyboard$Key$W;
+		case 88:
+			return $SwiftsNamesake$proper_keyboard$Keyboard$Key$X;
+		case 89:
+			return $SwiftsNamesake$proper_keyboard$Keyboard$Key$Y;
+		case 90:
+			return $SwiftsNamesake$proper_keyboard$Keyboard$Key$Z;
+		case 91:
+			return $SwiftsNamesake$proper_keyboard$Keyboard$Key$Ambiguous(
+				_List_fromArray(
+					[$SwiftsNamesake$proper_keyboard$Keyboard$Key$Windows, $SwiftsNamesake$proper_keyboard$Keyboard$Key$Command, $SwiftsNamesake$proper_keyboard$Keyboard$Key$ChromeSearch]));
+		case 96:
+			return $SwiftsNamesake$proper_keyboard$Keyboard$Key$NumpadZero;
+		case 97:
+			return $SwiftsNamesake$proper_keyboard$Keyboard$Key$NumpadOne;
+		case 98:
+			return $SwiftsNamesake$proper_keyboard$Keyboard$Key$NumpadTwo;
+		case 99:
+			return $SwiftsNamesake$proper_keyboard$Keyboard$Key$NumpadThree;
+		case 100:
+			return $SwiftsNamesake$proper_keyboard$Keyboard$Key$NumpadFour;
+		case 101:
+			return $SwiftsNamesake$proper_keyboard$Keyboard$Key$NumpadFive;
+		case 102:
+			return $SwiftsNamesake$proper_keyboard$Keyboard$Key$NumpadSix;
+		case 103:
+			return $SwiftsNamesake$proper_keyboard$Keyboard$Key$NumpadSeven;
+		case 104:
+			return $SwiftsNamesake$proper_keyboard$Keyboard$Key$NumpadEight;
+		case 105:
+			return $SwiftsNamesake$proper_keyboard$Keyboard$Key$NumpadNine;
+		case 106:
+			return $SwiftsNamesake$proper_keyboard$Keyboard$Key$Multiply;
+		case 107:
+			return $SwiftsNamesake$proper_keyboard$Keyboard$Key$Add;
+		case 109:
+			return $SwiftsNamesake$proper_keyboard$Keyboard$Key$Subtract;
+		case 110:
+			return $SwiftsNamesake$proper_keyboard$Keyboard$Key$Decimal;
+		case 111:
+			return $SwiftsNamesake$proper_keyboard$Keyboard$Key$Divide;
+		case 112:
+			return $SwiftsNamesake$proper_keyboard$Keyboard$Key$F1;
+		case 113:
+			return $SwiftsNamesake$proper_keyboard$Keyboard$Key$F2;
+		case 114:
+			return $SwiftsNamesake$proper_keyboard$Keyboard$Key$F3;
+		case 115:
+			return $SwiftsNamesake$proper_keyboard$Keyboard$Key$F4;
+		case 116:
+			return $SwiftsNamesake$proper_keyboard$Keyboard$Key$F5;
+		case 117:
+			return $SwiftsNamesake$proper_keyboard$Keyboard$Key$F6;
+		case 118:
+			return $SwiftsNamesake$proper_keyboard$Keyboard$Key$F7;
+		case 119:
+			return $SwiftsNamesake$proper_keyboard$Keyboard$Key$F8;
+		case 120:
+			return $SwiftsNamesake$proper_keyboard$Keyboard$Key$F9;
+		case 121:
+			return $SwiftsNamesake$proper_keyboard$Keyboard$Key$F10;
+		case 122:
+			return $SwiftsNamesake$proper_keyboard$Keyboard$Key$F11;
+		case 123:
+			return $SwiftsNamesake$proper_keyboard$Keyboard$Key$F12;
+		case 144:
+			return $SwiftsNamesake$proper_keyboard$Keyboard$Key$NumLock;
+		case 145:
+			return $SwiftsNamesake$proper_keyboard$Keyboard$Key$ScrollLock;
+		default:
+			return $SwiftsNamesake$proper_keyboard$Keyboard$Key$Unknown(keyCode);
+	}
+};
+var $elm$json$Json$Decode$map7 = _Json_map7;
+var $Gizra$elm_keyboard_event$Keyboard$Event$decodeKeyboardEvent = A8(
+	$elm$json$Json$Decode$map7,
+	$Gizra$elm_keyboard_event$Keyboard$Event$KeyboardEvent,
+	A2($elm$json$Json$Decode$field, 'altKey', $elm$json$Json$Decode$bool),
+	A2($elm$json$Json$Decode$field, 'ctrlKey', $elm$json$Json$Decode$bool),
+	$Gizra$elm_keyboard_event$Keyboard$Event$decodeKey,
+	A2($elm$json$Json$Decode$map, $SwiftsNamesake$proper_keyboard$Keyboard$Key$fromCode, $Gizra$elm_keyboard_event$Keyboard$Event$decodeKeyCode),
+	A2($elm$json$Json$Decode$field, 'metaKey', $elm$json$Json$Decode$bool),
+	A2($elm$json$Json$Decode$field, 'repeat', $elm$json$Json$Decode$bool),
+	A2($elm$json$Json$Decode$field, 'shiftKey', $elm$json$Json$Decode$bool));
+var $elm$browser$Browser$Events$Document = 0;
+var $elm$browser$Browser$Events$MySub = F3(
+	function (a, b, c) {
+		return {$: 0, a: a, b: b, c: c};
+	});
+var $elm$browser$Browser$Events$State = F2(
+	function (subs, pids) {
+		return {bg: pids, bC: subs};
+	});
+var $elm$browser$Browser$Events$init = $elm$core$Task$succeed(
+	A2($elm$browser$Browser$Events$State, _List_Nil, $elm$core$Dict$empty));
+var $elm$browser$Browser$Events$nodeToKey = function (node) {
+	if (!node) {
+		return 'd_';
+	} else {
+		return 'w_';
+	}
+};
+var $elm$browser$Browser$Events$addKey = function (sub) {
+	var node = sub.a;
+	var name = sub.b;
+	return _Utils_Tuple2(
+		_Utils_ap(
+			$elm$browser$Browser$Events$nodeToKey(node),
+			name),
+		sub);
+};
+var $elm$core$Process$kill = _Scheduler_kill;
+var $elm$core$Dict$foldl = F3(
+	function (func, acc, dict) {
+		foldl:
+		while (true) {
+			if (dict.$ === -2) {
+				return acc;
+			} else {
+				var key = dict.b;
+				var value = dict.c;
+				var left = dict.d;
+				var right = dict.e;
+				var $temp$func = func,
+					$temp$acc = A3(
+					func,
+					key,
+					value,
+					A3($elm$core$Dict$foldl, func, acc, left)),
+					$temp$dict = right;
+				func = $temp$func;
+				acc = $temp$acc;
+				dict = $temp$dict;
+				continue foldl;
+			}
+		}
+	});
+var $elm$core$Dict$merge = F6(
+	function (leftStep, bothStep, rightStep, leftDict, rightDict, initialResult) {
+		var stepState = F3(
+			function (rKey, rValue, _v0) {
+				stepState:
+				while (true) {
+					var list = _v0.a;
+					var result = _v0.b;
+					if (!list.b) {
+						return _Utils_Tuple2(
+							list,
+							A3(rightStep, rKey, rValue, result));
+					} else {
+						var _v2 = list.a;
+						var lKey = _v2.a;
+						var lValue = _v2.b;
+						var rest = list.b;
+						if (_Utils_cmp(lKey, rKey) < 0) {
+							var $temp$rKey = rKey,
+								$temp$rValue = rValue,
+								$temp$_v0 = _Utils_Tuple2(
+								rest,
+								A3(leftStep, lKey, lValue, result));
+							rKey = $temp$rKey;
+							rValue = $temp$rValue;
+							_v0 = $temp$_v0;
+							continue stepState;
+						} else {
+							if (_Utils_cmp(lKey, rKey) > 0) {
+								return _Utils_Tuple2(
+									list,
+									A3(rightStep, rKey, rValue, result));
+							} else {
+								return _Utils_Tuple2(
+									rest,
+									A4(bothStep, lKey, lValue, rValue, result));
+							}
+						}
+					}
+				}
+			});
+		var _v3 = A3(
+			$elm$core$Dict$foldl,
+			stepState,
+			_Utils_Tuple2(
+				$elm$core$Dict$toList(leftDict),
+				initialResult),
+			rightDict);
+		var leftovers = _v3.a;
+		var intermediateResult = _v3.b;
+		return A3(
+			$elm$core$List$foldl,
+			F2(
+				function (_v4, result) {
+					var k = _v4.a;
+					var v = _v4.b;
+					return A3(leftStep, k, v, result);
+				}),
+			intermediateResult,
+			leftovers);
+	});
+var $elm$browser$Browser$Events$Event = F2(
+	function (key, event) {
+		return {aY: event, b6: key};
+	});
+var $elm$core$Platform$sendToSelf = _Platform_sendToSelf;
+var $elm$browser$Browser$Events$spawn = F3(
+	function (router, key, _v0) {
+		var node = _v0.a;
+		var name = _v0.b;
+		var actualNode = function () {
+			if (!node) {
+				return _Browser_doc;
+			} else {
+				return _Browser_window;
+			}
+		}();
+		return A2(
+			$elm$core$Task$map,
+			function (value) {
+				return _Utils_Tuple2(key, value);
+			},
+			A3(
+				_Browser_on,
+				actualNode,
+				name,
+				function (event) {
+					return A2(
+						$elm$core$Platform$sendToSelf,
+						router,
+						A2($elm$browser$Browser$Events$Event, key, event));
+				}));
+	});
+var $elm$core$Dict$union = F2(
+	function (t1, t2) {
+		return A3($elm$core$Dict$foldl, $elm$core$Dict$insert, t2, t1);
+	});
+var $elm$browser$Browser$Events$onEffects = F3(
+	function (router, subs, state) {
+		var stepRight = F3(
+			function (key, sub, _v6) {
+				var deads = _v6.a;
+				var lives = _v6.b;
+				var news = _v6.c;
+				return _Utils_Tuple3(
+					deads,
+					lives,
+					A2(
+						$elm$core$List$cons,
+						A3($elm$browser$Browser$Events$spawn, router, key, sub),
+						news));
+			});
+		var stepLeft = F3(
+			function (_v4, pid, _v5) {
+				var deads = _v5.a;
+				var lives = _v5.b;
+				var news = _v5.c;
+				return _Utils_Tuple3(
+					A2($elm$core$List$cons, pid, deads),
+					lives,
+					news);
+			});
+		var stepBoth = F4(
+			function (key, pid, _v2, _v3) {
+				var deads = _v3.a;
+				var lives = _v3.b;
+				var news = _v3.c;
+				return _Utils_Tuple3(
+					deads,
+					A3($elm$core$Dict$insert, key, pid, lives),
+					news);
+			});
+		var newSubs = A2($elm$core$List$map, $elm$browser$Browser$Events$addKey, subs);
+		var _v0 = A6(
+			$elm$core$Dict$merge,
+			stepLeft,
+			stepBoth,
+			stepRight,
+			state.bg,
+			$elm$core$Dict$fromList(newSubs),
+			_Utils_Tuple3(_List_Nil, $elm$core$Dict$empty, _List_Nil));
+		var deadPids = _v0.a;
+		var livePids = _v0.b;
+		var makeNewPids = _v0.c;
+		return A2(
+			$elm$core$Task$andThen,
+			function (pids) {
+				return $elm$core$Task$succeed(
+					A2(
+						$elm$browser$Browser$Events$State,
+						newSubs,
+						A2(
+							$elm$core$Dict$union,
+							livePids,
+							$elm$core$Dict$fromList(pids))));
+			},
+			A2(
+				$elm$core$Task$andThen,
+				function (_v1) {
+					return $elm$core$Task$sequence(makeNewPids);
+				},
+				$elm$core$Task$sequence(
+					A2($elm$core$List$map, $elm$core$Process$kill, deadPids))));
+	});
+var $elm$browser$Browser$Events$onSelfMsg = F3(
+	function (router, _v0, state) {
+		var key = _v0.b6;
+		var event = _v0.aY;
+		var toMessage = function (_v2) {
+			var subKey = _v2.a;
+			var _v3 = _v2.b;
+			var node = _v3.a;
+			var name = _v3.b;
+			var decoder = _v3.c;
+			return _Utils_eq(subKey, key) ? A2(_Browser_decodeEvent, decoder, event) : $elm$core$Maybe$Nothing;
+		};
+		var messages = A2($elm$core$List$filterMap, toMessage, state.bC);
+		return A2(
+			$elm$core$Task$andThen,
+			function (_v1) {
+				return $elm$core$Task$succeed(state);
+			},
+			$elm$core$Task$sequence(
+				A2(
+					$elm$core$List$map,
+					$elm$core$Platform$sendToApp(router),
+					messages)));
+	});
+var $elm$browser$Browser$Events$subMap = F2(
+	function (func, _v0) {
+		var node = _v0.a;
+		var name = _v0.b;
+		var decoder = _v0.c;
+		return A3(
+			$elm$browser$Browser$Events$MySub,
+			node,
+			name,
+			A2($elm$json$Json$Decode$map, func, decoder));
+	});
+_Platform_effectManagers['Browser.Events'] = _Platform_createManager($elm$browser$Browser$Events$init, $elm$browser$Browser$Events$onEffects, $elm$browser$Browser$Events$onSelfMsg, 0, $elm$browser$Browser$Events$subMap);
+var $elm$browser$Browser$Events$subscription = _Platform_leaf('Browser.Events');
+var $elm$browser$Browser$Events$on = F3(
+	function (node, name, decoder) {
+		return $elm$browser$Browser$Events$subscription(
+			A3($elm$browser$Browser$Events$MySub, node, name, decoder));
+	});
+var $elm$browser$Browser$Events$onKeyDown = A2($elm$browser$Browser$Events$on, 0, 'keydown');
+var $author$project$Main$subscriptions = function (_v0) {
+	return $elm$browser$Browser$Events$onKeyDown(
+		A2($elm$json$Json$Decode$map, $author$project$Main$KeyboardEvent, $Gizra$elm_keyboard_event$Keyboard$Event$decodeKeyboardEvent));
+};
 var $elm$browser$Browser$Document = F2(
 	function (title, body) {
 		return {bN: body, cz: title};
@@ -7911,7 +7910,6 @@ var $elm$browser$Browser$Document = F2(
 var $author$project$Main$EditorMsg = function (a) {
 	return {$: 0, a: a};
 };
-var $author$project$Main$Step = {$: 3};
 var $elm$json$Json$Encode$string = _Json_wrap;
 var $elm$html$Html$Attributes$stringProperty = F2(
 	function (key, string) {
@@ -12143,7 +12141,7 @@ var $pablohirafuji$elm_markdown$Markdown$toHtml = F2(
 				$pablohirafuji$elm_markdown$Markdown$Block$toHtml,
 				A2($pablohirafuji$elm_markdown$Markdown$Block$parse, maybeOptions, rawText)));
 	});
-var $author$project$Help$Info$info = A2($pablohirafuji$elm_markdown$Markdown$toHtml, $elm$core$Maybe$Nothing, '# 🥞 Pancake Programming Language\n\nPancake is an esoteric programming language that is conceptually split into two\nworlds -- _alpha_ and _omega_. But don\'t worry, those are two sides of the same\npancake 😉.\n\nThis project was concieved during the first [Lang Jam][langjam] with an amazing\nteam of creative coders:\n\n- [Viktor the `sharpvik`](https://github.com/sharpvik)\n- [Kyle the `Kylebrown9`](https://github.com/Kylebrown9)\n- [Aleksi the `aleksimart`](https://github.com/aleksimart)\n- [Holly the `dejawuuu`](https://github.com/dejawuuu)\n\n**NOTE:** [this site][playground] is an IDE for our language. Take a look at\nthe **Editor** section to learn more!\n\n[playground]: https://pancake-lang.github.io/pancake\n[langjam]: https://github.com/langjam/jam0001\n\n## Internals\n\nInternally, Pancake runtime is a very simple stack machine that keeps track of\nthe current world in which it\'s operating. Commands are executed top to bottom\n(although there are jumps) and if we are in the _alpha_ world, all _omega_\ninstructions are skipped (and vice versa).\n\n> You can `flip`, `flip if true`, or `flip if false` between the worlds to\n> create conditional statements. That is what makes Pancake so special and\n> yummy!\n\n## Syntax and Semantics\n\nHere\'s an example of a simple program with world and stack state annotated for\nthe first pass:\n\n```\n3               ; ALPHA [ 3 ]\n{i}             ; ALPHA [ 3 {i} ]\nbind            ; ALPHA [ ]                  { i = 3 }\ni               ; ALPHA [ i ]                { i = 3 }\n\n@ loop start\n\nflip if false   ; ALPHA [ ]                  { i = 3 }\n# loop end      ; skipped\n\n"hello world"   ; ALPHA [ "hello world" ]    { i = 3 }\nprint           ; ALPHA [ ]                  { i = 3 }\n\ni               ; ALPHA [ 3 ]                { i = 3 }\n1               ; ALPHA [ 3 1 ]              { i = 3 }\n-               ; ALPHA [ 2 ]                { i = 3 }\n{i}             ; ALPHA [ 2 {i} ]            { i = 3 }\nbind            ; ALPHA [ ]                  { i = 2 }\n\nloop start\n\n@ loop end      ; "loop end" is a label to which we can jump\n```\n\nThis program will print `hello world` three times before halting forever. Here\'s\nwhat we can learn from looking at it:\n\n1. Each line is an instruction.\n2. Lines prefixed with `@` are lables to which we can jump by writing their name\n   on one of the lines.\n3. Instructions in the _alpha_ world are not prefixed, while _omega_\n   instructions have a leading `#`.\n4. Names like `i` can be put on the stack raw, without being evaluated if you\n   wrap them in `{ }`. This can be used to `bind` a variable or in higher order\n   functions.\n5. All names and their values are stored in a global namespace.\n\n## Editor\n\n### Key Bindings\n\n- `CTRL + ;` = toggle help\n- `CTRL + ENTER` = run source code checks and formatting\n\n### Inspirations\n\n> You gotta give credit where credit\'s due!\n\n- **Editor color theme:** [Gruvbox Material][gruvbox-theme]\n- **Navigation bar:** inspired by [Elm online editor][elm-editor]\n\n[gruvbox-theme]: https://github.com/sainnhe/gruvbox-material\n[elm-editor]: https://elm-lang.org/examples/clock\n');
+var $author$project$Help$Info$info = A2($pablohirafuji$elm_markdown$Markdown$toHtml, $elm$core$Maybe$Nothing, '# 🥞 Pancake Programming Language\n\nPancake is an esoteric programming language that is conceptually split into two\nworlds -- _alpha_ and _omega_. But don\'t worry, those are two sides of the same\npancake 😉.\n\nThis project was concieved during the first [Lang Jam][langjam] with an amazing\nteam of creative coders:\n\n- [Viktor the `sharpvik`](https://github.com/sharpvik)\n- [Kyle the `Kylebrown9`](https://github.com/Kylebrown9)\n- [Aleksi the `aleksimart`](https://github.com/aleksimart)\n- [Holly the `dejawuuu`](https://github.com/dejawuuu)\n\n**NOTE:** [this site][playground] is an IDE for our language. Take a look at\nthe **Editor** section to learn more!\n\n[playground]: https://pancake-lang.github.io/pancake\n[langjam]: https://github.com/langjam/jam0001\n\n## Internals\n\nInternally, Pancake runtime is a very simple stack machine that keeps track of\nthe current world in which it\'s operating. Commands are executed top to bottom\n(although there are jumps) and if we are in the _alpha_ world, all _omega_\ninstructions are skipped (and vice versa).\n\n> You can `flip`, `flip if true`, or `flip if false` between the worlds to\n> create conditional statements. That is what makes Pancake so special and\n> yummy!\n\n## Syntax and Semantics\n\nHere\'s an example of a simple program with world and stack state annotated for\nthe first pass:\n\n```\n3               ; ALPHA [ 3 ]\n{i}             ; ALPHA [ 3 {i} ]\nbind            ; ALPHA [ ]                  { i = 3 }\ni               ; ALPHA [ i ]                { i = 3 }\n\n@ loop start\n\nflip if false   ; ALPHA [ ]                  { i = 3 }\n# loop end      ; skipped\n\n"hello world"   ; ALPHA [ "hello world" ]    { i = 3 }\nprint           ; ALPHA [ ]                  { i = 3 }\n\ni               ; ALPHA [ 3 ]                { i = 3 }\n1               ; ALPHA [ 3 1 ]              { i = 3 }\n-               ; ALPHA [ 2 ]                { i = 3 }\n{i}             ; ALPHA [ 2 {i} ]            { i = 3 }\nbind            ; ALPHA [ ]                  { i = 2 }\n\nloop start\n\n@ loop end      ; "loop end" is a label to which we can jump\n```\n\nThis program will print `hello world` three times before halting forever. Here\'s\nwhat we can learn from looking at it:\n\n1. Each line is an instruction.\n2. Lines prefixed with `@` are lables to which we can jump by writing their name\n   on one of the lines.\n3. Instructions in the _alpha_ world are not prefixed, while _omega_\n   instructions have a leading `#`.\n4. Names like `i` can be put on the stack raw, without being evaluated if you\n   wrap them in `{ }`. This can be used to `bind` a variable or in higher order\n   functions.\n5. All names and their values are stored in a global namespace.\n\n## Editor\n\n### Key Bindings\n\n- `CTRL + ;` = toggle help\n- `CTRL + ENTER` = run source code checks and formatting\n- `SHIFT + ENTER` = step through the code (debugger style)\n\n### Inspirations\n\n> You gotta give credit where credit\'s due!\n\n- **Editor color theme:** [Gruvbox Material][gruvbox-theme]\n- **Navigation bar:** inspired by [Elm online editor][elm-editor]\n\n[gruvbox-theme]: https://github.com/sainnhe/gruvbox-material\n[elm-editor]: https://elm-lang.org/examples/clock\n');
 var $elm$html$Html$main_ = _VirtualDom_node('main');
 var $elm$virtual_dom$VirtualDom$map = _VirtualDom_map;
 var $elm$html$Html$map = $elm$virtual_dom$VirtualDom$map;
@@ -12250,11 +12248,9 @@ var $author$project$Language$Machine$toString = function (value) {
 				$elm$core$String$join,
 				', ',
 				A2($elm$core$List$map, $author$project$Language$Machine$toString, list)) + ' ]');
-		case 3:
+		default:
 			var id = value.a;
 			return '{ ' + (id + ' }');
-		default:
-			return '< command >';
 	}
 };
 var $author$project$Language$Machine$toHtml = A2($elm$core$Basics$composeR, $author$project$Language$Machine$toString, $elm$html$Html$text);
@@ -12547,7 +12543,7 @@ var $author$project$Main$view = function (model) {
 				_List_fromArray(
 					[
 						$author$project$Navigation$Class$icon,
-						$elm$html$Html$Events$onClick($author$project$Main$Step),
+						$elm$html$Html$Events$onClick($author$project$Main$NextStep),
 						$elm$html$Html$Attributes$title('Step')
 					]),
 				$author$project$Icon$step),
