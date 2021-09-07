@@ -1,4 +1,4 @@
-module Language.Core exposing (add, lib, lookup)
+module Language.Core exposing (lib, lookup)
 
 import Array exposing (Array)
 import Basics.Extra exposing (flip)
@@ -6,9 +6,10 @@ import Dict exposing (Dict)
 import Language.Machine as Machine
     exposing
         ( Command
-        , Error
+        , Machine
         , Value(..)
-        , combine
+        , panic
+        , push
         )
 import Maybe.Extra as MaybeX
 
@@ -21,7 +22,10 @@ lib : Dict String Command
 lib =
     Dict.fromList
         [ ( "pass", identity )
-        , ( "+", add )
+        , ( "+", binOp (+) )
+        , ( "-", binOp (-) )
+        , ( "*", binOp (*) )
+        , ( "/", binOp (//) )
         ]
 
 
@@ -31,41 +35,40 @@ lookup =
 
 
 
--- ADD
+-- BININARY OPERATION
 
 
-add : Command
-add machine =
+binOp : (Int -> Int -> Int) -> Command
+binOp func machine =
     let
-        argc =
-            2
-
         args =
-            List.take argc machine.stack
-                |> List.map Machine.toInt
-                |> MaybeX.values
-                |> Array.fromList
+            binOpArgs machine
 
-        return =
-            call argc args (Array.toList >> List.sum >> Int)
+        x =
+            Maybe.withDefault 0 <| Array.get 0 args
+
+        y =
+            Maybe.withDefault 0 <| Array.get 1 args
     in
-    case return of
-        Err error ->
-            Machine.panic (combine error "failed to add") machine
-
-        Ok value ->
-            Machine.push value
-                { machine | stack = List.drop argc machine.stack }
-
-
-
--- CALL
-
-
-call : Int -> Array a -> (Array a -> Value) -> Result Error Value
-call argc args func =
-    if argc /= Array.length args then
-        Err "wrong number of arguments in function"
+    if Array.length args /= 2 then
+        panic "wrong number of arguments in call to function" machine
 
     else
-        Ok <| func args
+        popN 2 machine |> push (func x y |> Int)
+
+
+binOpArgs : Machine -> Array Int
+binOpArgs machine =
+    List.take 2 machine.stack
+        |> List.map Machine.toInt
+        |> MaybeX.values
+        |> Array.fromList
+
+
+
+-- POP N ARGS OFF OF THE STACK
+
+
+popN : Int -> Machine -> Machine
+popN argc machine =
+    { machine | stack = List.drop argc machine.stack }

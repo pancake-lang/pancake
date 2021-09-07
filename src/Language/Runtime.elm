@@ -6,17 +6,12 @@ import Language.Machine
     exposing
         ( Command
         , Instruction
-        , Machine
         , Value(..)
         , panic
         , push
         , skip
         )
 import Language.World exposing (World(..))
-
-
-type alias Runtime =
-    Machine
 
 
 step : Command
