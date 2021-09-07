@@ -85,7 +85,6 @@ type Value
     | Int Int
     | List (List Value)
     | Id String
-    | Command Command
 
 
 toInt : Value -> Maybe Int
@@ -117,9 +116,6 @@ toString value =
 
         Id id ->
             "{ " ++ id ++ " }"
-
-        Command _ ->
-            "< command >"
 
 
 

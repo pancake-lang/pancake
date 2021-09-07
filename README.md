@@ -78,6 +78,7 @@ what we can learn from looking at it:
 
 - `CTRL + ;` = toggle help
 - `CTRL + ENTER` = run source code checks and formatting
+- `SHIFT + ENTER` = step through the code (debugger style)
 
 ### Inspirations
 

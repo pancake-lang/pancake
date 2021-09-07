@@ -49,7 +49,7 @@ type Msg
     = EditorMsg Editor.Msg
     | ToggleHelp
     | CheckSource
-    | Step
+    | NextStep
     | KeyboardEvent KeyboardEvent
 
 
@@ -73,13 +73,16 @@ main =
 
 init : Flags -> ( Model, Cmd Msg )
 init _ =
-    ( { editor = Editor.init
-      , helpIsShown = False
-      , parsed = Nothing
-      , runtime = Nothing
-      }
-    , Cmd.none
-    )
+    update CheckSource initModel
+
+
+initModel : Model
+initModel =
+    { editor = Editor.init
+    , helpIsShown = False
+    , parsed = Nothing
+    , runtime = Nothing
+    }
 
 
 
@@ -108,7 +111,7 @@ update msg model =
         CheckSource ->
             ( checkSourceAndUpdate model, Cmd.none )
 
-        Step ->
+        NextStep ->
             ( { model | runtime = Maybe.map Runtime.step model.runtime }
             , Cmd.none
             )
@@ -124,6 +127,9 @@ updateOnKeyBinding event model =
 
     else if isCheckSource event then
         update CheckSource model
+
+    else if isNextStep event then
+        update NextStep model
 
     else
         ( model, Cmd.none )
@@ -171,6 +177,11 @@ isToggleHelp e =
     e.ctrlKey && key ";" e
 
 
+isNextStep : KeyboardEvent -> Bool
+isNextStep e =
+    e.shiftKey && key "Enter" e
+
+
 
 -- VIEW
 
@@ -216,7 +227,7 @@ view model =
                         checkResult
                     , Icon.map
                         [ Navigation.Class.icon
-                        , onClick Step
+                        , onClick NextStep
                         , title "Step"
                         ]
                         Icon.step

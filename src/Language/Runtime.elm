@@ -45,9 +45,6 @@ skipOnWorldMismatch instruction machine =
 exec : Instruction -> Command
 exec { value } =
     case value of
-        Command command ->
-            command
-
         Id id ->
             name id
 
