@@ -8,7 +8,7 @@ import Language.World exposing (World(..))
 
 
 
--- RUNTIME
+-- MACHINE
 
 
 type alias Machine =
@@ -23,6 +23,10 @@ type alias Machine =
     , names : Dict String Value
     , stack : Stack Value
     }
+
+
+type alias Command =
+    Machine -> Machine
 
 
 type alias Code =
@@ -116,11 +120,3 @@ toString value =
 
         Id id ->
             "{ " ++ id ++ " }"
-
-
-
--- COMMAND
-
-
-type alias Command =
-    Machine -> Machine

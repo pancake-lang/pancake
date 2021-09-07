@@ -244,18 +244,31 @@ view model =
             let
                 world_ =
                     case model.runtime of
-                        Just { world } ->
-                            section [ Terminal.Class.world ]
-                                [ h6 []
-                                    [ text <|
-                                        case world of
-                                            Alpha ->
-                                                "alpha"
+                        Just { status, world } ->
+                            case status of
+                                Err message ->
+                                    section
+                                        [ Terminal.Class.world
+                                        , Terminal.Class.panic
+                                        ]
+                                        [ message
+                                            |> text
+                                            |> List.singleton
+                                            |> h6 []
+                                        ]
 
-                                            Omega ->
-                                                "omega"
-                                    ]
-                                ]
+                                Ok _ ->
+                                    section [ Terminal.Class.world ]
+                                        [ h6 [] <|
+                                            List.singleton <|
+                                                text <|
+                                                    case world of
+                                                        Alpha ->
+                                                            "alpha"
+
+                                                        Omega ->
+                                                            "omega"
+                                        ]
 
                         Nothing ->
                             section

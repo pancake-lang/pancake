@@ -14,11 +14,18 @@
 .terminal-world-unknown {
   background-color: var(--editor-line-numbers-color);
 }
+.terminal-panic {
+  background-color: var(--error-color);
+}
 
 .terminal-world h6 {
+  width: 95%;
   line-height: 60px;
-  margin: 0;
+  margin: 0 auto;
   color: white;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .terminal-stack {

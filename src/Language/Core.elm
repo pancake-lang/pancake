@@ -23,9 +23,9 @@ lib =
     Dict.fromList
         [ ( "pass", identity )
         , ( "+", binOp (+) )
-        , ( "-", binOp (-) )
+        , ( "-", binOp <| flip (-) )
         , ( "*", binOp (*) )
-        , ( "/", binOp (//) )
+        , ( "/", binOp <| flip (//) )
         ]
 
 
@@ -51,7 +51,7 @@ binOp func machine =
             Maybe.withDefault 0 <| Array.get 1 args
     in
     if Array.length args /= 2 then
-        panic "wrong number of arguments in call to function" machine
+        panic "wrong number of arguments in function call" machine
 
     else
         popN 2 machine |> push (func x y |> Int)

@@ -54,4 +54,4 @@ name id =
             command
 
         Nothing ->
-            push <| Id id
+            panic "undefined name"

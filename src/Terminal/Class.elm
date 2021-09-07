@@ -1,5 +1,6 @@
 module Terminal.Class exposing
     ( half
+    , panic
     , stack
     , stackFrame
     , world
@@ -28,6 +29,11 @@ world =
 worldUnknown : Attribute msg
 worldUnknown =
     terminal "world-unknown"
+
+
+panic : Attribute msg
+panic =
+    terminal "panic"
 
 
 stack : Attribute msg
