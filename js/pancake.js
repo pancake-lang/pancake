@@ -7194,7 +7194,7 @@ var $author$project$Language$Core$binOp = F2(
 			$elm$core$Maybe$withDefault,
 			0,
 			A2($elm$core$Array$get, 1, args));
-		return ($elm$core$Array$length(args) !== 2) ? A2($author$project$Language$Machine$panic, 'wrong number of arguments in call to function', machine) : A2(
+		return ($elm$core$Array$length(args) !== 2) ? A2($author$project$Language$Machine$panic, 'wrong number of arguments in function call', machine) : A2(
 			$author$project$Language$Machine$push,
 			$author$project$Language$Machine$Int(
 				A2(func, x, y)),
@@ -7209,13 +7209,15 @@ var $author$project$Language$Core$lib = $elm$core$Dict$fromList(
 			$author$project$Language$Core$binOp($elm$core$Basics$add)),
 			_Utils_Tuple2(
 			'-',
-			$author$project$Language$Core$binOp($elm$core$Basics$sub)),
+			$author$project$Language$Core$binOp(
+				$elm_community$basics_extra$Basics$Extra$flip($elm$core$Basics$sub))),
 			_Utils_Tuple2(
 			'*',
 			$author$project$Language$Core$binOp($elm$core$Basics$mul)),
 			_Utils_Tuple2(
 			'/',
-			$author$project$Language$Core$binOp($elm$core$Basics$idiv))
+			$author$project$Language$Core$binOp(
+				$elm_community$basics_extra$Basics$Extra$flip($elm$core$Basics$idiv)))
 		]));
 var $author$project$Language$Core$lookup = A2($elm_community$basics_extra$Basics$Extra$flip, $elm$core$Dict$get, $author$project$Language$Core$lib);
 var $author$project$Language$Runtime$name = function (id) {
@@ -7224,8 +7226,7 @@ var $author$project$Language$Runtime$name = function (id) {
 		var command = _v0.a;
 		return command;
 	} else {
-		return $author$project$Language$Machine$push(
-			$author$project$Language$Machine$Id(id));
+		return $author$project$Language$Machine$panic('undefined name');
 	}
 };
 var $author$project$Language$Runtime$exec = function (_v0) {
@@ -12198,6 +12199,7 @@ var $elm$html$Html$Events$onClick = function (msg) {
 		$elm$json$Json$Decode$succeed(msg));
 };
 var $author$project$Navigation$Class$pad = $author$project$Navigation$Class$navigtaion('pad');
+var $author$project$Terminal$Class$panic = $author$project$Terminal$Class$terminal('panic');
 var $elm$html$Html$section = _VirtualDom_node('section');
 var $elm$core$List$singleton = function (value) {
 	return _List_fromArray(
@@ -12406,28 +12408,43 @@ var $author$project$Main$view = function (model) {
 		var world_ = function () {
 			var _v2 = model.O;
 			if (!_v2.$) {
+				var status = _v2.a.aF;
 				var world = _v2.a.aJ;
-				return A2(
-					$elm$html$Html$section,
-					_List_fromArray(
-						[$author$project$Terminal$Class$world]),
-					_List_fromArray(
-						[
-							A2(
-							$elm$html$Html$h6,
-							_List_Nil,
-							_List_fromArray(
-								[
+				if (status.$ === 1) {
+					var message = status.a;
+					return A2(
+						$elm$html$Html$section,
+						_List_fromArray(
+							[$author$project$Terminal$Class$world, $author$project$Terminal$Class$panic]),
+						_List_fromArray(
+							[
+								A2(
+								$elm$html$Html$h6,
+								_List_Nil,
+								$elm$core$List$singleton(
+									$elm$html$Html$text(message)))
+							]));
+				} else {
+					return A2(
+						$elm$html$Html$section,
+						_List_fromArray(
+							[$author$project$Terminal$Class$world]),
+						_List_fromArray(
+							[
+								A2(
+								$elm$html$Html$h6,
+								_List_Nil,
+								$elm$core$List$singleton(
 									$elm$html$Html$text(
-									function () {
-										if (!world) {
-											return 'alpha';
-										} else {
-											return 'omega';
-										}
-									}())
-								]))
-						]));
+										function () {
+											if (!world) {
+												return 'alpha';
+											} else {
+												return 'omega';
+											}
+										}())))
+							]));
+				}
 			} else {
 				return A2(
 					$elm$html$Html$section,

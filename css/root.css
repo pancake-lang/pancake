@@ -1,11 +1,13 @@
 :root {
   --editor-line-numbers-color: #505050;
-  --editor-font-size: 18px;
-  --editor-line-height: 24px;
   --link-color: #01579b;
   --code-background: #262626;
   --code-color: #dfbd9b;
   --code-highlight: #03a9f4;
   --inline-code-background: #efefef;
+  --error-color: #bb0000;
+
   --navigation-bar-height: 50px;
+  --editor-font-size: 18px;
+  --editor-line-height: 24px;
 }
