@@ -6995,58 +6995,6 @@ var $elm_community$basics_extra$Basics$Extra$flip = F3(
 	function (f, b, a) {
 		return A2(f, a, b);
 	});
-var $elm$core$Array$length = function (_v0) {
-	var len = _v0.a;
-	return len;
-};
-var $elm$core$Basics$neq = _Utils_notEqual;
-var $author$project$Language$Core$call = F3(
-	function (argc, args, func) {
-		return (!_Utils_eq(
-			argc,
-			$elm$core$Array$length(args))) ? $elm$core$Result$Err('wrong number of arguments in function') : $elm$core$Result$Ok(
-			func(args));
-	});
-var $author$project$Language$Machine$combine = F2(
-	function (e1, e2) {
-		return e1 + ('\n|> ' + e2);
-	});
-var $elm$core$List$drop = F2(
-	function (n, list) {
-		drop:
-		while (true) {
-			if (n <= 0) {
-				return list;
-			} else {
-				if (!list.b) {
-					return list;
-				} else {
-					var x = list.a;
-					var xs = list.b;
-					var $temp$n = n - 1,
-						$temp$list = xs;
-					n = $temp$n;
-					list = $temp$list;
-					continue drop;
-				}
-			}
-		}
-	});
-var $author$project$Language$Stack$push = F2(
-	function (item, stack) {
-		return A2($elm$core$List$cons, item, stack);
-	});
-var $author$project$Language$Machine$push = F2(
-	function (value, machine) {
-		return _Utils_update(
-			machine,
-			{
-				aD: A2($author$project$Language$Stack$push, value, machine.aD)
-			});
-	});
-var $elm$core$List$sum = function (numbers) {
-	return A3($elm$core$List$foldl, $elm$core$Basics$add, 0, numbers);
-};
 var $elm$core$List$takeReverse = F3(
 	function (n, list, kept) {
 		takeReverse:
@@ -7181,45 +7129,93 @@ var $author$project$Language$Machine$toInt = function (value) {
 		return $elm$core$Maybe$Nothing;
 	}
 };
-var $author$project$Language$Core$add = function (machine) {
-	var argc = 2;
-	var args = $elm$core$Array$fromList(
+var $author$project$Language$Core$binOpArgs = function (machine) {
+	return $elm$core$Array$fromList(
 		$elm_community$maybe_extra$Maybe$Extra$values(
 			A2(
 				$elm$core$List$map,
 				$author$project$Language$Machine$toInt,
-				A2($elm$core$List$take, argc, machine.aD))));
-	var _return = A3(
-		$author$project$Language$Core$call,
-		argc,
-		args,
-		A2(
-			$elm$core$Basics$composeR,
-			$elm$core$Array$toList,
-			A2($elm$core$Basics$composeR, $elm$core$List$sum, $author$project$Language$Machine$Int)));
-	if (_return.$ === 1) {
-		var error = _return.a;
-		return A2(
-			$author$project$Language$Machine$panic,
-			A2($author$project$Language$Machine$combine, error, 'failed to add'),
-			machine);
-	} else {
-		var value = _return.a;
-		return A2(
-			$author$project$Language$Machine$push,
-			value,
-			_Utils_update(
-				machine,
-				{
-					aD: A2($elm$core$List$drop, argc, machine.aD)
-				}));
-	}
+				A2($elm$core$List$take, 2, machine.aD))));
 };
+var $elm$core$Array$length = function (_v0) {
+	var len = _v0.a;
+	return len;
+};
+var $elm$core$Basics$neq = _Utils_notEqual;
+var $elm$core$List$drop = F2(
+	function (n, list) {
+		drop:
+		while (true) {
+			if (n <= 0) {
+				return list;
+			} else {
+				if (!list.b) {
+					return list;
+				} else {
+					var x = list.a;
+					var xs = list.b;
+					var $temp$n = n - 1,
+						$temp$list = xs;
+					n = $temp$n;
+					list = $temp$list;
+					continue drop;
+				}
+			}
+		}
+	});
+var $author$project$Language$Core$popN = F2(
+	function (argc, machine) {
+		return _Utils_update(
+			machine,
+			{
+				aD: A2($elm$core$List$drop, argc, machine.aD)
+			});
+	});
+var $author$project$Language$Stack$push = F2(
+	function (item, stack) {
+		return A2($elm$core$List$cons, item, stack);
+	});
+var $author$project$Language$Machine$push = F2(
+	function (value, machine) {
+		return _Utils_update(
+			machine,
+			{
+				aD: A2($author$project$Language$Stack$push, value, machine.aD)
+			});
+	});
+var $author$project$Language$Core$binOp = F2(
+	function (func, machine) {
+		var args = $author$project$Language$Core$binOpArgs(machine);
+		var x = A2(
+			$elm$core$Maybe$withDefault,
+			0,
+			A2($elm$core$Array$get, 0, args));
+		var y = A2(
+			$elm$core$Maybe$withDefault,
+			0,
+			A2($elm$core$Array$get, 1, args));
+		return ($elm$core$Array$length(args) !== 2) ? A2($author$project$Language$Machine$panic, 'wrong number of arguments in call to function', machine) : A2(
+			$author$project$Language$Machine$push,
+			$author$project$Language$Machine$Int(
+				A2(func, x, y)),
+			A2($author$project$Language$Core$popN, 2, machine));
+	});
 var $author$project$Language$Core$lib = $elm$core$Dict$fromList(
 	_List_fromArray(
 		[
 			_Utils_Tuple2('pass', $elm$core$Basics$identity),
-			_Utils_Tuple2('+', $author$project$Language$Core$add)
+			_Utils_Tuple2(
+			'+',
+			$author$project$Language$Core$binOp($elm$core$Basics$add)),
+			_Utils_Tuple2(
+			'-',
+			$author$project$Language$Core$binOp($elm$core$Basics$sub)),
+			_Utils_Tuple2(
+			'*',
+			$author$project$Language$Core$binOp($elm$core$Basics$mul)),
+			_Utils_Tuple2(
+			'/',
+			$author$project$Language$Core$binOp($elm$core$Basics$idiv))
 		]));
 var $author$project$Language$Core$lookup = A2($elm_community$basics_extra$Basics$Extra$flip, $elm$core$Dict$get, $author$project$Language$Core$lib);
 var $author$project$Language$Runtime$name = function (id) {
