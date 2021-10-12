@@ -26,8 +26,10 @@ lib =
     Dict.fromList
         -- State controll.
         [ ( "pass", identity )
+        , ( "not", unOp not_ )
         , ( "flip", flip_ )
         , ( "flip if true", flipIfTrue )
+        , ( "flip if false", unOp not_ >> flipIfTrue )
 
         -- Arithmetic.
         , ( "+", binOp (+) )
@@ -71,7 +73,36 @@ flipIfTrue machine =
                         |> flip panic machine
 
         Nothing ->
-            panic "wrong number of arguments in function call" machine
+            wrongArgCount machine
+
+
+
+-- UNARY OPERATION
+
+
+unOp : (Int -> Int) -> Command
+unOp func machine =
+    case unOpArg machine of
+        Nothing ->
+            wrongArgCount machine
+
+        Just x ->
+            popN 1 machine |> push (func x |> Int)
+
+
+unOpArg : Machine -> Maybe Int
+unOpArg machine =
+    List.head machine.stack |> Maybe.andThen Machine.toInt
+
+
+not_ : Int -> Int
+not_ bool =
+    case bool of
+        0 ->
+            1
+
+        _ ->
+            0
 
 
 
@@ -91,7 +122,7 @@ binOp func machine =
             Maybe.withDefault 0 <| Array.get 1 args
     in
     if Array.length args /= 2 then
-        panic "wrong number of arguments in function call" machine
+        wrongArgCount machine
 
     else
         popN 2 machine |> push (func x y |> Int)
@@ -103,6 +134,15 @@ binOpArgs machine =
         |> List.map Machine.toInt
         |> MaybeX.values
         |> Array.fromList
+
+
+
+-- WRONG NUMBER OF ARGUMENTS
+
+
+wrongArgCount : Command
+wrongArgCount =
+    panic "wrong number of arguments in function call"
 
 
 
