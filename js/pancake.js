@@ -5662,10 +5662,10 @@ var $author$project$Language$Machine$init = F2(
 	function (code, labels) {
 		return {
 			aR: code,
-			ah: 0,
+			ai: 0,
 			a7: labels,
 			ba: $elm$core$Dict$empty,
-			an: $author$project$Language$Stack$empty,
+			ab: $author$project$Language$Stack$empty,
 			aF: $elm$core$Result$Ok(0),
 			bG: 0
 		};
@@ -5732,7 +5732,7 @@ var $elm$core$String$toList = function (string) {
 };
 var $author$project$Language$Compiler$toInstruction = function (_v0) {
 	var number = _v0.cm;
-	var item = _v0.ai;
+	var item = _v0.aj;
 	switch (item.$) {
 		case 0:
 			var world = item.a;
@@ -5802,7 +5802,7 @@ var $author$project$Language$Compiler$compile = function (ast) {
 		A2(
 			$elm$core$List$filter,
 			function (astLine) {
-				return !$author$project$Language$Parser$isNote(astLine.ai);
+				return !$author$project$Language$Parser$isNote(astLine.aj);
 			},
 			ast));
 	var labels = $elm$core$Dict$fromList(
@@ -5812,12 +5812,12 @@ var $author$project$Language$Compiler$compile = function (ast) {
 					$elm$core$Array$indexedMap,
 					F2(
 						function (id, astLine) {
-							return $author$project$Language$Parser$isLabel(astLine.ai) ? $elm$core$Maybe$Just(
+							return $author$project$Language$Parser$isLabel(astLine.aj) ? $elm$core$Maybe$Just(
 								_Utils_Tuple2(
 									A2(
 										$elm$core$Maybe$withDefault,
 										'',
-										$author$project$Language$Parser$getLabel(astLine.ai)),
+										$author$project$Language$Parser$getLabel(astLine.aj)),
 									id)) : $elm$core$Maybe$Nothing;
 						}),
 					noNotes))));
@@ -5911,7 +5911,7 @@ var $author$project$Language$Parser$lines = function () {
 }();
 var $author$project$Language$Parser$AstLine = F2(
 	function (number, item) {
-		return {ai: item, cm: number};
+		return {aj: item, cm: number};
 	});
 var $author$project$Language$Parser$ErrorLine = F2(
 	function (number, error) {
@@ -6744,7 +6744,7 @@ var $author$project$Language$Pretty$astLine = function (line) {
 	var withNumber = $elm$core$Tuple$pair(line.cm);
 	return withNumber(
 		function () {
-			var _v0 = line.ai;
+			var _v0 = line.aj;
 			switch (_v0.$) {
 				case 1:
 					var label = _v0.a;
@@ -7135,7 +7135,7 @@ var $author$project$Language$Core$binOpArgs = function (machine) {
 			A2(
 				$elm$core$List$map,
 				$author$project$Language$Machine$toInt,
-				A2($elm$core$List$take, 2, machine.an))));
+				A2($elm$core$List$take, 2, machine.ab))));
 };
 var $elm$core$Array$length = function (_v0) {
 	var len = _v0.a;
@@ -7168,7 +7168,7 @@ var $author$project$Language$Core$popN = F2(
 		return _Utils_update(
 			machine,
 			{
-				an: A2($elm$core$List$drop, argc, machine.an)
+				ab: A2($elm$core$List$drop, argc, machine.ab)
 			});
 	});
 var $author$project$Language$Stack$push = F2(
@@ -7180,9 +7180,10 @@ var $author$project$Language$Machine$push = F2(
 		return _Utils_update(
 			machine,
 			{
-				an: A2($author$project$Language$Stack$push, value, machine.an)
+				ab: A2($author$project$Language$Stack$push, value, machine.ab)
 			});
 	});
+var $author$project$Language$Core$wrongArgCount = $author$project$Language$Machine$panic('wrong number of arguments in function call');
 var $author$project$Language$Core$binOp = F2(
 	function (func, machine) {
 		var args = $author$project$Language$Core$binOpArgs(machine);
@@ -7194,7 +7195,7 @@ var $author$project$Language$Core$binOp = F2(
 			$elm$core$Maybe$withDefault,
 			0,
 			A2($elm$core$Array$get, 1, args));
-		return ($elm$core$Array$length(args) !== 2) ? A2($author$project$Language$Machine$panic, 'wrong number of arguments in function call', machine) : A2(
+		return ($elm$core$Array$length(args) !== 2) ? $author$project$Language$Core$wrongArgCount(machine) : A2(
 			$author$project$Language$Machine$push,
 			$author$project$Language$Machine$Int(
 				A2(func, x, y)),
@@ -7233,7 +7234,7 @@ var $elm$core$List$head = function (list) {
 	}
 };
 var $author$project$Language$Core$flipIfTrue = function (machine) {
-	var arg = $elm$core$List$head(machine.an);
+	var arg = $elm$core$List$head(machine.ab);
 	if (!arg.$) {
 		var value = arg.a;
 		var _v1 = $author$project$Language$Machine$asBool(value);
@@ -7252,15 +7253,60 @@ var $author$project$Language$Core$flipIfTrue = function (machine) {
 				A2($author$project$Language$Machine$combine, 'flip expected a boolean', 'type error'));
 		}
 	} else {
-		return A2($author$project$Language$Machine$panic, 'wrong number of arguments in function call', machine);
+		return $author$project$Language$Core$wrongArgCount(machine);
 	}
 };
+var $author$project$Language$Core$not_ = function (bool) {
+	if (!bool) {
+		return 1;
+	} else {
+		return 0;
+	}
+};
+var $elm$core$Maybe$andThen = F2(
+	function (callback, maybeValue) {
+		if (!maybeValue.$) {
+			var value = maybeValue.a;
+			return callback(value);
+		} else {
+			return $elm$core$Maybe$Nothing;
+		}
+	});
+var $author$project$Language$Core$unOpArg = function (machine) {
+	return A2(
+		$elm$core$Maybe$andThen,
+		$author$project$Language$Machine$toInt,
+		$elm$core$List$head(machine.ab));
+};
+var $author$project$Language$Core$unOp = F2(
+	function (func, machine) {
+		var _v0 = $author$project$Language$Core$unOpArg(machine);
+		if (_v0.$ === 1) {
+			return $author$project$Language$Core$wrongArgCount(machine);
+		} else {
+			var x = _v0.a;
+			return A2(
+				$author$project$Language$Machine$push,
+				$author$project$Language$Machine$Int(
+					func(x)),
+				A2($author$project$Language$Core$popN, 1, machine));
+		}
+	});
 var $author$project$Language$Core$lib = $elm$core$Dict$fromList(
 	_List_fromArray(
 		[
 			_Utils_Tuple2('pass', $elm$core$Basics$identity),
+			_Utils_Tuple2(
+			'not',
+			$author$project$Language$Core$unOp($author$project$Language$Core$not_)),
 			_Utils_Tuple2('flip', $author$project$Language$Core$flip_),
 			_Utils_Tuple2('flip if true', $author$project$Language$Core$flipIfTrue),
+			_Utils_Tuple2(
+			'flip if false',
+			A2(
+				$elm$core$Basics$composeR,
+				$author$project$Language$Core$unOp($author$project$Language$Core$not_),
+				$author$project$Language$Core$flipIfTrue)),
 			_Utils_Tuple2(
 			'+',
 			$author$project$Language$Core$binOp($elm$core$Basics$add)),
@@ -7299,7 +7345,7 @@ var $author$project$Language$Runtime$exec = function (_v0) {
 var $author$project$Language$Machine$skip = function (machine) {
 	return _Utils_update(
 		machine,
-		{ah: machine.ah + 1});
+		{ai: machine.ai + 1});
 };
 var $author$project$Language$Runtime$skipOnWorldMismatch = F2(
 	function (instruction, machine) {
@@ -7307,7 +7353,7 @@ var $author$project$Language$Runtime$skipOnWorldMismatch = F2(
 			A2($author$project$Language$Runtime$exec, instruction, machine));
 	});
 var $author$project$Language$Runtime$step = function (machine) {
-	var currentInstruction = A2($elm$core$Array$get, machine.ah, machine.aR);
+	var currentInstruction = A2($elm$core$Array$get, machine.ai, machine.aR);
 	if (currentInstruction.$ === 1) {
 		return A2($author$project$Language$Machine$panic, 'failed to fetch instruction', machine);
 	} else {
@@ -8288,15 +8334,6 @@ var $pablohirafuji$elm_markdown$Markdown$Block$calcListIndentLength = function (
 			{o: indentLength}),
 		updtRawLine);
 };
-var $elm$core$Maybe$andThen = F2(
-	function (callback, maybeValue) {
-		if (!maybeValue.$) {
-			var value = maybeValue.a;
-			return callback(value);
-		} else {
-			return $elm$core$Maybe$Nothing;
-		}
-	});
 var $pablohirafuji$elm_markdown$Markdown$Block$atxHeadingLineRegex = A2(
 	$elm$core$Maybe$withDefault,
 	$elm$regex$Regex$never,
@@ -9136,7 +9173,7 @@ var $pablohirafuji$elm_markdown$Markdown$Block$extractOrderedListRM = function (
 					X: delimiter,
 					o: $elm$core$String$length(indentString) + 1,
 					G: false,
-					ad: A2(
+					ae: A2(
 						$elm$core$Maybe$withDefault,
 						$pablohirafuji$elm_markdown$Markdown$Block$Unordered,
 						A2(
@@ -9246,7 +9283,7 @@ var $pablohirafuji$elm_markdown$Markdown$Block$extractUnorderedListRM = function
 					X: delimiter,
 					o: $elm$core$String$length(indentString) + 1,
 					G: false,
-					ad: $pablohirafuji$elm_markdown$Markdown$Block$Unordered
+					ae: $pablohirafuji$elm_markdown$Markdown$Block$Unordered
 				},
 				A2($elm$core$Maybe$withDefault, '', maybeIndentSpace),
 				A2($elm$core$Maybe$withDefault, '', maybeRawLine)));
@@ -9671,7 +9708,7 @@ var $pablohirafuji$elm_markdown$Markdown$Block$parseListLine = F3(
 								A2($pablohirafuji$elm_markdown$Markdown$Block$addToParagraph, rawText, rawLine),
 								astTail);
 						} else {
-							var _v5 = listBlock.ad;
+							var _v5 = listBlock.ae;
 							if (_v5.$ === 1) {
 								if (_v5.a === 1) {
 									return newList;
@@ -9785,7 +9822,7 @@ var $pablohirafuji$elm_markdown$Markdown$Inline$Text = function (a) {
 };
 var $pablohirafuji$elm_markdown$Markdown$InlineParser$matchToInline = function (_v0) {
 	var match = _v0;
-	var _v1 = match.ad;
+	var _v1 = match.ae;
 	switch (_v1.$) {
 		case 0:
 			return $pablohirafuji$elm_markdown$Markdown$Inline$Text(match.aI);
@@ -9916,7 +9953,7 @@ var $pablohirafuji$elm_markdown$Markdown$InlineParser$normalMatch = function (te
 		aI: $pablohirafuji$elm_markdown$Markdown$Helpers$formatStr(text),
 		U: 0,
 		C: 0,
-		ad: $pablohirafuji$elm_markdown$Markdown$InlineParser$NormalType
+		ae: $pablohirafuji$elm_markdown$Markdown$InlineParser$NormalType
 	};
 };
 var $pablohirafuji$elm_markdown$Markdown$InlineParser$parseTextMatch = F3(
@@ -9938,7 +9975,7 @@ var $pablohirafuji$elm_markdown$Markdown$InlineParser$parseTextMatch = F3(
 		} else {
 			var matchHead = parsedMatches.a;
 			var matchesTail = parsedMatches.b;
-			return _Utils_eq(matchHead.ad, $pablohirafuji$elm_markdown$Markdown$InlineParser$NormalType) ? A2($elm$core$List$cons, updtMatch, parsedMatches) : (_Utils_eq(matchModel.aW, matchHead.aE) ? A2($elm$core$List$cons, updtMatch, parsedMatches) : ((_Utils_cmp(matchModel.aW, matchHead.aE) < 0) ? A2(
+			return _Utils_eq(matchHead.ae, $pablohirafuji$elm_markdown$Markdown$InlineParser$NormalType) ? A2($elm$core$List$cons, updtMatch, parsedMatches) : (_Utils_eq(matchModel.aW, matchHead.aE) ? A2($elm$core$List$cons, updtMatch, parsedMatches) : ((_Utils_cmp(matchModel.aW, matchHead.aE) < 0) ? A2(
 				$elm$core$List$cons,
 				updtMatch,
 				A2(
@@ -10456,7 +10493,7 @@ var $pablohirafuji$elm_markdown$Markdown$InlineParser$autolinkToMatch = function
 		_Utils_update(
 			match,
 			{
-				ad: $pablohirafuji$elm_markdown$Markdown$InlineParser$AutolinkType(
+				ae: $pablohirafuji$elm_markdown$Markdown$InlineParser$AutolinkType(
 					_Utils_Tuple2(
 						match.aI,
 						$pablohirafuji$elm_markdown$Markdown$InlineParser$encodeUrl(match.aI)))
@@ -10510,8 +10547,8 @@ var $pablohirafuji$elm_markdown$Markdown$InlineParser$inlineLinkTypeOrImageTypeR
 					matchModel,
 					{
 						aW: matchModel.aW + $elm$core$String$length(regexMatch.b9),
-						ad: function () {
-							var _v5 = matchModel.ad;
+						ae: function () {
+							var _v5 = matchModel.ae;
 							if (_v5.$ === 5) {
 								return $pablohirafuji$elm_markdown$Markdown$InlineParser$ImageType;
 							} else {
@@ -10586,8 +10623,8 @@ var $pablohirafuji$elm_markdown$Markdown$InlineParser$refRegexToMatch = F3(
 				matchModel,
 				{
 					aW: matchModel.aW + regexMatchLength,
-					ad: function () {
-						var _v0 = matchModel.ad;
+					ae: function () {
+						var _v0 = matchModel.ae;
 						if (_v0.$ === 5) {
 							return $pablohirafuji$elm_markdown$Markdown$InlineParser$ImageType;
 						} else {
@@ -10675,7 +10712,7 @@ var $pablohirafuji$elm_markdown$Markdown$InlineParser$emailAutolinkTypeToMatch =
 		_Utils_update(
 			match,
 			{
-				ad: $pablohirafuji$elm_markdown$Markdown$InlineParser$AutolinkType(
+				ae: $pablohirafuji$elm_markdown$Markdown$InlineParser$AutolinkType(
 					_Utils_Tuple2(
 						match.aI,
 						'mailto:' + $pablohirafuji$elm_markdown$Markdown$InlineParser$encodeUrl(match.aI)))
@@ -10931,7 +10968,7 @@ var $pablohirafuji$elm_markdown$Markdown$InlineParser$reverseTokens = function (
 };
 var $pablohirafuji$elm_markdown$Markdown$InlineParser$tokenToMatch = F2(
 	function (token, type_) {
-		return {aW: token.b3 + token.d, c: _List_Nil, aE: token.b3, aI: '', U: 0, C: 0, ad: type_};
+		return {aW: token.b3 + token.d, c: _List_Nil, aE: token.b3, aI: '', U: 0, C: 0, ae: type_};
 	});
 var $pablohirafuji$elm_markdown$Markdown$InlineParser$lineBreakTTM = function (_v0) {
 	lineBreakTTM:
@@ -11194,12 +11231,12 @@ var $pablohirafuji$elm_markdown$Markdown$InlineParser$emphasisToMatch = F4(
 		var innerTokens = _v15.b;
 		var remainTokens = _v15.c;
 		var remainLength = openToken.d - closeToken.d;
-		var updt = (!remainLength) ? {ag: closeToken, Y: openToken, al: remainTokens, ao: tokensTail} : ((remainLength > 0) ? {
-			ag: closeToken,
+		var updt = (!remainLength) ? {ah: closeToken, Y: openToken, am: remainTokens, ao: tokensTail} : ((remainLength > 0) ? {
+			ah: closeToken,
 			Y: _Utils_update(
 				openToken,
 				{b3: openToken.b3 + remainLength, d: closeToken.d}),
-			al: A2(
+			am: A2(
 				$elm$core$List$cons,
 				_Utils_update(
 					openToken,
@@ -11207,11 +11244,11 @@ var $pablohirafuji$elm_markdown$Markdown$InlineParser$emphasisToMatch = F4(
 				remainTokens),
 			ao: tokensTail
 		} : {
-			ag: _Utils_update(
+			ah: _Utils_update(
 				closeToken,
 				{d: openToken.d}),
 			Y: openToken,
-			al: remainTokens,
+			am: remainTokens,
 			ao: A2(
 				$elm$core$List$cons,
 				_Utils_update(
@@ -11227,7 +11264,7 @@ var $pablohirafuji$elm_markdown$Markdown$InlineParser$emphasisToMatch = F4(
 			},
 			$pablohirafuji$elm_markdown$Markdown$InlineParser$EmphasisType(updt.Y.d),
 			updt.Y,
-			updt.ag,
+			updt.ah,
 			$elm$core$List$reverse(innerTokens));
 		return _Utils_Tuple2(
 			updt.ao,
@@ -11235,7 +11272,7 @@ var $pablohirafuji$elm_markdown$Markdown$InlineParser$emphasisToMatch = F4(
 				model,
 				{
 					c: A2($elm$core$List$cons, match, model.c),
-					h: updt.al
+					h: updt.am
 				}));
 	});
 var $pablohirafuji$elm_markdown$Markdown$InlineParser$htmlElementTTM = function (_v12) {
@@ -11474,7 +11511,7 @@ var $pablohirafuji$elm_markdown$Markdown$InlineParser$tokenPairToMatch = F6(
 				A3($elm$core$String$slice, textStart, textEnd, model.s)),
 			U: textEnd,
 			C: textStart,
-			ad: type_
+			ae: type_
 		};
 		var matches = A2(
 			$elm$core$List$map,
@@ -12136,7 +12173,7 @@ var $pablohirafuji$elm_markdown$Markdown$Block$defaultHtml = F3(
 					return A2($elm$core$List$cons, a, _List_Nil);
 				}(
 					function () {
-						var _v5 = model.ad;
+						var _v5 = model.ae;
 						if (_v5.$ === 1) {
 							var startInt = _v5.a;
 							return (startInt === 1) ? $elm$html$Html$ol(_List_Nil) : $elm$html$Html$ol(
@@ -12513,7 +12550,7 @@ var $author$project$Main$view = function (model) {
 		var stack_ = function () {
 			var _v1 = model.O;
 			if (!_v1.$) {
-				var stack = _v1.a.an;
+				var stack = _v1.a.ab;
 				return $elm$core$List$reverse(
 					A2(
 						$elm$core$List$map,
